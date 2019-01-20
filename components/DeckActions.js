@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import _ from 'lodash';
 import { View, Text, StyleSheet } from 'react-native';
 import IconButton from './IconButton';
-import { unit } from '../theme';
+import theme from '../theme';
 
 const propTypes = {
     data: PropTypes.array.isRequired,  
@@ -106,7 +106,7 @@ class DeckActions extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: unit * 5,
+        marginTop: theme.unit * 5,
     },
     buttonRow: {
         width: '100%',

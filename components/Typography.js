@@ -1,87 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
-import { colours } from '../theme';
+import theme from '../theme';
 
 const propTypes = {
-    type: PropTypes.string.isRequired,
+    variant: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired,
+    style: PropTypes.object,
 };
 
-const Typography = ({ type, children }) => {
-    let textStyle;
+const defaultProps = {
+    variant: 'regular',
+};
 
-    switch (type) {
-        case 'title1':
-            textStyle = styles.titleOne;
-            break;
-        case 'title2':
-            textStyle = styles.titleTwo;
-            break;
-        case 'title3':
-            textStyle = styles.titleThree;
-            break;
-        case 'large':
-            textStyle = styles.titleFour;
-            break;
-        case 'regular':
-            textStyle = styles.titleFive;
-            break;
-        case 'small':
-            textStyle = styles.titleSix;
-            break;
-        case 'tiny':
-            textStyle = styles.titleSeven;
-            break;
-        deafult:
-            // Do nothing.
-    }
-    
+const styles = StyleSheet.create({
+    title1: {
+        fontFamily: 'acumin-bold',
+        color: theme.palette.black,
+        fontSize: 44,
+    },
+    title2: {
+        fontFamily: 'acumin-bold',
+        color: theme.palette.black,
+        fontSize: 32,
+    },
+    large: {
+        fontFamily: 'acumin',
+        color: theme.palette.black,
+        fontSize: 24,
+    },
+    regular: {
+        fontFamily: 'acumin',
+        color: theme.palette.black,
+        fontSize: 19,
+        lineHeight: 24,
+    },
+    small: {
+        fontFamily: 'acumin',
+        color: theme.palette.black,
+        fontSize: 17,
+    },
+    tiny: {
+        fontFamily: 'acumin-bold',
+        color: theme.palette.grey,
+        fontSize: 14,
+    },
+});
+
+const Typography = ({ variant, children, style }) => {
     return (
-        <Text style={textStyle}>
+        <Text style={[styles[variant], style]}>
             { children }
         </Text>
     );
 };
 
-const styles = StyleSheet.create({
-    titleOne: {
-        color: colours.black,
-        fontSize: 44,
-        fontWeight: 700,
-    },
-    titleTwo: {
-        color: colours.black,
-        fontSize: 32,
-        fontWeight: 700,
-    },
-    titleThree: {
-        color: colours.black,
-        fontSize: 24,
-        fontWeight: 400,
-    },
-    titleFour: {
-        color: colours.black,
-        fontSize: 19,
-        fontWeight: 400,
-    },
-    titleFive: {
-        color: colours.black,
-        fontSize: 17,
-        fontWeight: 400,
-    },
-    titleSix: {
-        color: colours.black,
-        fontSize: 14,
-        fontWeight: 400,
-    },
-    titleSeven: {
-        color: colours.grey,
-        fontSize: 8,
-        fontWeight: 700,
-    },
-});
-
 Typography.propTypes = propTypes;
+Typography.defaultProps = defaultProps;
 
 export default Typography;

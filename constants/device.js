@@ -1,7 +1,4 @@
 import React from 'react';
-import { Dimentions } from 'react-native';
+import { StatusBar } from 'react-native';
 
-export const SCREEN = {
-    WIDTH: Dimentions.get('window').width,
-    HEIGHT: Dimentions.get('window').height,
-};
+export const STATUS_BAR_HEIGHT = StatusBar.currentHeight;

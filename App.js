@@ -1,28 +1,48 @@
 import React from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
-import { createDrawerNavigator, createAppContainer, DrawerItems, SafeAreaView } from 'react-navigation';
-import DeckScreen from './screens/DeckScreen';
-import DeckOverviewScreen from './screens/DeckOverviewScreen';
-import SettingsScreen from './screens/SettingsScreen';
+import { AppLoading, Font, Icon } from 'expo';
+import AppNavigator from './navigation/AppNavigator';
 
-const CustomDrawerComponent = (props) => {
-    return (
-        <ScrollView>
-            <SafeAreaView style={{ flex: 1 }} forceInset={{ top: 'always', horizontal: 'never' }}>
-                <DrawerItems {...props} />
-            </SafeAreaView>
-        </ScrollView>
-    );
-};
-
-const AppDrawerNavigator = createDrawerNavigator(
-    {
-        DeckOverview: DeckOverviewScreen,
-        SingleDeck: DeckScreen,
-    },
-    {
-        contentComponent: CustomDrawerComponent
+class App extends React.Component {
+    state = {
+      isLoadingComplete: false,
+    };
+  
+    loadResourcesAsync = async () => {
+        return Promise.all([
+            Font.loadAsync({
+                // This is the font that we are using for our tab bar
+                //   ...Icon.Ionicons.font,
+                // We include SpaceMono because we use it in HomeScreen.js. Feel free
+                // to remove this if you are not using it in your app
+                'acumin': require('./assets/fonts/acumin-regular.otf'),
+                'acumin-bold': require('./assets/fonts/acumin-bold.otf'),
+            }),
+        ]);
+    };
+  
+    handleLoadingError = errorr => {
+        console.warn(errorr);
+    };
+  
+    handleFinishLoading = () => {
+        this.setState({ isLoadingComplete: true });
+    };
+  
+    render() {
+        if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
+            return (
+                <AppLoading
+                    startAsync={this.loadResourcesAsync}
+                    onError={this.handleLoadingError}
+                    onFinish={this.handleFinishLoading}
+                />
+            );
+        }
+  
+        return (
+            <AppNavigator />
+        );
     }
-);
+}
 
-export default createAppContainer(AppDrawerNavigator);
+export default App;

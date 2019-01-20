@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, Text, StyleSheet } from 'react-native';
-import { unit } from '../theme';
+import theme from '../theme';
 
 const propTypes = {
     text: PropTypes.string.isRequired,
@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
         backgroundColor: 'red',
         alignItems: 'center',
         justifyContent: 'center',
-        height: unit * 40,
-        width: unit * 40,
-        borderRadius: unit / 2,
+        height: theme.unit * 40,
+        width: theme.unit * 40,
+        borderRadius: theme.unit / 2,
     },
 });
 
