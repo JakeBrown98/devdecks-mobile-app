@@ -1,10 +1,6 @@
 import React from 'react';
-import { View, Text, Button, StyleSheet } from 'react-native';
-import Screen from '../components/Screen';
-import Card from '../components/Card';
-import Deck from '../components/Deck';
-import DeckActions from '../components/DeckActions';
-import DeckEnd from '../components/DeckEnd';
+import { StyleSheet } from 'react-native';
+import { Screen, Card, Stack, StackEnd, StackActions } from '../components';
 
 const DATA = [
     { id: 1, question: 'What is the time?', answer: 'The time is 10.00am' },
@@ -20,7 +16,11 @@ const DATA = [
 
 ];
 
-class DeckScreen extends React.Component {
+const styles = StyleSheet.create({
+
+});
+
+class StackScreen extends React.Component {
     state = {
         listIndex: 0,
         cardAnswer: null,
@@ -47,16 +47,16 @@ class DeckScreen extends React.Component {
         );
     };
 
-    renderCardStack = () => (
+    renderStack = () => (
         <>
-            <Deck
+            <Stack
                 data={DATA}
                 listIndex={this.state.listIndex}
                 renderCard={this.renderCard}
                 renderNoMoreCards={this.renderNoMoreCards}
                 onSwipeComplete={this.onSwipeComplete}
             />
-            <DeckActions
+            <StackActions
                 data={DATA}
                 listIndex={this.state.listIndex}
             />
@@ -68,16 +68,15 @@ class DeckScreen extends React.Component {
             <Screen>
                 {
                     this.state.listIndex < DATA.length
-                    ? this.renderCardStack()
-                    : <DeckEnd helpRequiredCount={this.state.helpRequiredCount} data={DATA} />
+                    ? this.renderStack()
+                    : <StackEnd 
+                        helpRequiredCount={this.state.helpRequiredCount}
+                        data={DATA}
+                    />
                 }
             </Screen>
         );
     }
 }
 
-const styles = StyleSheet.create({
-
-});
-
-export default DeckScreen;
+export default StackScreen;

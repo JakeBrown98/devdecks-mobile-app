@@ -8,7 +8,15 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
 const SWIPE_OUT_DURIATION = 250;
 
-class Deck extends React.Component {
+const styles = StyleSheet.create({
+    cardStyle: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+    },
+});
+
+class Stack extends React.Component {
     constructor(props) {
         super(props);
         const position = new Animated.ValueXY();
@@ -107,12 +115,4 @@ class Deck extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    cardStyle: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-    },
-});
-
-export default Deck;
+export default Stack;

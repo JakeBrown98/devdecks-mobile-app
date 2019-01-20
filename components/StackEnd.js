@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-class DeckEnd extends React.Component {
+class StackEnd extends React.Component {
     render() {
         const { helpRequiredCount, data } = this.props;
         
@@ -15,4 +15,4 @@ class DeckEnd extends React.Component {
     }
 }
 
-export default DeckEnd;
+export default StackEnd;

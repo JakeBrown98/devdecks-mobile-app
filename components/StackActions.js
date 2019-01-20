@@ -10,7 +10,22 @@ const propTypes = {
     listIndex: PropTypes.number.isRequired,
 };
 
-class DeckActions extends React.Component {
+const styles = StyleSheet.create({
+    container: {
+        marginTop: theme.unit * 5,
+    },
+    buttonRow: {
+        width: '100%',
+        flexDirection: 'row',
+    },
+    column: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+
+class StackActions extends React.Component {
     state = {
         hint: null,
         example: null,
@@ -104,21 +119,6 @@ class DeckActions extends React.Component {
     }
 }
 
-const styles = StyleSheet.create({
-    container: {
-        marginTop: theme.unit * 5,
-    },
-    buttonRow: {
-        width: '100%',
-        flexDirection: 'row',
-    },
-    column: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
+StackActions.propTypes = propTypes;
 
-DeckActions.propTypes = propTypes;
-
-export default DeckActions;
+export default StackActions;

@@ -65,7 +65,10 @@ class StyleGuide extends React.Component {
                     </Typography>
                 </Section>
                 <Section title="Example of Button">
-                    <Button label="Hint" onPress={() => {}} />
+                    <Button label="Hint" />
+                </Section>
+                <Section title="Example of Deck Thumbnail">
+
                 </Section>
             </Screen>
         );
