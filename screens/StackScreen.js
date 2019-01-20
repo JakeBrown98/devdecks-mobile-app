@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
 });
 
 class StackScreen extends React.Component {
+    static navigationOptions = {
+        drawerLabel: 'Stack Screen Example'
+    };
+
     state = {
         listIndex: 0,
         cardAnswer: null,

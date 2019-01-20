@@ -7,3 +7,4 @@ export { default as Screen } from './Screen';
 export { default as Typography } from './Typography';
 export { default as Button } from './Button';
 export { default as DeckThumbnail } from './DeckThumbnail';
+export { default as Stat } from './Stat';

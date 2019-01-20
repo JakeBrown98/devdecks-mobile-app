@@ -62,8 +62,8 @@ class DeckThumbnail extends React.Component {
 
         return (
             <TouchableOpacity
-                activeOpacity={theme.touchOpacity}
                 onPress={this.onThumbnailPress}
+                activeOpacity={theme.activeTouchOpacity}
                 style={styles.container}
             >
                 <LinearGradient

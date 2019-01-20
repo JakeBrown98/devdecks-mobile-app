@@ -34,10 +34,6 @@ class Screen extends React.Component {
 
         return (
             <View style={styles.container}>
-                <StatusBar
-                    backgroundColor={theme.palette.white}
-                    barStyle="dark-content"
-                />
                 <ScrollView style={styles.screenWrapper}>
                     {
                         title &&

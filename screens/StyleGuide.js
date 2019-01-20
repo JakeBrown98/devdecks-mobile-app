@@ -1,22 +1,25 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Screen, Typography, Button, DeckThumbnail } from '../components';
+import { View, StyleSheet } from 'react-native';
+import { 
+    Screen, Typography, Button, DeckThumbnail,
+    Stat
+} from '../components';
 import theme from '../theme';
+
+const SQUARE = theme.unit * 4;
 
 const styles = StyleSheet.create({
     section: {
         marginBottom: theme.unit * 4,
     },
-    sectionTitle: {
-        marginBottom: theme.unit * 2,
-    }
+    paletteRow: {
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+    },
 });
 
 const Section = ({ children, title }) => (
     <View style={styles.section}>
-        <Typography style={styles.sectionTitle}>
-            { title }
-        </Typography>
         { children }
     </View>
 );
@@ -29,6 +32,15 @@ class StyleGuide extends React.Component {
     render() {
         return (
             <Screen title="Style Guide" {...this.props}>
+                <Section title="Example of Colours">
+                    <View style={styles.paletteRow}>
+                        <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.black  }} />
+                        <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.grey  }} />
+                        <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.dark  }} />
+                        <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.light  }} />
+                        <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.yellow  }} />
+                    </View>
+                </Section>
                 <Section title="Example of Typography">
                     <Typography variant="title1">
                         Title 1
@@ -54,17 +66,13 @@ class StyleGuide extends React.Component {
                 </Section>
                 <Section title="Example of Answer">
                     <Typography variant="title1">
-                        Answer
+                        Paragraph
                     </Typography>
                     <Typography>
-                        In JavaScript if you try to use a variable
-                        that doesn't exist and has not been
-                        declared, then JavaScript will throw
-                        an error var name is not defined and
-                        the script will stop executing thereafter.
-
-                        But If you use typeof undeclared_variable
-                        then it will return undefined.
+                        In JavaScript if you try to use a variable that doesn't exist and has not been
+                        declared, then JavaScript will throw an error var name is not defined and
+                        the script will stop executing thereafter. But If you use typeof 
+                        undeclared_variable then it will return undefined.
                     </Typography>
                 </Section>
                 <Section title="Example of Deck Thumbnails">
@@ -81,6 +89,16 @@ class StyleGuide extends React.Component {
                         backgroundColour="#8892BE"
                         stackCount={12}
                         whiteText
+                    />
+                </Section>
+                <Section title="Example of Deck Thumbnails">
+                    <Stat
+                        label="Most Used Stack"
+                        result="Creational Design Patterns"
+                    />
+                    <Stat
+                        label="Total Stacks Complete"
+                        result="4/52"
                     />
                 </Section>
             </Screen>

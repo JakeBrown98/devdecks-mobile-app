@@ -3,6 +3,7 @@ import CustomDrawer from './CustomDrawer';
 import StackScreen from '../screens/StackScreen';
 import SettingsScreen from '../screens/SettingsScreen';
 import StyleGuide from '../screens/StyleGuide';
+import theme from '../theme';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
@@ -10,7 +11,7 @@ const AppDrawerNavigator = createDrawerNavigator(
         StackScreen,
     },
     {
-        contentComponent: CustomDrawer
+        contentComponent: CustomDrawer,
     }
 );
 

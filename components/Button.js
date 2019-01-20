@@ -30,6 +30,7 @@ const Button = ({ label, onPress }) => {
     return (
         <TouchableNativeFeedback
             onPress={onPress}
+            style={styles.button}
         >
             <View style={styles.button}>
                 <Typography style={styles.label}>

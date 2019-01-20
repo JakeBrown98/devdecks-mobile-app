@@ -15,34 +15,34 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     title1: {
-        fontFamily: 'acumin-bold',
+        fontFamily: theme.font.bold,
         color: theme.palette.black,
         fontSize: 44,
     },
     title2: {
-        fontFamily: 'acumin-bold',
+        fontFamily: theme.font.bold,
         color: theme.palette.black,
         fontSize: 32,
     },
     large: {
-        fontFamily: 'acumin',
+        fontFamily: theme.font.regular,
         color: theme.palette.black,
         fontSize: 24,
     },
     regular: {
-        fontFamily: 'acumin',
+        fontFamily: theme.font.regular,
         color: theme.palette.black,
         fontSize: 19,
         lineHeight: 24,
     },
     small: {
-        fontFamily: 'acumin',
+        fontFamily: theme.font.regular,
         color: theme.palette.black,
         fontSize: 17,
     },
     tiny: {
-        fontFamily: 'acumin-bold',
-        color: theme.palette.grey,
+        fontFamily: theme.font.bold,
+        color: theme.palette.light,
         fontSize: 14,
     },
 });

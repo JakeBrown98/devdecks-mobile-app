@@ -1,7 +1,11 @@
 export default {
     unit: 8,
     roundEdges: 3,
-    touchOpacity: 0.6,
+    activeTouchOpacity: 0.6,
+    font: {
+        regular: 'acumin',
+        bold: 'acumin-bold',
+    },
     palette: {
         black: '#212121',
         white: '#FFFFFF',
