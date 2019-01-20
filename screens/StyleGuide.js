@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { Screen, Typography, Button } from '../components';
+import { Screen, Typography, Button, DeckThumbnail } from '../components';
 import theme from '../theme';
 
 const styles = StyleSheet.create({
@@ -49,6 +49,9 @@ class StyleGuide extends React.Component {
                         Tiny!
                     </Typography>
                 </Section>
+                <Section title="Example of Button">
+                    <Button label="Hint" />
+                </Section>
                 <Section title="Example of Answer">
                     <Typography variant="title1">
                         Answer
@@ -64,11 +67,21 @@ class StyleGuide extends React.Component {
                         then it will return undefined.
                     </Typography>
                 </Section>
-                <Section title="Example of Button">
-                    <Button label="Hint" />
-                </Section>
-                <Section title="Example of Deck Thumbnail">
-
+                <Section title="Example of Deck Thumbnails">
+                    <DeckThumbnail
+                        label="JS"
+                        name="JavaScript"
+                        backgroundColour="#F7DF1E"
+                        stackCount={32}
+                        amountCompleted={2}
+                    />
+                    <DeckThumbnail
+                        label="PHP"
+                        name="PHP"
+                        backgroundColour="#8892BE"
+                        stackCount={12}
+                        whiteText
+                    />
                 </Section>
             </Screen>
         );

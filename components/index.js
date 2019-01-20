@@ -6,3 +6,4 @@ export { default as IconButton } from './IconButton';
 export { default as Screen } from './Screen';
 export { default as Typography } from './Typography';
 export { default as Button } from './Button';
+export { default as DeckThumbnail } from './DeckThumbnail';
