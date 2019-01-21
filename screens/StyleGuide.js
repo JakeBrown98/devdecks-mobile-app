@@ -106,12 +106,31 @@ class StyleGuide extends React.Component {
                         <StackThumbnail
                             label="Creational Design Patters"
                             cardAmount={12}
-                            favourite
                         />
                         <StackThumbnail
                             label="Scope and Closures"
                             cardAmount={9}
                             favourite
+                        />
+                    </ThumbnailRow>
+                    <ThumbnailRow>
+                        <StackThumbnail
+                            label="Structural Design Patters"
+                            cardAmount={7}
+                        />
+                        <StackThumbnail
+                            label="Binding"
+                            cardAmount={14}
+                        />
+                    </ThumbnailRow>
+                    <ThumbnailRow>
+                        <StackThumbnail
+                            label="Behavorial Design Patters"
+                            cardAmount={17}
+                        />
+                        <StackThumbnail
+                            label="Variables"
+                            cardAmount={4}
                         />
                     </ThumbnailRow>
                 </Section>

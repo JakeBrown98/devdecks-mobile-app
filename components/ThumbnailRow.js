@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import theme from '../theme';
 
 const propTypes = {
     children: PropTypes.array.isRequired,
@@ -11,6 +12,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
+        width: theme.unit * 39,
+        marginBottom: theme.unit * 3,
     },
 });
 

@@ -15,13 +15,13 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     button: {
-        alignItems: 'center',
         backgroundColor: theme.palette.light,
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
         borderRadius: 3,
     },
     label: {
+        textAlign: 'center',
         color: theme.palette.white,
     },
 });

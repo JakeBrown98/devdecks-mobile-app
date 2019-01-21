@@ -13,6 +13,16 @@ const DATA = [
     { id: 8, question: 'Who is the coolest person in the world?', answer: 'This is some random gibbersish answer', example: 'Example!'},
     { id: 9, question: 'Explain how you bake a cake', answer: 'Baking a cake is actually quite complicatied'},
     { id: 10, question: 'Do you enjoy react native?', answer: 'No its fucking horrible to use', hint: 'This is a hint'},
+    { id: 11, question: 'What is the time?', answer: 'The time is 10.00am' },
+    { id: 12, question: 'What is the difference between good and evil?', answer: 'Not much acutually, you stink', hint: 'This is a hint', example: 'Example example example'},
+    { id: 13, question: 'Who is the coolest person in the world?', answer: 'This is some random gibbersish answer', example: 'Example!'},
+    { id: 14, question: 'Explain how you bake a cake', answer: 'Baking a cake is actually quite complicatied'},
+    { id: 15, question: 'Do you enjoy react native?', answer: 'No its fucking horrible to use', hint: 'This is a hint'},
+    { id: 16, question: 'What is the time?', answer: 'The time is 10.00am' },
+    { id: 17, question: 'What is the difference between good and evil?', answer: 'Not much acutually, you stink', hint: 'This is a hint', example: 'Example example example'},
+    { id: 18, question: 'Who is the coolest person in the world?', answer: 'This is some random gibbersish answer', example: 'Example!'},
+    { id: 19, question: 'Explain how you bake a cake', answer: 'Baking a cake is actually quite complicatied'},
+    { id: 20, question: 'Do you enjoy react native?', answer: 'No its fucking horrible to use', hint: 'This is a hint'},
 
 ];
 
@@ -31,6 +41,10 @@ class StackScreen extends React.Component {
         helpRequiredCount: 0,
     };
 
+    componentWillUnmount() {
+        this.setState({ listIndex: 0 })
+    }
+
     onSwipeComplete = () => {
         this.setState({
             listIndex: this.state.listIndex + 1,
@@ -46,7 +60,8 @@ class StackScreen extends React.Component {
             <Card
                 key={item.id}
                 text={cardText}
-                onLongPress={this.onCardLongPress}
+                cardIndex={this.state.listIndex}
+                listLength={DATA.length}
             />
         );
     };
@@ -60,10 +75,10 @@ class StackScreen extends React.Component {
                 renderNoMoreCards={this.renderNoMoreCards}
                 onSwipeComplete={this.onSwipeComplete}
             />
-            <StackActions
+            {/* <StackActions
                 data={DATA}
                 listIndex={this.state.listIndex}
-            />
+            /> */}
         </>
     );
 

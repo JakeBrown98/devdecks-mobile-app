@@ -1,20 +1,12 @@
 import React from 'react';
 import { 
-    View, Animated, PanResponder, 
-    Dimensions, StyleSheet
+    View, Animated, PanResponder,
+    Dimensions,
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
-const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH;
-const SWIPE_OUT_DURIATION = 250;
-
-const styles = StyleSheet.create({
-    cardStyle: {
-        position: 'absolute',
-        left: 0,
-        right: 0,
-    },
-});
+const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
+const SWIPE_OUT_DURIATION = 200;
 
 class Stack extends React.Component {
     constructor(props) {
@@ -45,7 +37,7 @@ class Stack extends React.Component {
         } else {
             Animated.spring(this.position, {
                 toValue: { x: 0, y: 0 }
-            }).start();    
+            }).start();
         }
     };
 
@@ -53,13 +45,13 @@ class Stack extends React.Component {
         Animated.timing(this.position, {
             toValue: { 
                 x: direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH,
-                y: 0 ,
+                y: 0,
             },
             duration: SWIPE_OUT_DURIATION,
-        }).start(() => this.onSwipeComplete(direction));
+        }).start(() => this.onSwipeComplete());
     };
 
-    onSwipeComplete = (direction) => {
+    onSwipeComplete = () => {
         this.props.onSwipeComplete();
         this.position.setValue({ x: 0, y: 0 });
     };
@@ -72,7 +64,7 @@ class Stack extends React.Component {
 
         return {
             ...this.position.getLayout(),
-            transform: [{ rotate }]
+            transform: [{ rotate }],
         };
     };
 
@@ -80,7 +72,7 @@ class Stack extends React.Component {
         const { listIndex, data, renderCard } = this.props;
 
         return data.map((item, i) => {
-            if (i < listIndex) return null;
+            if (i !== listIndex) return null;
 
             if (i === listIndex) {
                 return (
@@ -92,17 +84,7 @@ class Stack extends React.Component {
                         { renderCard(item) }
                     </Animated.View>
                 );
-
             }
-
-            return (
-                <View 
-                    key={item.id}
-                    style={styles.cardStyle}
-                >
-                    { renderCard(item) }
-                </View>
-            );
         }).reverse();
     };
 

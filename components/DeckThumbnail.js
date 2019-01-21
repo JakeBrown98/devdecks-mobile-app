@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hexToRgba from 'hex-to-rgba';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableNativeFeedback, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import Typography from './Typography';
 import theme from '../theme';
@@ -24,7 +24,7 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: theme.unit * 3,
+        marginBottom: theme.unit * 2.5,
     },
     thumbnailWrapper: {
         alignItems: 'center',
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     descriptionRow: {
         justifyContent: 'space-between',
         flexDirection: 'row',
+        paddingBottom: theme.unit / 2,
     },
 });
 
@@ -61,33 +62,31 @@ class DeckThumbnail extends React.Component {
         const { textColor, backgroundColours } = this.getThumbnailStyle();
 
         return (
-            <TouchableOpacity
-                onPress={this.onThumbnailPress}
-                activeOpacity={theme.activeTouchOpacity}
-                style={styles.container}
-            >
-                <LinearGradient
-                    style={styles.thumbnailWrapper}
-                    colors={backgroundColours}
-                >
-                    <Typography
-                        variant="title2"
-                        style={textColor}
+            <TouchableNativeFeedback onPress={this.onThumbnailPress}>
+                <View style={styles.container}>
+                    <LinearGradient
+                        style={styles.thumbnailWrapper}
+                        colors={backgroundColours}
                     >
-                        { label }
-                    </Typography>
-                </LinearGradient>
-                <View style={styles.descriptionRow}>
-                    <View style={styles.descriptionColumn}>
-                        <Typography variant="large">
-                            { name }
+                        <Typography
+                            variant="title2"
+                            style={textColor}
+                        >
+                            { label }
                         </Typography>
-                        <Typography variant="small">
-                            { `${amountCompleted}/${stackCount} stacks completed` }
-                        </Typography>
+                    </LinearGradient>
+                    <View style={styles.descriptionRow}>
+                        <View style={styles.descriptionColumn}>
+                            <Typography variant="large">
+                                { name }
+                            </Typography>
+                            <Typography variant="small">
+                                { `${amountCompleted}/${stackCount} stacks completed` }
+                            </Typography>
+                        </View>
                     </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableNativeFeedback>
         );
     }
 }

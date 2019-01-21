@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import theme from '../theme';
 
@@ -19,14 +19,15 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
-        justifyContent: 'center',
-        height: (theme.unit * 18) - 3,
+        textAlign: 'center',
+        height: theme.unit * 18,
         width: theme.unit * 18,
         padding: theme.unit,
-        borderWidth: 3,
-        borderStyle: 'solid',
-        borderColor: theme.palette.grey,
-        borderTopColor: theme.palette.light,
+        backgroundColor: theme.palette.light,
+        borderRadius: theme.roundEdges,
+    },
+    thumbnailText: {
+        color: theme.palette.white,
     },
     bottomRow: {
         justifyContent: 'space-between',
@@ -49,28 +50,29 @@ class StackThumbnail extends React.Component {
         const { cardAmount, label, favourite } = this.props;
 
         return (
-            <TouchableOpacity
+            <TouchableNativeFeedback
                 onPress={this.onThumbnailPress}
-                activeOpacity={theme.activeTouchOpacity}
-                style={styles.container}
             >
-                <Typography>
-                    { label } 
-                </Typography>
-                <View style={styles.bottomRow}>
-                    <Typography variant="tiny">
-                        { `${cardAmount} cards` }
+                <View style={styles.container}>
+                    <View style={styles.topBorder} />
+                    <Typography style={styles.thumbnailText}>
+                        { label } 
                     </Typography>
-                    {
-                        favourite && 
-                        <Feather
-                            name="star"
-                            size={13}
-                            color={theme.palette.yellow}
-                        />
-                    }
+                    <View style={styles.bottomRow}>
+                        <Typography variant="tiny" style={styles.thumbnailText}>
+                            { `${cardAmount} cards` }
+                        </Typography>
+                        {
+                            favourite && 
+                            <MaterialIcons
+                                name="star"
+                                size={13}
+                                color={theme.palette.yellow}
+                            />
+                        }
+                    </View>
                 </View>
-            </TouchableOpacity>
+            </TouchableNativeFeedback>
         );
     }
 }
