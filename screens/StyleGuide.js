@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { 
     Screen, Typography, Button, DeckThumbnail,
-    Stat
+    Stat, ThumbnailRow, StackThumbnail,
 } from '../components';
 import theme from '../theme';
 
@@ -32,7 +32,7 @@ class StyleGuide extends React.Component {
     render() {
         return (
             <Screen title="Style Guide" {...this.props}>
-                <Section title="Example of Colours">
+                <Section>
                     <View style={styles.paletteRow}>
                         <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.black  }} />
                         <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.grey  }} />
@@ -41,7 +41,7 @@ class StyleGuide extends React.Component {
                         <View style={{ height: SQUARE, width: SQUARE, backgroundColor: theme.palette.yellow  }} />
                     </View>
                 </Section>
-                <Section title="Example of Typography">
+                <Section>
                     <Typography variant="title1">
                         Title 1
                     </Typography>
@@ -61,10 +61,10 @@ class StyleGuide extends React.Component {
                         Tiny!
                     </Typography>
                 </Section>
-                <Section title="Example of Button">
+                <Section>
                     <Button label="Hint" />
                 </Section>
-                <Section title="Example of Answer">
+                <Section>
                     <Typography variant="title1">
                         Paragraph
                     </Typography>
@@ -91,7 +91,7 @@ class StyleGuide extends React.Component {
                         whiteText
                     />
                 </Section>
-                <Section title="Example of Deck Thumbnails">
+                <Section>
                     <Stat
                         label="Most Used Stack"
                         result="Creational Design Patterns"
@@ -100,6 +100,20 @@ class StyleGuide extends React.Component {
                         label="Total Stacks Complete"
                         result="4/52"
                     />
+                </Section>
+                <Section>
+                    <ThumbnailRow>
+                        <StackThumbnail
+                            label="Creational Design Patters"
+                            cardAmount={12}
+                            favourite
+                        />
+                        <StackThumbnail
+                            label="Scope and Closures"
+                            cardAmount={9}
+                            favourite
+                        />
+                    </ThumbnailRow>
                 </Section>
             </Screen>
         );
