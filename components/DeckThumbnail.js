@@ -9,8 +9,8 @@ import theme from '../theme';
 const propTypes = {
     label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-    backgroundColour: PropTypes.string.isRequired,
-    stackCount: PropTypes.number.isRequired,
+    thumbnailColour: PropTypes.string.isRequired,
+    stacks: PropTypes.array.isRequired,
     onPress: PropTypes.func.isRequired,
     amountCompleted: PropTypes.number,
     whiteText: PropTypes.bool,
@@ -45,10 +45,10 @@ const styles = StyleSheet.create({
 
 class DeckThumbnail extends React.Component {
     getThumbnailStyle = () => {
-        const { backgroundColour, whiteText } = this.props;
+        const { thumbnailColour, whiteText } = this.props;
 
         return {
-            backgroundColours: [hexToRgba(backgroundColour), hexToRgba(backgroundColour, '0.6')],
+            backgroundColours: [hexToRgba(thumbnailColour), hexToRgba(thumbnailColour, '0.6')],
             textColor: whiteText ? styles.label : null,
         };
     };
@@ -58,7 +58,7 @@ class DeckThumbnail extends React.Component {
     };
 
     render() {
-        const { label, name, amountCompleted, stackCount } = this.props;
+        const { label, name, amountCompleted, stacks } = this.props;
         const { textColor, backgroundColours } = this.getThumbnailStyle();
 
         return (
@@ -81,7 +81,7 @@ class DeckThumbnail extends React.Component {
                                 { name }
                             </Typography>
                             <Typography variant="small">
-                                { `${amountCompleted}/${stackCount} stacks completed` }
+                                { `${amountCompleted}/${stacks.length} stacks completed` }
                             </Typography>
                         </View>
                     </View>

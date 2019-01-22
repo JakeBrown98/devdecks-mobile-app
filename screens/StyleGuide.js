@@ -79,15 +79,15 @@ class StyleGuide extends React.Component {
                     <DeckThumbnail
                         label="JS"
                         name="JavaScript"
-                        backgroundColour="#F7DF1E"
-                        stackCount={32}
+                        thumbnailColour="#F7DF1E"
+                        stacks={[]}
                         amountCompleted={2}
                     />
                     <DeckThumbnail
                         label="PHP"
                         name="PHP"
-                        backgroundColour="#8892BE"
-                        stackCount={12}
+                        thumbnailColour="#8892BE"
+                        stacks={[]}
                         whiteText
                     />
                 </Section>
