@@ -10,3 +10,4 @@ export { default as DeckThumbnail } from './DeckThumbnail';
 export { default as Stat } from './Stat';
 export { default as StackThumbnail } from './StackThumbnail';
 export { default as ThumbnailRow } from './ThumbnailRow';
+export { default as DeckIcon } from './DeckIcon';
