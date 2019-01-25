@@ -80,15 +80,22 @@ class StyleGuide extends React.Component {
                         label="JS"
                         name="JavaScript"
                         thumbnailColour="#F7DF1E"
-                        stacks={[]}
-                        amountCompleted={2}
+                        stacks={[{}]}
+                        icon={{
+                            name: 'language-javascript',
+                            family: 'MaterialCommunityIcons'
+                        }}
                     />
                     <DeckThumbnail
                         label="PHP"
                         name="PHP"
                         thumbnailColour="#8892BE"
-                        stacks={[]}
-                        whiteText
+                        amountCompleted={3}
+                        stacks={[{}, {}, {}]}
+                        icon={{
+                            name: 'language-php',
+                            family: 'MaterialCommunityIcons'
+                        }}
                     />
                 </Section>
                 <Section>

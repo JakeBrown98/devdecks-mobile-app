@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FontAwesome5, Entypo } from '@expo/vector-icons';
+import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import theme from '../theme';
 
 const propTypes = {
-    family: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    icon: PropTypes.object.isRequired,
 };
 
-const DeckIcon = ({ family, name }) => {
+const DeckIcon = props => {
+    const { name, family } = props.icon;
     const iconProps = { 
         name,
         size: theme.unit * 9,
@@ -16,12 +16,12 @@ const DeckIcon = ({ family, name }) => {
     };
 
     switch (family) {
-        case 'FontAwesome5':
-            return <FontAwesome5 {...iconProps} />;
+        case 'MaterialCommunityIcons':
+            return <MaterialCommunityIcons {...iconProps} />;
         case 'Entypo':
             return <Entypo {...iconProps} />;
         default:
-            // Do nothing.
+            return null;
     }
 };
 

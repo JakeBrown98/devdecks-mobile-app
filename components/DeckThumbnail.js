@@ -1,15 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import hexToRgba from 'hex-to-rgba';
-import { View, Text, TouchableNativeFeedback, StyleSheet } from 'react-native';
+import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo';
 import Typography from './Typography';
+import DeckIcon from './DeckIcon';
 import theme from '../theme';
 
 const propTypes = {
-    label: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     thumbnailColour: PropTypes.string.isRequired,
+    icon: PropTypes.object.isRequired,
     stacks: PropTypes.array.isRequired,
     onPress: PropTypes.func.isRequired,
     amountCompleted: PropTypes.number,
@@ -17,8 +18,8 @@ const propTypes = {
 };
 
 const defaultProps = {
+    icon: {},
     amountCompleted: 0,
-    whiteText: false,
     onPress: () => {},
 };
 
@@ -33,9 +34,6 @@ const styles = StyleSheet.create({
         marginBottom: theme.unit,
         borderRadius: theme.roundEdges,
     },
-    label: {
-        color: theme.palette.white,
-    },
     descriptionRow: {
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -44,13 +42,10 @@ const styles = StyleSheet.create({
 });
 
 class DeckThumbnail extends React.Component {
-    getThumbnailStyle = () => {
+    getThumbnailBackground = () => {
         const { thumbnailColour, whiteText } = this.props;
 
-        return {
-            backgroundColours: [hexToRgba(thumbnailColour), hexToRgba(thumbnailColour, '0.6')],
-            textColor: whiteText ? styles.label : null,
-        };
+        return [hexToRgba(thumbnailColour), hexToRgba(thumbnailColour, '0.6')];
     };
 
     onThumbnailPress = () => {
@@ -58,22 +53,17 @@ class DeckThumbnail extends React.Component {
     };
 
     render() {
-        const { label, name, amountCompleted, stacks } = this.props;
-        const { textColor, backgroundColours } = this.getThumbnailStyle();
+        const { name, amountCompleted, stacks, icon } = this.props;
+        const thumbnailBackground = this.getThumbnailBackground();
 
         return (
             <TouchableNativeFeedback onPress={this.onThumbnailPress}>
                 <View style={styles.container}>
                     <LinearGradient
                         style={styles.thumbnailWrapper}
-                        colors={backgroundColours}
+                        colors={thumbnailBackground}
                     >
-                        <Typography
-                            variant="title2"
-                            style={textColor}
-                        >
-                            { label }
-                        </Typography>
+                        <DeckIcon icon={icon} />
                     </LinearGradient>
                     <View style={styles.descriptionRow}>
                         <View style={styles.descriptionColumn}>

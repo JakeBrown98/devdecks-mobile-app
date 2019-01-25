@@ -9,11 +9,12 @@ import theme from '../theme';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: theme.palette.white,
     },
     screenWrapper: {
         paddingLeft: theme.unit * 3,
         paddingRight: theme.unit * 3,
+        paddingBottom: theme.unit * 3,
     },
     headerWrapper: {
         marginBottom: theme.unit * 3,
@@ -21,6 +22,11 @@ const styles = StyleSheet.create({
     menuIcon: {
         marginTop: theme.unit * 2 + STATUS_BAR_HEIGHT,
         marginBottom: theme.unit * 4,
+    },
+    screenFooter: {
+        alignItems: 'center',
+        marginTop: theme.unit,
+        paddingBottom: theme.unit * 3,
     },
 });
 
@@ -30,7 +36,7 @@ class Screen extends React.Component {
     };
 
     render() {
-        const { title, children } = this.props;
+        const { title, children, footerText } = this.props;
 
         return (
             <View style={styles.container}>
@@ -54,6 +60,14 @@ class Screen extends React.Component {
                         </View>
                     }
                     { children }
+                        {
+                            !!footerText &&
+                            <View style={styles.screenFooter}>
+                                <Typography variant="tiny">
+                                    { footerText }
+                                </Typography>
+                            </View>
+                        }
                 </ScrollView>
             </View>
         );

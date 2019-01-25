@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Screen, DeckThumbnail, DeckIcon } from '../components';
+import { Screen, DeckThumbnail, Typography } from '../components';
 import data from '../data/index';
 
 class DecksScreen extends React.Component {
@@ -19,7 +19,11 @@ class DecksScreen extends React.Component {
 
     render() {
         return (
-            <Screen title="All Decks" {...this.props}>
+            <Screen
+                title="All Decks"
+                footerText="More decks coming soon!"
+                {...this.props}
+            >
                 { data.map(item => this.renderThumbnail(item)) }
             </Screen>
         );

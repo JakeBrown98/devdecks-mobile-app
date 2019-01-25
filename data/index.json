@@ -4,7 +4,10 @@
             "name": "JavaScript",
             "label": "JS",
             "thumbnailColour": "#F7DF1E",
-            "whiteText": true,
+            "icon": {
+                "family": "MaterialCommunityIcons",
+                "name": "language-javascript"
+            },
             "stacks": [
                 {
                     "name": "Scope",
@@ -15,10 +18,13 @@
             ]
         },
         {
-            "name": "React",
-            "label": "React",
-            "thumbnailColour": "#00d8ff",
-            "whiteText": true,
+            "name": "PHP",
+            "label": "PHP",
+            "thumbnailColour": "#8892BE",
+            "icon": {
+                "family": "MaterialCommunityIcons",
+                "name": "language-php"
+            },
             "stacks": [
                 {
                     "name": "Props & State",
@@ -50,7 +56,10 @@
             "name": "Design Patterns",
             "label": "Design Patterns",
             "thumbnailColour": "#e64b50",
-            "whiteText": true,
+            "icon": {
+                "family": "MaterialCommunityIcons",
+                "name": "file-tree"
+            },
             "stacks": [
                 {
                     "name": "Creational Design Patters",
@@ -165,7 +174,10 @@
             "name": "Docker",
             "label": "Docker",
             "thumbnailColour": "#0db7ed",
-            "whiteText": true,
+            "icon": {
+                "family": "MaterialCommunityIcons",
+                "name": "docker"
+            },
             "stacks": [
                 {
                     "name": "Commands",
