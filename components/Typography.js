@@ -4,8 +4,8 @@ import { Text, StyleSheet } from 'react-native';
 import theme from '../theme';
 
 const propTypes = {
-    variant: PropTypes.string.isRequired,
     children: PropTypes.any.isRequired,
+    variant: PropTypes.string,
     style: PropTypes.object,
 };
 
@@ -18,16 +18,19 @@ const styles = StyleSheet.create({
         fontFamily: theme.font.bold,
         color: theme.palette.black,
         fontSize: 44,
+        lineHeight: 44,
     },
     title2: {
         fontFamily: theme.font.bold,
         color: theme.palette.black,
         fontSize: 32,
+        lineHeight: 32,
     },
     large: {
         fontFamily: theme.font.regular,
         color: theme.palette.black,
         fontSize: 24,
+        lineHeight: 30,
     },
     regular: {
         fontFamily: theme.font.regular,

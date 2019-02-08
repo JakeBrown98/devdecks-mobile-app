@@ -1,10 +1,25 @@
 import React from 'react';
-import { ScrollView, View, StatusBar, TouchableOpacity, StyleSheet } from 'react-native';
+import PropTypes from 'prop-types';
+import { ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
 import { Feather } from '@expo/vector-icons';
 import { STATUS_BAR_HEIGHT } from '../constants';
 import Typography from './Typography';
 import theme from '../theme';
+
+const propTypes = {
+    children: PropTypes.any.isRequired,
+    hideMenu: PropTypes.bool,
+    title: PropTypes.string,
+    titleVariant: PropTypes.string,
+    footerText: PropTypes.string,
+};
+
+const defaultProps = {
+    hideMenu: false,
+    titleVariant: 'title1',
+    footerText: '',
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -36,7 +51,8 @@ class Screen extends React.Component {
     };
 
     render() {
-        const { title, children, footerText } = this.props;
+        const { title, titleVariant, children, hideMenu, footerText } = this.props;
+        const menuStyle = hideMenu ? [styles.menuIcon, { opacity: 0 }] : styles.menuIcon;
 
         return (
             <View style={styles.container}>
@@ -46,7 +62,8 @@ class Screen extends React.Component {
                         <View style={styles.headerWrapper}>
                             <TouchableOpacity
                                 onPress={this.onMenuPress}
-                                style={styles.menuIcon}
+                                style={menuStyle}
+                                disabled={hideMenu}
                             >
                                 <Feather
                                     name="menu"
@@ -54,24 +71,27 @@ class Screen extends React.Component {
                                     color={theme.palette.black}
                                 />
                             </TouchableOpacity>
-                            <Typography variant="title1">
+                            <Typography variant={titleVariant}>
                                 { title }
                             </Typography>
                         </View>
                     }
                     { children }
-                        {
-                            !!footerText &&
-                            <View style={styles.screenFooter}>
-                                <Typography variant="tiny">
-                                    { footerText }
-                                </Typography>
-                            </View>
-                        }
+                    {
+                        footerText !== '' &&
+                        <View style={styles.screenFooter}>
+                            <Typography variant="tiny">
+                                { footerText }
+                            </Typography>
+                        </View>
+                    }
                 </ScrollView>
             </View>
         );
     }
 }
+
+Screen.propTypes = propTypes;
+Screen.defaultProps = defaultProps;
 
 export default Screen;

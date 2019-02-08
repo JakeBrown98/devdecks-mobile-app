@@ -75,10 +75,10 @@ class StackScreen extends React.Component {
                 renderNoMoreCards={this.renderNoMoreCards}
                 onSwipeComplete={this.onSwipeComplete}
             />
-            <StackActions
-                data={DATA}
-                listIndex={this.state.listIndex}
-            />
+            {/*<StackActions*/}
+                {/*data={DATA}*/}
+                {/*listIndex={this.state.listIndex}*/}
+            {/*/>*/}
         </>
     );
 
