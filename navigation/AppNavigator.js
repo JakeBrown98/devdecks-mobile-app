@@ -9,10 +9,10 @@ import theme from '../theme';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
+        StackScreen,
         MarkdownScreen,
         StyleGuide,
         DecksScreen,
-        StackScreen,
     },
     {
         contentComponent: CustomDrawer,

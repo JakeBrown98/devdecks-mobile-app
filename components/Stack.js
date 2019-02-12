@@ -1,12 +1,18 @@
 import React from 'react';
 import { 
     View, Animated, PanResponder,
-    Dimensions,
+    Dimensions, StyleSheet,
 } from 'react-native';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
 const SWIPE_OUT_DURIATION = 200;
+
+const styles = StyleSheet.create({
+    container: {
+        width: '90%',
+    },
+});
 
 class Stack extends React.Component {
     constructor(props) {
@@ -90,7 +96,7 @@ class Stack extends React.Component {
 
     render() {
         return (
-            <View>
+            <View style={styles.container}>
                 { this.renderCards() }
             </View>
         );

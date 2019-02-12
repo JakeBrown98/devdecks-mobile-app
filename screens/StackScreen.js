@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { View, ProgressBarAndroid, StyleSheet } from 'react-native';
 import { Screen, Card, Stack, StackEnd, StackActions } from '../components';
+import theme from '../theme';
 
 const DATA = [
     { id: 1, question: 'What is the time?', answer: 'The time is 10.00am' },
@@ -27,7 +28,13 @@ const DATA = [
 ];
 
 const styles = StyleSheet.create({
-
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        backgroundColor: theme.palette.white,
+    },
 });
 
 class StackScreen extends React.Component {
@@ -84,7 +91,12 @@ class StackScreen extends React.Component {
 
     render() {
         return (
-            <Screen>
+            <View style={styles.container}>
+                    <ProgressBarAndroid
+                    styleAttr="Horizontal"
+                    indeterminate={false}
+                    progress={0.5}
+                    />
                 {
                     this.state.listIndex < DATA.length
                     ? this.renderStack()
@@ -93,7 +105,7 @@ class StackScreen extends React.Component {
                         data={DATA}
                     />
                 }
-            </Screen>
+            </View>
         );
     }
 }
