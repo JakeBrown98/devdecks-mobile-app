@@ -15,14 +15,15 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: theme.palette.light,
+        backgroundColor: theme.palette.dark,
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
-        borderRadius: 3,
+        borderRadius: theme.unit * 4,
     },
     label: {
         textAlign: 'center',
         color: theme.palette.white,
+        textTransform: 'uppercase',
     },
 });
 

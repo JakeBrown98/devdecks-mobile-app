@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     },
     tiny: {
         fontFamily: theme.font.bold,
-        color: theme.palette.light,
+        color: theme.palette.dark,
         fontSize: 14,
     },
 });

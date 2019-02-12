@@ -3,6 +3,7 @@ import {
     View, Animated, PanResponder,
     Dimensions, StyleSheet,
 } from 'react-native';
+import theme from '../theme';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
@@ -10,7 +11,7 @@ const SWIPE_OUT_DURIATION = 200;
 
 const styles = StyleSheet.create({
     container: {
-        width: '90%',
+        width: '89%',
     },
 });
 

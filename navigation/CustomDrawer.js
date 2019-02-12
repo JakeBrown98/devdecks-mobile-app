@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
     },
     activeLabelStyle: {
-        color: theme.palette.white,
+        color: theme.palette.dark,
     },
     inactiveLabelStyle: {
         color: theme.palette.black,
@@ -58,7 +58,7 @@ class CustomDrawerComponent extends React.Component {
                         activeLabelStyle={styles.activeLabelStyle}
                         inactiveLabelStyle={styles.inactiveLabelStyle}
                         labelStyle={styles.labelStyle}
-                        activeBackgroundColor={theme.palette.dark}
+                        activeBackgroundColor={theme.palette.light}
                         {...this.props}
                     />
 

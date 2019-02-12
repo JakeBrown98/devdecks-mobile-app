@@ -1,6 +1,6 @@
 export default {
     unit: 8,
-    roundEdges: 3,
+    roundEdges: 8,
     activeTouchOpacity: 0.6,
     font: {
         regular: 'acumin',
@@ -10,8 +10,8 @@ export default {
         black: '#212121',
         white: '#FFFFFF',
         grey: '#EDEDED',
-        light: '#9DDEDF',
-        dark: '#69BDBE',
+        light: '#F9FCFF',
+        dark: '#3DA4FF',
         yellow: '#FFD500',
     },
 };

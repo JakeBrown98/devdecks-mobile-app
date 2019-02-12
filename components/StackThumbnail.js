@@ -19,6 +19,7 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
+        justifyContent: 'center',
         textAlign: 'center',
         height: theme.unit * 18,
         width: theme.unit * 18,
@@ -27,7 +28,8 @@ const styles = StyleSheet.create({
         borderRadius: theme.roundEdges,
     },
     thumbnailText: {
-        color: theme.palette.white,
+        color: theme.palette.dark,
+
     },
     bottomRow: {
         justifyContent: 'space-between',
@@ -54,7 +56,6 @@ class StackThumbnail extends React.Component {
                 onPress={this.onThumbnailPress}
             >
                 <View style={styles.container}>
-                    <View style={styles.topBorder} />
                     <Typography style={styles.thumbnailText}>
                         { label } 
                     </Typography>
@@ -67,7 +68,7 @@ class StackThumbnail extends React.Component {
                             <MaterialIcons
                                 name="star"
                                 size={13}
-                                color={theme.palette.yellow}
+                                color={theme.palette.dark}
                             />
                         }
                     </View>

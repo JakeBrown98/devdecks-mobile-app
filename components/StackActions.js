@@ -1,119 +1,80 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { View, Text, StyleSheet } from 'react-native';
-import IconButton from './IconButton';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import Button from './Button';
+import Typography from './Typography';
 import theme from '../theme';
 
 const propTypes = {
-    data: PropTypes.array.isRequired,  
-    listIndex: PropTypes.number.isRequired,
+
 };
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: theme.unit * 5,
-    },
-    buttonRow: {
-        width: '100%',
-        flexDirection: 'row',
-    },
-    column: {
         flex: 1,
+        position: 'absolute',
+        bottom: theme.unit * 5,
+        width: '100%',
+        paddingLeft: theme.unit * 3,
+        paddingRight: theme.unit * 3,
+
+    },
+    buttonWrapper: {
+
+    },
+    bottomRow: {
+        flex: 1,
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        marginTop: theme.unit * 2,
+    },
+    barWrapper: {
+
+    },
+    favouriteButton: {
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
+    starIcon: {
+        marginRight: theme.unit / 2,
+    }
 });
 
 class StackActions extends React.Component {
-    state = {
-        hint: null,
-        example: null,
-        actionText: '',
-    };
-
-    componentDidUpdate(prevProps) {
-        if (prevProps.listIndex < this.props.listIndex) {
-            this.getValues();
-            
-            this.setState({
-                actionText: ''
-            });
-        }
-    }
-    
-    getValues = () => {
-        const { data, listIndex } = this.props;
-        const { hint, example } = data[listIndex];
-
-        this.setState({
-            hint,
-            example,
-        });
-    };
-
-    onButtonPress = type => () => {
-        let actionText;
-        const { data, listIndex } = this.props;
-        const question = data[listIndex];
-
-        switch (type) {
-            case 'hint': 
-                actionText = question.hint;
-                break;
-            case 'example':
-                actionText = question.example;
-                break;
-            default:
-                actionText = question.answer;
-                break;
-        }
-
-        this.setState({
-            actionText,
-        });
+    onButtonPress = e => {
+        console.log(e);
     };
 
     render() {
-        const { actionText, hint, example } = this.state;
-
         return (
             <View style={styles.container}>
-                <View style={styles.buttonRow}>
-                    <View style={styles.column}>
-                        {
-                            !_.isEmpty(hint) &&
-                            <IconButton
-                                icon="bulb1"
-                                text="Hint"
-                                onPress={this.onButtonPress('hint')}
-                            />
-                        }
-                    </View>
-                    <View style={styles.column}>
-                        {
-                            !_.isEmpty(example) &&
-                            <IconButton
-                                icon="gift"
-                                text="Example"
-                                onPress={this.onButtonPress('example')}
-                            />
-                        }
-                    </View>
-                    <View style={styles.column}>
-                        <IconButton
-                            icon="staro"
-                            text="Answer"
-                            onPress={this.onButtonPress()}
-                        />
-                    </View>
+                <View style={styles.buttonWrapper}>
+                    <Button
+                        label="Answer"
+                        onPress={this.onButtonPress}
+                    />
                 </View>
-                {
-                    !_.isEmpty(actionText) &&
-                    <Text>
-                        { actionText }
-                    </Text>
-                }
+                <View style={styles.bottomRow}>
+                    <View style={styles.barWrapper}>
+                    </View>
+                    <TouchableOpacity
+                        onPress={this.onFavouritePress}
+                        style={styles.favouriteButton}
+                    >
+                        <MaterialIcons
+                            name="star"
+                            size={13}
+                            color={theme.palette.dark}
+                            style={styles.starIcon}
+                        />
+                        <Typography variant="tiny">
+                            Add to favourites
+                        </Typography>
+                    </TouchableOpacity>
+                </View>
             </View>
         );
     }

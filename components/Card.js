@@ -12,13 +12,11 @@ const propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.light,
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.unit * 52,
-        borderColor: theme.palette.grey,
-        borderWidth: 3,
-        borderRadius: theme.unit,
+        borderRadius: theme.unit * 2,
     },
     cardIndex: {
         position: 'absolute',
@@ -29,6 +27,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginLeft: theme.unit * 3,
         marginRight: theme.unit * 3,
+        color: theme.palette.dark,
     },
 });
 
@@ -54,9 +53,9 @@ class Card extends React.Component {
 
         return (
             <Animated.View style={cardContainerStyle}>
-                <Typography variant="large" style={styles.cardIndex}>
-                    { `${cardIndex}/${listLength}` }
-                </Typography>
+                {/*<Typography variant="large" style={styles.cardIndex}>*/}
+                    {/*{ `${cardIndex}/${listLength}` }*/}
+                {/*</Typography>*/}
                 <Typography style={styles.cardText}>
                     { text }
                 </Typography>

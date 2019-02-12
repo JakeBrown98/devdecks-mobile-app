@@ -10,8 +10,8 @@ import theme from '../theme';
 const AppDrawerNavigator = createDrawerNavigator(
     {
         StackScreen,
-        MarkdownScreen,
         StyleGuide,
+        MarkdownScreen,
         DecksScreen,
     },
     {

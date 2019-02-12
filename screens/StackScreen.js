@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ProgressBarAndroid, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { Screen, Card, Stack, StackEnd, StackActions } from '../components';
 import theme from '../theme';
 
@@ -92,11 +92,6 @@ class StackScreen extends React.Component {
     render() {
         return (
             <View style={styles.container}>
-                    <ProgressBarAndroid
-                    styleAttr="Horizontal"
-                    indeterminate={false}
-                    progress={0.5}
-                    />
                 {
                     this.state.listIndex < DATA.length
                     ? this.renderStack()
@@ -105,6 +100,9 @@ class StackScreen extends React.Component {
                         data={DATA}
                     />
                 }
+                <StackActions
+
+                />
             </View>
         );
     }
