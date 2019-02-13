@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { Screen, DeckThumbnail, Typography } from '../components';
+import { Screen, DeckThumbnail } from '../components';
 import data from '../data/index';
 
 class DecksScreen extends React.Component {

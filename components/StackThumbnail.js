@@ -1,20 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import theme from '../theme';
 
 const propTypes = {
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number,
-    favourite: PropTypes.bool,
 };
 
 const defaultProps = {
     label: '',
     cardAmount: 0,
-    favourite: false,
 };
 
 const styles = StyleSheet.create({
@@ -29,7 +26,6 @@ const styles = StyleSheet.create({
     },
     thumbnailText: {
         color: theme.palette.dark,
-
     },
     bottomRow: {
         justifyContent: 'space-between',
@@ -49,7 +45,7 @@ class StackThumbnail extends React.Component {
     };
 
     render() {
-        const { cardAmount, label, favourite } = this.props;
+        const { cardAmount, label } = this.props;
 
         return (
             <TouchableNativeFeedback
@@ -63,14 +59,6 @@ class StackThumbnail extends React.Component {
                         <Typography variant="tiny" style={styles.thumbnailText}>
                             { `${cardAmount} cards` }
                         </Typography>
-                        {
-                            favourite && 
-                            <MaterialIcons
-                                name="star"
-                                size={13}
-                                color={theme.palette.dark}
-                            />
-                        }
                     </View>
                 </View>
             </TouchableNativeFeedback>
