@@ -12,6 +12,7 @@ const SWIPE_OUT_DURIATION = 200;
 const styles = StyleSheet.create({
     container: {
         width: '89%',
+        marginBottom: theme.unit * 7,
     },
 });
 

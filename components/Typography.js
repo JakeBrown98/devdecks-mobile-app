@@ -16,36 +16,36 @@ const defaultProps = {
 const styles = StyleSheet.create({
     title1: {
         fontFamily: theme.font.bold,
-        color: theme.palette.black,
+        color: theme.palette.white,
         fontSize: 44,
         lineHeight: 44,
     },
     title2: {
         fontFamily: theme.font.bold,
-        color: theme.palette.black,
+        color: theme.palette.white,
         fontSize: 32,
         lineHeight: 32,
     },
     large: {
         fontFamily: theme.font.regular,
-        color: theme.palette.black,
+        color: theme.palette.white,
         fontSize: 24,
         lineHeight: 30,
     },
     regular: {
         fontFamily: theme.font.regular,
-        color: theme.palette.black,
+        color: theme.palette.white,
         fontSize: 19,
         lineHeight: 24,
     },
     small: {
         fontFamily: theme.font.regular,
-        color: theme.palette.black,
+        color: theme.palette.white,
         fontSize: 17,
     },
     tiny: {
         fontFamily: theme.font.bold,
-        color: theme.palette.dark,
+        color: theme.palette.grey,
         fontSize: 14,
     },
 });

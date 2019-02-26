@@ -1,9 +1,9 @@
 import React from 'react';
-import _ from 'lodash';
+// import { StyleSheet } from 'react-native';
 import { Screen, DeckThumbnail } from '../components';
 import data from '../data/index';
 
-class DecksScreen extends React.Component {
+class AllDecks extends React.Component {
     static navigationOptions = {
         drawerLabel: 'All Decks'
     };
@@ -21,7 +21,6 @@ class DecksScreen extends React.Component {
         return (
             <Screen
                 title="All Decks"
-                footerText="More decks coming soon!"
                 {...this.props}
             >
                 { data.map(item => this.renderThumbnail(item)) }
@@ -30,4 +29,4 @@ class DecksScreen extends React.Component {
     }
 }
 
-export default DecksScreen;
+export default AllDecks;

@@ -28,9 +28,10 @@ const styles = StyleSheet.create({
         marginBottom: theme.unit * 2.5,
     },
     thumbnailWrapper: {
+        backgroundColor: theme.palette.secondary,
         alignItems: 'center',
         justifyContent: 'center',
-        height: theme.unit * 18,
+        height: theme.unit * 22,
         marginBottom: theme.unit,
         borderRadius: theme.roundEdges,
     },
@@ -54,17 +55,17 @@ class DeckThumbnail extends React.Component {
 
     render() {
         const { name, amountCompleted, stacks, icon } = this.props;
-        const thumbnailBackground = this.getThumbnailBackground();
+        // const thumbnailBackground = this.getThumbnailBackground();
 
         return (
             <TouchableNativeFeedback onPress={this.onThumbnailPress}>
                 <View style={styles.container}>
-                    <LinearGradient
+                    <View
                         style={styles.thumbnailWrapper}
-                        colors={thumbnailBackground}
+                        // colors={thumbnailBackground}
                     >
                         <DeckIcon icon={icon} />
-                    </LinearGradient>
+                    </View>
                     <View style={styles.descriptionRow}>
                         <View style={styles.descriptionColumn}>
                             <Typography variant="large">

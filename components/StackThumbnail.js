@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import theme from '../theme';
 
@@ -21,11 +22,8 @@ const styles = StyleSheet.create({
         height: theme.unit * 18,
         width: theme.unit * 18,
         padding: theme.unit,
-        backgroundColor: theme.palette.light,
+        backgroundColor: theme.palette.secondary,
         borderRadius: theme.roundEdges,
-    },
-    thumbnailText: {
-        color: theme.palette.dark,
     },
     bottomRow: {
         justifyContent: 'space-between',
@@ -52,13 +50,18 @@ class StackThumbnail extends React.Component {
                 onPress={this.onThumbnailPress}
             >
                 <View style={styles.container}>
-                    <Typography style={styles.thumbnailText}>
+                    <Typography>
                         { label } 
                     </Typography>
                     <View style={styles.bottomRow}>
-                        <Typography variant="tiny" style={styles.thumbnailText}>
+                        <Typography variant="tiny">
                             { `${cardAmount} cards` }
                         </Typography>
+                        <MaterialIcons
+                            name="star"
+                            size={theme.unit * 2}
+                            color={theme.palette.primary}
+                        />
                     </View>
                 </View>
             </TouchableNativeFeedback>
@@ -66,7 +69,7 @@ class StackThumbnail extends React.Component {
     }
 }
 
-StackThumbnail.propTypes = propTypes;
 StackThumbnail.defaultProps = defaultProps;
+StackThumbnail.propTypes = propTypes;
 
 export default StackThumbnail;

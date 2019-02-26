@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { Screen, Card, Stack, StackEnd, StackActions } from '../components';
+import { Card, Stack, StackEnd, StackActions } from '../components';
 import theme from '../theme';
 
 const DATA = [
@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.tertiary,
     },
 });
 
-class StackScreen extends React.Component {
+class StackSingleScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Stack Screen Example'
     };
@@ -73,28 +73,18 @@ class StackScreen extends React.Component {
         );
     };
 
-    renderStack = () => (
-        <>
-            <Stack
-                data={DATA}
-                listIndex={this.state.listIndex}
-                renderCard={this.renderCard}
-                renderNoMoreCards={this.renderNoMoreCards}
-                onSwipeComplete={this.onSwipeComplete}
-            />
-            {/*<StackActions*/}
-                {/*data={DATA}*/}
-                {/*listIndex={this.state.listIndex}*/}
-            {/*/>*/}
-        </>
-    );
-
     render() {
         return (
             <View style={styles.container}>
                 {
                     this.state.listIndex < DATA.length
-                    ? this.renderStack()
+                    ? <Stack
+                        data={DATA}
+                        listIndex={this.state.listIndex}
+                        renderCard={this.renderCard}
+                        renderNoMoreCards={this.renderNoMoreCards}
+                        onSwipeComplete={this.onSwipeComplete}
+                    />
                     : <StackEnd 
                         helpRequiredCount={this.state.helpRequiredCount}
                         data={DATA}
@@ -108,4 +98,4 @@ class StackScreen extends React.Component {
     }
 }
 
-export default StackScreen;
+export default StackSingleScreen;

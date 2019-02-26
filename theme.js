@@ -7,11 +7,10 @@ export default {
         bold: 'acumin-bold',
     },
     palette: {
-        black: '#212121',
+        primary: '#6EF8C3',
+        secondary: '#141F37',
+        tertiary: '#26324C',
+        grey: '#F1F5FF',
         white: '#FFFFFF',
-        grey: '#EDEDED',
-        light: '#F9FCFF',
-        dark: '#3DA4FF',
-        yellow: '#FFD500',
     },
 };

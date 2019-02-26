@@ -24,7 +24,7 @@ const defaultProps = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.palette.white,
+        backgroundColor: theme.palette.tertiary,
     },
     screenWrapper: {
         paddingLeft: theme.unit * 3,
@@ -68,7 +68,7 @@ class Screen extends React.Component {
                                 <Feather
                                     name="menu"
                                     size={theme.unit * 3}
-                                    color={theme.palette.black}
+                                    color={theme.palette.grey}
                                 />
                             </TouchableOpacity>
                             <Typography variant={titleVariant}>

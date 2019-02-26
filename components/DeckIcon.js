@@ -11,8 +11,8 @@ const DeckIcon = props => {
     const { name, family } = props.icon;
     const iconProps = { 
         name,
-        size: theme.unit * 9,
-        color: theme.palette.white,
+        size: theme.unit * 14,
+        color: theme.palette.primary,
     };
 
     switch (family) {

@@ -15,15 +15,16 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: theme.palette.dark,
+        backgroundColor: theme.palette.tertiary,
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
+        borderWidth: 2,
+        borderColor: theme.palette.primary,
         borderRadius: theme.unit * 4,
     },
     label: {
         textAlign: 'center',
-        color: theme.palette.white,
-        textTransform: 'uppercase',
+        color: theme.palette.primary,
     },
 });
 
@@ -35,7 +36,7 @@ const Button = ({ label, onPress }) => {
         >
             <View style={styles.button}>
                 <Typography style={styles.label}>
-                    { label }
+                    { label.toUpperCase() }
                 </Typography>
             </View>
         </TouchableNativeFeedback>

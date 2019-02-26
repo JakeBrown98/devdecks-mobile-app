@@ -1,18 +1,20 @@
 import { createDrawerNavigator, createAppContainer, } from 'react-navigation';
-import CustomDrawer from './CustomDrawer';
-import DecksScreen from '../screens/DecksScreen';
-import StackScreen from '../screens/StackScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import AllDecks from '../screens/AllDecks';
+import Favourites from '../screens/Favourites';
+import SingleStack from '../screens/SingleStack';
 import StyleGuide from '../screens/StyleGuide';
-import MarkdownScreen from '../screens/MarkdownScreen';
-import theme from '../theme';
+import Settings from '../screens/Settings';
+import CustomDrawer from './CustomDrawer';
+// import MarkdownScreen from '../screens/MarkdownScreen';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
-        StackScreen,
+        SingleStack,
         StyleGuide,
-        MarkdownScreen,
-        DecksScreen,
+        AllDecks,
+        Favourites,
+        Settings,
+        // MarkdownScreen,
     },
     {
         contentComponent: CustomDrawer,

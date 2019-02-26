@@ -17,7 +17,6 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: theme.palette.light,
         alignItems: 'center',
         justifyContent: 'center',
         paddingTop: theme.unit * 5,

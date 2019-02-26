@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
         marginBottom: theme.unit * 3,
     },
     resultText: {
-        color: theme.palette.light,
+        color: theme.palette.grey,
     },
 });
 

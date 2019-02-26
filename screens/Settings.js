@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-class SettingsScreen extends React.Component {
+class Settings extends React.Component {
     render() {
         return (
             <View>
@@ -11,4 +11,4 @@ class SettingsScreen extends React.Component {
     }
 }
 
-export default SettingsScreen;
+export default Settings;

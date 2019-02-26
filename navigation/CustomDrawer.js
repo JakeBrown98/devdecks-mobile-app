@@ -7,6 +7,7 @@ import { Typography } from '../components';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: theme.palette.tertiary,
         alignItems: 'center',
     },
     drawerHeader: {
@@ -27,10 +28,10 @@ const styles = StyleSheet.create({
         fontWeight: 'normal',
     },
     activeLabelStyle: {
-        color: theme.palette.dark,
+        color: theme.palette.primary,
     },
     inactiveLabelStyle: {
-        color: theme.palette.black,
+        color: theme.palette.white,
     },
     feedbackWrapper: {
         position: 'absolute',
@@ -58,7 +59,7 @@ class CustomDrawerComponent extends React.Component {
                         activeLabelStyle={styles.activeLabelStyle}
                         inactiveLabelStyle={styles.inactiveLabelStyle}
                         labelStyle={styles.labelStyle}
-                        activeBackgroundColor={theme.palette.light}
+                        activeBackgroundColor={theme.palette.secondary}
                         {...this.props}
                     />
 

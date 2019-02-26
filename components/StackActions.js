@@ -14,33 +14,38 @@ const propTypes = {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: theme.palette.tertiary,
         position: 'absolute',
-        bottom: theme.unit * 5,
+        bottom: 0,
         width: '100%',
         paddingLeft: theme.unit * 3,
         paddingRight: theme.unit * 3,
 
     },
     buttonWrapper: {
-
+        paddingTop: theme.unit * 2,
+        paddingBottom: theme.unit * 2,
     },
     bottomRow: {
         flex: 1,
         justifyContent: 'space-between',
         flexDirection: 'row',
-        marginTop: theme.unit * 2,
+        paddingBottom: theme.unit * 3,
     },
     barWrapper: {
 
     },
-    favouriteButton: {
+    actionButton: {
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },
-    starIcon: {
-        marginRight: theme.unit / 2,
-    }
+    actionButtonText: {
+        color: theme.palette.primary,
+    },
+    actionButtonIcon: {
+        marginLeft: theme.unit / 4,
+    },
 });
 
 class StackActions extends React.Component {
@@ -48,12 +53,16 @@ class StackActions extends React.Component {
         console.log(e);
     };
 
+    onActionPress = () => {
+        console.log('action press');
+    };
+
     render() {
         return (
             <View style={styles.container}>
                 <View style={styles.buttonWrapper}>
                     <Button
-                        label="Answer"
+                        label="Get answer"
                         onPress={this.onButtonPress}
                     />
                 </View>
@@ -61,18 +70,21 @@ class StackActions extends React.Component {
                     <View style={styles.barWrapper}>
                     </View>
                     <TouchableOpacity
-                        onPress={this.onFavouritePress}
-                        style={styles.favouriteButton}
+                        onPress={this.onActionPress}
+                        style={styles.actionButton}
                     >
-                        <MaterialIcons
-                            name="star"
-                            size={13}
-                            color={theme.palette.dark}
-                            style={styles.starIcon}
-                        />
-                        <Typography variant="tiny">
-                            Add to favourites
+                        <Typography
+                            variant="tiny"
+                            style={styles.actionButtonText}
+                        >
+                            Next card
                         </Typography>
+                        <MaterialIcons
+                            name="chevron-right"
+                            size={18}
+                            color={theme.palette.primary}
+                            style={styles.actionButtonIcon}
+                        />
                     </TouchableOpacity>
                 </View>
             </View>
