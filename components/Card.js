@@ -12,7 +12,7 @@ const propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: theme.palette.secondary,
+        backgroundColor: theme.palette.primary,
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.unit * 52,

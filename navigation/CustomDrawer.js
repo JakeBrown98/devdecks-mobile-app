@@ -7,7 +7,7 @@ import { Typography } from '../components';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.palette.tertiary,
+        backgroundColor: theme.palette.white,
         alignItems: 'center',
     },
     drawerHeader: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
         color: theme.palette.primary,
     },
     inactiveLabelStyle: {
-        color: theme.palette.white,
+        color: theme.palette.black,
     },
     feedbackWrapper: {
         position: 'absolute',
@@ -62,7 +62,6 @@ class CustomDrawerComponent extends React.Component {
                         activeBackgroundColor={theme.palette.secondary}
                         {...this.props}
                     />
-
                 </SafeAreaView>
                 <TouchableOpacity
                     style={styles.feedbackWrapper}

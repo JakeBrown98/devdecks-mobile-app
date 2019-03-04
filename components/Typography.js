@@ -16,19 +16,19 @@ const defaultProps = {
 const styles = StyleSheet.create({
     title1: {
         fontFamily: theme.font.bold,
-        color: theme.palette.white,
+        color: theme.palette.black,
         fontSize: 44,
         lineHeight: 44,
     },
     title2: {
         fontFamily: theme.font.bold,
-        color: theme.palette.white,
+        color: theme.palette.black,
         fontSize: 32,
         lineHeight: 32,
     },
     large: {
         fontFamily: theme.font.regular,
-        color: theme.palette.white,
+        color: theme.palette.black,
         fontSize: 24,
         lineHeight: 30,
     },
@@ -40,12 +40,12 @@ const styles = StyleSheet.create({
     },
     small: {
         fontFamily: theme.font.regular,
-        color: theme.palette.white,
+        color: theme.palette.black,
         fontSize: 17,
     },
     tiny: {
         fontFamily: theme.font.bold,
-        color: theme.palette.grey,
+        color: theme.palette.secondary,
         fontSize: 14,
     },
 });

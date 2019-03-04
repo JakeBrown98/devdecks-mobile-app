@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
         marginBottom: theme.unit * 2.5,
     },
     thumbnailWrapper: {
-        backgroundColor: theme.palette.secondary,
+        backgroundColor: theme.palette.primary,
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.unit * 22,

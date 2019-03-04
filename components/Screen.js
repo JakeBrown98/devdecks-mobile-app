@@ -12,6 +12,7 @@ const propTypes = {
     hideMenu: PropTypes.bool,
     title: PropTypes.string,
     titleVariant: PropTypes.string,
+    noPadding: PropTypes.bool,
     footerText: PropTypes.string,
 };
 
@@ -19,12 +20,13 @@ const defaultProps = {
     hideMenu: false,
     titleVariant: 'title1',
     footerText: '',
+    noPadding: false,
 };
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: theme.palette.tertiary,
+        backgroundColor: theme.palette.white,
     },
     screenWrapper: {
         paddingLeft: theme.unit * 3,
@@ -32,6 +34,11 @@ const styles = StyleSheet.create({
         paddingBottom: theme.unit * 3,
     },
     headerWrapper: {
+        marginBottom: theme.unit * 3,
+    },
+    headerWrapperPadding: {
+        paddingLeft: theme.unit * 3,
+        paddingRight: theme.unit * 3,
         marginBottom: theme.unit * 3,
     },
     menuIcon: {
@@ -51,15 +58,15 @@ class Screen extends React.Component {
     };
 
     render() {
-        const { title, titleVariant, children, hideMenu, footerText } = this.props;
+        const { noPadding, title, titleVariant, children, hideMenu, footerText } = this.props;
         const menuStyle = hideMenu ? [styles.menuIcon, { opacity: 0 }] : styles.menuIcon;
 
         return (
             <View style={styles.container}>
-                <ScrollView style={styles.screenWrapper}>
+                <ScrollView style={( noPadding ? null : styles.screenWrapper )}>
                     {
                         title &&
-                        <View style={styles.headerWrapper}>
+                        <View style={( noPadding ? styles.headerWrapperPadding : styles.headerWrapper )}>
                             <TouchableOpacity
                                 onPress={this.onMenuPress}
                                 style={menuStyle}
@@ -68,7 +75,7 @@ class Screen extends React.Component {
                                 <Feather
                                     name="menu"
                                     size={theme.unit * 3}
-                                    color={theme.palette.grey}
+                                    color={theme.palette.black}
                                 />
                             </TouchableOpacity>
                             <Typography variant={titleVariant}>

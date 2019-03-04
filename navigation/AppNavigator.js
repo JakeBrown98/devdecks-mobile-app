@@ -1,6 +1,7 @@
 import { createDrawerNavigator, createAppContainer, } from 'react-navigation';
 import AllDecks from '../screens/AllDecks';
 import Favourites from '../screens/Favourites';
+import DeckSingle from '../screens/DeckSingle';
 import SingleStack from '../screens/SingleStack';
 import StyleGuide from '../screens/StyleGuide';
 import Settings from '../screens/Settings';
@@ -9,6 +10,7 @@ import CustomDrawer from './CustomDrawer';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
+        DeckSingle,
         SingleStack,
         StyleGuide,
         AllDecks,

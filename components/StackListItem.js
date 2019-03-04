@@ -17,6 +17,7 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
+        backgroundColor: theme.palette.primary,
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
@@ -57,7 +58,7 @@ class StackListItem extends React.Component {
                         <MaterialIcons
                             name="more-vert"
                             size={13}
-                            color={theme.palette.dark}
+                            color={theme.palette.grey}
                         />
                     </TouchableOpacity>
                 </View>

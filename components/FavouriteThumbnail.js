@@ -8,6 +8,7 @@ import theme from '../theme';
 const propTypes = {
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number,
+    style: PropTypes.object,
 };
 
 const defaultProps = {
@@ -22,8 +23,12 @@ const styles = StyleSheet.create({
         height: theme.unit * 18,
         width: theme.unit * 18,
         padding: theme.unit,
-        backgroundColor: theme.palette.secondary,
+        backgroundColor: theme.palette.primary,
         borderRadius: theme.roundEdges,
+        // elevation: theme.unit / 2,
+    },
+    labelText: {
+        color: theme.palette.white,
     },
     bottomRow: {
         justifyContent: 'space-between',
@@ -35,9 +40,12 @@ const styles = StyleSheet.create({
         marginLeft: theme.unit,
         marginRight: theme.unit,
     },
+    cardCountText: {
+        color: theme.palette.secondary,
+    },
 });
 
-class StackThumbnail extends React.Component {
+class FavouriteThumbnail extends React.Component {
     onThumbnailPress = () => {
         console.log(123);
     };
@@ -48,19 +56,23 @@ class StackThumbnail extends React.Component {
         return (
             <TouchableNativeFeedback
                 onPress={this.onThumbnailPress}
+                styles={this.props.styles}
             >
                 <View style={styles.container}>
-                    <Typography>
+                    <Typography style={styles.labelText}>
                         { label } 
                     </Typography>
                     <View style={styles.bottomRow}>
-                        <Typography variant="tiny">
+                        <Typography 
+                            variant="tiny"
+                            style={styles.cardCountText}
+                        >
                             { `${cardAmount} cards` }
                         </Typography>
                         <MaterialIcons
                             name="star"
                             size={theme.unit * 2}
-                            color={theme.palette.primary}
+                            color={theme.palette.secondary}
                         />
                     </View>
                 </View>
@@ -69,7 +81,7 @@ class StackThumbnail extends React.Component {
     }
 }
 
-StackThumbnail.defaultProps = defaultProps;
-StackThumbnail.propTypes = propTypes;
+FavouriteThumbnail.defaultProps = defaultProps;
+FavouriteThumbnail.propTypes = propTypes;
 
-export default StackThumbnail;
+export default FavouriteThumbnail;

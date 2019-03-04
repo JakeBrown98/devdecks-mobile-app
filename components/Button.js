@@ -15,16 +15,14 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: theme.palette.tertiary,
+        backgroundColor: theme.palette.primary,
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
-        borderWidth: 2,
-        borderColor: theme.palette.primary,
-        borderRadius: theme.unit * 4,
+        borderRadius: theme.unit * 5,
     },
     label: {
         textAlign: 'center',
-        color: theme.palette.primary,
+        color: theme.palette.white,
     },
 });
 

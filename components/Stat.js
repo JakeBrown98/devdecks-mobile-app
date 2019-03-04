@@ -13,14 +13,17 @@ const styles = StyleSheet.create({
     container: {
         marginBottom: theme.unit * 3,
     },
+    statText: {
+        color: theme.palette.black,
+    },
     resultText: {
-        color: theme.palette.grey,
+        color: theme.palette.primary,
     },
 });
 
 const Stat = ({ label, result }) => (
     <View style={styles.container}>
-        <Typography>
+        <Typography style={styles.statText}>
             { label }
         </Typography>
         <Typography variant="small" style={styles.resultText}>

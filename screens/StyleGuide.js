@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { 
     Screen, Typography, Button, DeckThumbnail,
-    Stat, ThumbnailRow, StackThumbnail,
+    Stat, ThumbnailRow, FavouriteThumbnail,
 } from '../components';
 import theme from '../theme';
 
@@ -110,32 +110,32 @@ class StyleGuide extends React.Component {
                 </Section>
                 <Section>
                     <ThumbnailRow>
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Creational Design Patters"
                             cardAmount={12}
                         />
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Scope and Closures"
                             cardAmount={9}
                             favourite
                         />
                     </ThumbnailRow>
                     <ThumbnailRow>
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Structural Design Patters"
                             cardAmount={7}
                         />
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Binding"
                             cardAmount={14}
                         />
                     </ThumbnailRow>
                     <ThumbnailRow>
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Behavorial Design Patters"
                             cardAmount={17}
                         />
-                        <StackThumbnail
+                        <FavouriteThumbnail
                             label="Variables"
                             cardAmount={4}
                         />
