@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
+import { View, TouchableNativeFeedback, Dimensions, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import theme from '../theme';
@@ -16,16 +16,17 @@ const defaultProps = {
     cardAmount: 0,
 };
 
+const THUMBNAIL_WIDTH = (Dimensions.get('window').width / 2) - (theme.unit * 4);
+
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         textAlign: 'center',
-        height: theme.unit * 18,
-        width: theme.unit * 18,
+        height: THUMBNAIL_WIDTH,
+        width: THUMBNAIL_WIDTH,
         padding: theme.unit,
         backgroundColor: theme.palette.primary,
-        borderRadius: theme.roundEdges,
-        // elevation: theme.unit / 2,
+        borderRadius: theme.unit,
     },
     labelText: {
         color: theme.palette.white,

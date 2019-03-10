@@ -1,6 +1,5 @@
 export default {
     unit: 8,
-    roundEdges: 8,
     activeTouchOpacity: 0.6,
     font: {
         regular: 'acumin',

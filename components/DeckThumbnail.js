@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         height: theme.unit * 22,
         marginBottom: theme.unit,
-        borderRadius: theme.roundEdges,
+        borderRadius: theme.unit,
     },
     descriptionRow: {
         justifyContent: 'space-between',

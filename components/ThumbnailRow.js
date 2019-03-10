@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         width: theme.unit * 39,
-        marginBottom: theme.unit * 3,
+        marginBottom: theme.unit * 2,
     },
 });
 

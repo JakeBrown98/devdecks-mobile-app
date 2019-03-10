@@ -3,6 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import { 
     Screen, Typography, Button, DeckThumbnail,
     Stat, ThumbnailRow, FavouriteThumbnail,
+    StackListItem,
 } from '../components';
 import theme from '../theme';
 
@@ -66,14 +67,16 @@ class StyleGuide extends React.Component {
                 </Section>
                 <Section>
                     <Typography variant="title1">
-                        Paragraph
+                        Stack List Item
                     </Typography>
-                    <Typography>
-                        In JavaScript if you try to use a variable that doesn't exist and has not been
-                        declared, then JavaScript will throw an error var name is not defined and
-                        the script will stop executing thereafter. But If you use typeof 
-                        undeclared_variable then it will return undefined.
-                    </Typography>
+                    <StackListItem
+                        label="Scope & Closures"
+                        cardAmount={12}
+                    />
+                    <StackListItem
+                        label="Variables"
+                        cardAmount={8}
+                    />
                 </Section>
                 <Section title="Example of Deck Thumbnails">
                     <DeckThumbnail
