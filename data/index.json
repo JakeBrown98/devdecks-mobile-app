@@ -2,8 +2,6 @@
     "decks": [
         {
             "name": "JavaScript",
-            "label": "JS",
-            "thumbnailColour": "#F7DF1E",
             "icon": {
                 "family": "MaterialCommunityIcons",
                 "name": "language-javascript"
@@ -19,8 +17,6 @@
         },
         {
             "name": "PHP",
-            "label": "PHP",
-            "thumbnailColour": "#8892BE",
             "icon": {
                 "family": "MaterialCommunityIcons",
                 "name": "language-php"
@@ -54,8 +50,6 @@
         },
         {
             "name": "Design Patterns",
-            "label": "Design Patterns",
-            "thumbnailColour": "#e64b50",
             "icon": {
                 "family": "MaterialCommunityIcons",
                 "name": "file-tree"

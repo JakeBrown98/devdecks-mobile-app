@@ -69,7 +69,7 @@ class StackListItem extends React.Component {
     }
 }
 
-StackListItem.propTypes = propTypes;
 StackListItem.defaultProps = defaultProps;
+StackListItem.propTypes = propTypes;
 
 export default StackListItem;

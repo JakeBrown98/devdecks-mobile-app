@@ -16,16 +16,16 @@ const defaultProps = {
     cardAmount: 0,
 };
 
-const THUMBNAIL_WIDTH = (Dimensions.get('window').width / 2) - (theme.unit * 4);
+const SQUARE_RATIO = (Dimensions.get('window').width / 2) - (theme.unit * 4);
 
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
         textAlign: 'center',
-        height: THUMBNAIL_WIDTH,
-        width: THUMBNAIL_WIDTH,
-        padding: theme.unit,
         backgroundColor: theme.palette.primary,
+        height: SQUARE_RATIO,
+        width: SQUARE_RATIO,
+        padding: theme.unit,
         borderRadius: theme.unit,
     },
     labelText: {

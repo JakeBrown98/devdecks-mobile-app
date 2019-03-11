@@ -6,17 +6,17 @@ import SingleStack from '../screens/SingleStack';
 import StyleGuide from '../screens/StyleGuide';
 import Settings from '../screens/Settings';
 import CustomDrawer from './CustomDrawer';
-// import MarkdownScreen from '../screens/MarkdownScreen';
+import Answer from '../screens/Answer';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
+        Answer,
         DeckSingle,
         SingleStack,
         StyleGuide,
         AllDecks,
         Favourites,
         Settings,
-        // MarkdownScreen,
     },
     {
         contentComponent: CustomDrawer,

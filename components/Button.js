@@ -38,7 +38,7 @@ const Button = ({ label, onPress }) => {
     );
 };
 
-Button.propTypes = propTypes;
 Button.defaultProps = defaultProps;
+Button.propTypes = propTypes;
 
 export default Button;

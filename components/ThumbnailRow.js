@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-        width: theme.unit * 39,
+        maxWidth: theme.unit * 39,
         marginBottom: theme.unit * 2,
     },
 });

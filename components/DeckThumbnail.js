@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import hexToRgba from 'hex-to-rgba';
 import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
-import { LinearGradient } from 'expo';
 import Typography from './Typography';
 import DeckIcon from './DeckIcon';
 import theme from '../theme';
@@ -43,27 +41,17 @@ const styles = StyleSheet.create({
 });
 
 class DeckThumbnail extends React.Component {
-    getThumbnailBackground = () => {
-        const { thumbnailColour, whiteText } = this.props;
-
-        return [hexToRgba(thumbnailColour), hexToRgba(thumbnailColour, '0.6')];
-    };
-
     onThumbnailPress = () => {
         this.props.onPress();
     };
 
     render() {
         const { name, amountCompleted, stacks, icon } = this.props;
-        // const thumbnailBackground = this.getThumbnailBackground();
 
         return (
             <TouchableNativeFeedback onPress={this.onThumbnailPress}>
                 <View style={styles.container}>
-                    <View
-                        style={styles.thumbnailWrapper}
-                        // colors={thumbnailBackground}
-                    >
+                    <View style={styles.thumbnailWrapper}>
                         <DeckIcon icon={icon} />
                     </View>
                     <View style={styles.descriptionRow}>
@@ -82,7 +70,7 @@ class DeckThumbnail extends React.Component {
     }
 }
 
-DeckThumbnail.propTypes = propTypes;
 DeckThumbnail.defaultProps = defaultProps;
+DeckThumbnail.propTypes = propTypes;
 
 export default DeckThumbnail;

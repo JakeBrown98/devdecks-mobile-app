@@ -15,7 +15,7 @@ class AllDecks extends React.Component {
                 {...item}
             />
         );
-    }
+    };
 
     render() {
         return (

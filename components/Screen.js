@@ -98,7 +98,7 @@ class Screen extends React.Component {
     }
 }
 
-Screen.propTypes = propTypes;
 Screen.defaultProps = defaultProps;
+Screen.propTypes = propTypes;
 
 export default Screen;

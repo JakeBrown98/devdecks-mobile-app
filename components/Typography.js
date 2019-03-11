@@ -58,7 +58,7 @@ const Typography = ({ variant, children, style }) => {
     );
 };
 
-Typography.propTypes = propTypes;
 Typography.defaultProps = defaultProps;
+Typography.propTypes = propTypes;
 
 export default Typography;

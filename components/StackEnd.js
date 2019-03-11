@@ -62,7 +62,7 @@ class StackEnd extends React.Component {
     }
 }
 
-StackEnd.propTypes = propTypes;
 StackEnd.defaultProps = defaultProps;
+StackEnd.propTypes = propTypes;
 
 export default StackEnd;

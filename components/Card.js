@@ -33,9 +33,7 @@ const styles = StyleSheet.create({
 class Card extends React.Component {
     constructor(props) {
         super(props);
-        const cardOpacity = new Animated.Value(0);
-
-        this.cardOpacity = cardOpacity;
+        this.cardOpacity = new Animated.Value(0);
     }
 
     componentDidMount() {
@@ -47,14 +45,11 @@ class Card extends React.Component {
     }
 
     render() {
-        const { text, cardIndex, listLength } = this.props;
+        const { text } = this.props;
         const cardContainerStyle = [styles.container, { opacity: this.cardOpacity }];
 
         return (
             <Animated.View style={cardContainerStyle}>
-                {/*<Typography variant="large" style={styles.cardIndex}>*/}
-                    {/*{ `${cardIndex}/${listLength}` }*/}
-                {/*</Typography>*/}
                 <Typography style={styles.cardText}>
                     { text }
                 </Typography>

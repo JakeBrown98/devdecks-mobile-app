@@ -7,7 +7,7 @@ import theme from '../theme';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
-const SWIPE_OUT_DURIATION = 200;
+const SWIPE_OUT_DURATION = 200;
 
 const styles = StyleSheet.create({
     container: {
@@ -19,15 +19,12 @@ const styles = StyleSheet.create({
 class Stack extends React.Component {
     constructor(props) {
         super(props);
-        const position = new Animated.ValueXY();
-        const panResponder = PanResponder.create({
+        this.position = new Animated.ValueXY();
+        this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
             onPanResponderMove: (evt, gesture) => this.handlePanResponderMove(evt, gesture),
             onPanResponderRelease: (evt, gesture) => this.handlePanResponderRelease(evt, gesture),
         });
-
-        this.panResponder = panResponder;
-        this.position = position;
     };
 
     handlePanResponderMove = (evt, gesture) => {
@@ -55,7 +52,7 @@ class Stack extends React.Component {
                 x: direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH,
                 y: 0,
             },
-            duration: SWIPE_OUT_DURIATION,
+            duration: SWIPE_OUT_DURATION,
         }).start(() => this.onSwipeComplete());
     };
 
