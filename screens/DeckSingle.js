@@ -1,8 +1,9 @@
 import React from 'react';
-import _ from 'lodash';
-import { View, StyleSheet } from 'react-native';
-import { Screen, StackListItem, FavouriteThumbnail, ListSection } from '../components';
-import theme from '../theme';
+import { connect } from 'react-redux';
+import {
+    Screen, StackListItem, FavouriteThumbnail,
+    ListSection, StackOptionsPopup
+} from '../components';
 
 const LIST_DATA = [
     { id: 1, label: 'Scope & Closures', cardAmount: 10, favourite: true },
@@ -13,12 +14,6 @@ const LIST_DATA = [
     { id: 6, label: 'Grammar &types', cardAmount: 8 },
     { id: 7, label: 'Strict mode', cardAmount: 6 },
 ];
-
-const styles = StyleSheet.create({
-    favouriteThumbnail: {
-        marginRight: theme.unit * 2,
-    },
-});
 
 class DeckSingle extends React.Component {
     state = {
@@ -37,13 +32,15 @@ class DeckSingle extends React.Component {
 
     render() {
         const { favouritesList, stackList } = this.state;
+        const { optionChoices } = this.props.stack;
 
         return (
             <Screen
-                title="JavaScript"
                 noPadding
+                title="JavaScript"
                 {...this.props}
             >
+                <StackOptionsPopup selectedStack={optionChoices} />
                 <ListSection
                     title="Your Favourites"
                     list={favouritesList}
@@ -70,4 +67,8 @@ class DeckSingle extends React.Component {
     }
 }
 
-export default DeckSingle;
+const mapStateToProps = ({ stack }) => {
+    return { stack };
+};
+
+export default connect(mapStateToProps)(DeckSingle);

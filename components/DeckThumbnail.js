@@ -7,7 +7,6 @@ import theme from '../theme';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
-    thumbnailColour: PropTypes.string.isRequired,
     icon: PropTypes.object.isRequired,
     stacks: PropTypes.array.isRequired,
     onPress: PropTypes.func.isRequired,

@@ -1,6 +1,11 @@
 import React from 'react';
-import { AppLoading, Font, Icon } from 'expo';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { AppLoading, Font } from 'expo';
+import reducers from './reducers';
 import AppNavigator from './navigation/AppNavigator';
+
+const store = createStore(reducers);
 
 class App extends React.Component {
     state = {
@@ -10,18 +15,14 @@ class App extends React.Component {
     loadResourcesAsync = async () => {
         return Promise.all([
             Font.loadAsync({
-                // This is the font that we are using for our tab bar
-                //   ...Icon.Ionicons.font,
-                // We include SpaceMono because we use it in HomeScreen.js. Feel free
-                // to remove this if you are not using it in your app
                 'acumin': require('./assets/fonts/acumin-regular.otf'),
                 'acumin-bold': require('./assets/fonts/acumin-bold.otf'),
             }),
         ]);
     };
   
-    handleLoadingError = errorr => {
-        console.warn(errorr);
+    handleLoadingError = error => {
+        console.warn(error);
     };
   
     handleFinishLoading = () => {
@@ -40,7 +41,9 @@ class App extends React.Component {
         }
   
         return (
-            <AppNavigator />
+            <Provider store={store}>
+                <AppNavigator />
+            </Provider>
         );
     }
 }

@@ -10,10 +10,10 @@ import Answer from '../screens/Answer';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
-        Answer,
         DeckSingle,
-        SingleStack,
         StyleGuide,
+        Answer,
+        SingleStack,
         AllDecks,
         Favourites,
         Settings,

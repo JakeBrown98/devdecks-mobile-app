@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
+import * as actions from '../actions';
 import theme from '../theme';
 
 const propTypes = {
@@ -22,6 +24,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: theme.unit,
+        paddingRight: 0,
         marginBottom: theme.unit * 2,
         borderRadius: theme.unit,
     },
@@ -30,12 +33,23 @@ const styles = StyleSheet.create({
     },
     titleText: {
         marginBottom: theme.unit / 2,
+    },
+    moreButton: {
+        padding: theme.unit,
     }
 });
 
 class StackListItem extends React.Component {
     onItemPress = () => {
         console.log('item press');
+    };
+
+    onMorePress = () => {
+        const { id, label, cardAmount } = this.props;
+
+        this.props.showStackPopup({
+            id, label, cardAmount
+        });
     };
 
     render() {
@@ -55,6 +69,7 @@ class StackListItem extends React.Component {
                         </Typography>
                     </View>
                     <TouchableOpacity
+                        style={styles.moreButton}
                         onPress={this.onMorePress}
                     >
                         <MaterialIcons
@@ -72,4 +87,4 @@ class StackListItem extends React.Component {
 StackListItem.defaultProps = defaultProps;
 StackListItem.propTypes = propTypes;
 
-export default StackListItem;
+export default connect(null, actions)(StackListItem);

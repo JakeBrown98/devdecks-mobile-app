@@ -13,3 +13,4 @@ export { default as ThumbnailRow } from './ThumbnailRow';
 export { default as DeckIcon } from './DeckIcon';
 export { default as ListSection } from './ListSection';
 export { default as StackListItem } from './StackListItem';
+export { default as StackOptionsPopup } from './StackOptionsPopup';

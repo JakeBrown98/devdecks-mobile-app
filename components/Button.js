@@ -16,6 +16,7 @@ const defaultProps = {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: theme.palette.primary,
+        width: '100%',
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
         borderRadius: theme.unit * 5,

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { DrawerActions } from 'react-navigation-drawer';
 import { Feather } from '@expo/vector-icons';
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -58,19 +59,23 @@ class Screen extends React.Component {
     };
 
     render() {
-        const { noPadding, title, titleVariant, children, hideMenu, footerText } = this.props;
-        const menuStyle = hideMenu ? [styles.menuIcon, { opacity: 0 }] : styles.menuIcon;
+        const {
+            noPadding, title, titleVariant,
+            children, footerText, screen
+        } = this.props;
 
         return (
             <View style={styles.container}>
-                <ScrollView style={( noPadding ? null : styles.screenWrapper )}>
+                <ScrollView
+                    style={( noPadding ? null : styles.screenWrapper )}
+                    scrollEnabled={screen.scrollEnabled}
+                >
                     {
                         title &&
                         <View style={( noPadding ? styles.headerWrapperPadding : styles.headerWrapper )}>
                             <TouchableOpacity
                                 onPress={this.onMenuPress}
-                                style={menuStyle}
-                                disabled={hideMenu}
+                                style={styles.menuIcon}
                             >
                                 <Feather
                                     name="menu"
@@ -101,4 +106,8 @@ class Screen extends React.Component {
 Screen.defaultProps = defaultProps;
 Screen.propTypes = propTypes;
 
-export default Screen;
+const mapStateToProps = ({ screen }) => {
+    return { screen };
+};
+
+export default connect(mapStateToProps)(Screen);
