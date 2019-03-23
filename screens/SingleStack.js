@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
+        backgroundColor: theme.palette.white,
         width: '100%',
-        backgroundColor: theme.palette.tertiary,
     },
 });
 
@@ -55,23 +55,17 @@ class StackSingleScreen extends React.Component {
     onSwipeComplete = () => {
         this.setState({
             listIndex: this.state.listIndex + 1,
-            cardAnswer: null,
         });
     };
 
-    renderCard = item => {
-        const { cardAnswer } = this.state;
-        const cardText = cardAnswer ? cardAnswer : item.question;
-
-        return (
-            <Card
-                key={item.id}
-                text={cardText}
-                cardIndex={this.state.listIndex}
-                listLength={DATA.length}
-            />
-        );
-    };
+    renderCard = item => (
+        <Card
+            key={item.id}
+            text={item.question}
+            cardIndex={this.state.listIndex}
+            listLength={DATA.length}
+        />
+    );
 
     render() {
         return (
@@ -90,9 +84,7 @@ class StackSingleScreen extends React.Component {
                         data={DATA}
                     />
                 }
-                <StackActions
-
-                />
+                <StackActions />
             </View>
         );
     }

@@ -22,7 +22,7 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
-        marginBottom: theme.unit * 2.5,
+        paddingBottom: theme.unit * 2.5,
     },
     thumbnailWrapper: {
         backgroundColor: theme.palette.primary,

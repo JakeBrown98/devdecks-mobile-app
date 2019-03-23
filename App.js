@@ -1,17 +1,21 @@
 import React from 'react';
-import { createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
 import reducers from './reducers';
 import AppNavigator from './navigation/AppNavigator';
 
-const store = createStore(reducers);
+const store = createStore(
+    reducers,
+    applyMiddleware(thunk)
+);
 
 class App extends React.Component {
     state = {
       isLoadingComplete: false,
     };
-  
+
     loadResourcesAsync = async () => {
         return Promise.all([
             Font.loadAsync({
@@ -20,15 +24,15 @@ class App extends React.Component {
             }),
         ]);
     };
-  
+
     handleLoadingError = error => {
         console.warn(error);
     };
-  
+
     handleFinishLoading = () => {
         this.setState({ isLoadingComplete: true });
     };
-  
+
     render() {
         if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {
             return (
@@ -39,7 +43,7 @@ class App extends React.Component {
                 />
             );
         }
-  
+
         return (
             <Provider store={store}>
                 <AppNavigator />

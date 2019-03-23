@@ -8,7 +8,7 @@ export default {
     palette: {
         primary: '#3DA4FF',
         secondary: '#F9FCFF',
-        // tertiary: '#26324C',
+        tertiary: '#F0F0F0',
         black: '#212121',
         white: '#FFFFFF',
     },

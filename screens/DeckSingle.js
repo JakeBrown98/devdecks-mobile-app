@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import {
     Screen, StackListItem, FavouriteThumbnail,
-    ListSection, StackOptionsPopup
+    ListSection,
 } from '../components';
 
 const LIST_DATA = [
@@ -32,7 +32,6 @@ class DeckSingle extends React.Component {
 
     render() {
         const { favouritesList, stackList } = this.state;
-        const { optionChoices } = this.props.stack;
 
         return (
             <Screen
@@ -40,7 +39,6 @@ class DeckSingle extends React.Component {
                 title="JavaScript"
                 {...this.props}
             >
-                <StackOptionsPopup selectedStack={optionChoices} />
                 <ListSection
                     title="Your Favourites"
                     list={favouritesList}

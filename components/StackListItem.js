@@ -4,6 +4,7 @@ import { View, TouchableNativeFeedback, TouchableOpacity, StyleSheet } from 'rea
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
+import StackListItemOptions from './StackListItemOptions';
 import * as actions from '../actions';
 import theme from '../theme';
 
@@ -19,13 +20,15 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
+        marginBottom: theme.unit * 2,
+    },
+    itemWrapper: {
         backgroundColor: theme.palette.primary,
         alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
         padding: theme.unit,
         paddingRight: 0,
-        marginBottom: theme.unit * 2,
         borderRadius: theme.unit,
     },
     textColumn: {
@@ -36,50 +39,66 @@ const styles = StyleSheet.create({
     },
     moreButton: {
         padding: theme.unit,
-    }
+    },
 });
 
 class StackListItem extends React.Component {
+    state = {
+        showPopup: false,
+    };
+
     onItemPress = () => {
         console.log('item press');
     };
 
     onMorePress = () => {
-        const { id, label, cardAmount } = this.props;
-
-        this.props.showStackPopup({
-            id, label, cardAmount
-        });
+        this.setState({ showPopup: !this.state.showPopup });
     };
+
+    handleAddToFavourites = () => {
+        this.setState({ showPopup: false });
+    };
+
+    onCancelPress = () => {
+        this.setState({ showPopup: false });
+    };
+
 
     render() {
         const { label, cardAmount } = this.props;
 
         return (
-            <TouchableNativeFeedback
-                onPress={this.onItemPress}
-            >
-                <View style={styles.container}>
-                    <View style={styles.textColumn}>
-                        <Typography style={styles.titleText}>
-                            { label }
-                        </Typography>
-                        <Typography variant="tiny">
-                            { `${cardAmount} cards` }
-                        </Typography>
+            <View style={styles.container}>
+                <TouchableNativeFeedback onPress={this.onItemPress}>
+                    <View style={styles.itemWrapper}>
+                        <View style={styles.textColumn}>
+                            <Typography style={styles.titleText}>
+                                { label }
+                            </Typography>
+                            <Typography variant="tiny">
+                                { `${cardAmount} cards` }
+                            </Typography>
+                        </View>
+                        <TouchableOpacity
+                            style={styles.moreButton}
+                            onPress={this.onMorePress}
+                        >
+                            <MaterialIcons
+                                name="more-vert"
+                                size={theme.unit * 3}
+                                color={theme.palette.secondary}
+                            />
+                        </TouchableOpacity>
                     </View>
-                    <TouchableOpacity
-                        style={styles.moreButton}
-                        onPress={this.onMorePress}
-                    >
-                        <MaterialIcons
-                            name="more-vert"
-                            size={theme.unit * 3}
-                            color={theme.palette.secondary}
-                        />
-                    </TouchableOpacity>
-                </View>
-            </TouchableNativeFeedback>
+                </TouchableNativeFeedback>
+                {
+                    this.state.showPopup &&
+                    <StackListItemOptions
+                        handleAddToFavourites={this.handleAddToFavourites}
+                        onCancelPress={this.onCancelPress}
+                    />
+                }
+            </View>
         );
     }
 }
