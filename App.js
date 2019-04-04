@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
 import reducers from './reducers';
+
 import AppNavigator from './navigation/AppNavigator';
 
 const store = createStore(

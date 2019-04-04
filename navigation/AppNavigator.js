@@ -10,17 +10,40 @@ import Answer from '../screens/Answer';
 
 const AppDrawerNavigator = createDrawerNavigator(
     {
-        DeckSingle,
-        StyleGuide,
-        Answer,
-        SingleStack,
-        AllDecks,
-        Favourites,
-        Settings,
+        Decks: {
+            screen: AllDecks,
+            navigationOptions: {
+                drawerLabel: 'All Decks',
+            }
+        },
+        Favourites: {
+            screen: Favourites,
+            navigationOptions: {
+                drawerLabel: 'Favourites'
+            },
+        },
+        Deck: {
+            screen: DeckSingle,
+            navigationOptions: {
+                drawerLabel: () => {},
+            },
+        },
+        SingleStack: {
+            screen: SingleStack,
+        },
+        Answer: {
+            screen: Answer,
+        },
+        Settings: {
+            screen: Settings,
+        },
+        StyleGuide: {
+            screen: StyleGuide,
+        },
     },
     {
         contentComponent: CustomDrawer,
-    }
+    },
 );
 
 export default createAppContainer(AppDrawerNavigator);

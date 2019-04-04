@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
-import stackReducer from './stackReducer';
-import screenReducer from './screenReducer';
+import appReducer from './appReducer';
 
 const reducers = combineReducers({
-    stack: stackReducer,
-    screen: screenReducer,
+    app: appReducer,
 });
 
 export default reducers;

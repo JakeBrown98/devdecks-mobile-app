@@ -1,32 +1,47 @@
 import React from 'react';
-// import { StyleSheet } from 'react-native';
+import _ from 'lodash';
+import { connect } from 'react-redux';
+import { initializeApp } from '../actions';
+
 import { Screen, DeckThumbnail } from '../components';
-import data from '../data/index';
 
 class AllDecks extends React.Component {
-    static navigationOptions = {
-        drawerLabel: 'All Decks'
+    componentDidMount() {
+        this.props.initializeApp();
+    }
+
+    onThumbnailPress = ({ name, stacks }) => () => {
+        this.props.navigation.navigate('Deck', {
+            name, stacks
+        });
     };
 
-    renderThumbnail = item => {
-        return (
-            <DeckThumbnail
-                key={item.name}
-                {...item}
-            />
-        );
-    };
+    renderThumbnail = item => (
+        <DeckThumbnail
+            key={item.name}
+            onPress={this.onThumbnailPress(item)}
+            {...item}
+        />
+    );
 
     render() {
+        const { navigation, app: { data } } = this.props;
+
+        if (!data) return null;
+
         return (
-            <Screen
-                title="All Decks"
-                {...this.props}
-            >
-                { data.map(item => this.renderThumbnail(item)) }
+            <Screen title="All Decks" navigation={navigation}>
+                {
+                    !_.isEmpty(data) &&
+                    data.map(item => this.renderThumbnail(item))
+                }
             </Screen>
         );
     }
 }
 
-export default AllDecks;
+const mapStateToProps = ({ app }) => ({
+    app,
+});
+
+export default connect(mapStateToProps, { initializeApp })(AllDecks);

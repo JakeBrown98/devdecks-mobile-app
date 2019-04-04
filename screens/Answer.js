@@ -31,7 +31,6 @@ const styles = StyleSheet.create({
         fontSize: 13,
     },
     linksWrapper: {
-        // marginTop: theme.unit * 5,
         marginBottom: theme.unit * 4,
     },
     linksTitle: {
@@ -44,15 +43,15 @@ const styles = StyleSheet.create({
 
 const exampleJSON = `
 {
-              "answer": "<p>Actions are payloads of information that send data from your application to your store.</p><p>They are defined JavaScript objects and must have a type property that indicates the type of action being performed. Types should typically be defined as string constants.</p>\\n\\n<p>\\nHere is an example action which represents posting a comment:\\n</p>\\n<section><pre>\\nconst ADD_TODO = 'ADD_TODO';\\n\\n{\\n\\ttype: ADD_TODO,\\n\\ttext:'Take the dog for a walk'\\n}\\n</pre></section>",
-              "links": [
-                {
-                  "label": "Redux Docs: Actions",
-                  "url": "https://redux.js.org/basics/actions#actions"
-                }
-              ],
-              "question": ""
-            }
+      "answer": "<p>Actions are payloads of information that send data from your application to your store.</p><p>They are defined JavaScript objects and must have a type property that indicates the type of action being performed. Types should typically be defined as string constants.</p>\\n\\n<p>\\nHere is an example action which represents posting a comment:\\n</p>\\n<section><pre>\\nconst ADD_TODO = 'ADD_TODO';\\n\\n{\\n\\ttype: ADD_TODO,\\n\\ttext:'Take the dog for a walk'\\n}\\n</pre></section>",
+      "links": [
+        {
+          "label": "Redux Docs: Actions",
+          "url": "https://redux.js.org/basics/actions#actions"
+        }
+      ],
+      "question": ""
+    }
 `;
 
 const testString = JSON.parse(exampleJSON);
@@ -63,6 +62,8 @@ class Answer extends React.Component {
     };
 
     render() {
+        const { links, answer } = testString;
+
         return (
             <Screen
                 title="How to check if an object is an array or not?"
@@ -70,7 +71,7 @@ class Answer extends React.Component {
                 {...this.props}
             >
                 <HTML
-                    html={`${testString.answer}`}
+                    html={answer}
                     tagsStyles={{
                         p: styles.pTag,
                         pre: styles.preTag,
@@ -79,7 +80,7 @@ class Answer extends React.Component {
                     }}
                 />
                 {
-                    !_.isEmpty(testString.links) &&
+                    !_.isEmpty(links) &&
                         <View style={styles.linksWrapper}>
                             <Typography
                                 variant="large"
@@ -88,14 +89,14 @@ class Answer extends React.Component {
                                 Learning resources:
                             </Typography>
                             {
-                                testString.links.map(link => (
+                                links.map(link =>
                                     <Typography
                                         style={styles.linkLabel}
                                         key={link.label}
                                     >
                                         { link.label }
                                     </Typography>
-                                ))
+                                )
                             }
                         </View>
                 }

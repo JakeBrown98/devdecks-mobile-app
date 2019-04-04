@@ -13,12 +13,13 @@ const defaultProps = {
     variant: 'regular',
 };
 
+
 const styles = StyleSheet.create({
     title1: {
         fontFamily: theme.font.bold,
         color: theme.palette.black,
-        fontSize: 44,
-        lineHeight: 44,
+        fontSize: 40,
+        lineHeight: 40,
     },
     title2: {
         fontFamily: theme.font.bold,

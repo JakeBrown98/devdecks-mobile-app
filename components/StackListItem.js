@@ -9,11 +9,13 @@ import * as actions from '../actions';
 import theme from '../theme';
 
 const propTypes = {
+    onItemPress: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number,
 };
 
 const defaultProps = {
+    onItemPress: () => {},
     label: '',
     cardAmount: 0,
 };
@@ -47,10 +49,6 @@ class StackListItem extends React.Component {
         showPopup: false,
     };
 
-    onItemPress = () => {
-        console.log('item press');
-    };
-
     onMorePress = () => {
         this.setState({ showPopup: !this.state.showPopup });
     };
@@ -65,11 +63,11 @@ class StackListItem extends React.Component {
 
 
     render() {
-        const { label, cardAmount } = this.props;
+        const { label, cardAmount, onItemPress } = this.props;
 
         return (
             <View style={styles.container}>
-                <TouchableNativeFeedback onPress={this.onItemPress}>
+                <TouchableNativeFeedback onPress={onItemPress}>
                     <View style={styles.itemWrapper}>
                         <View style={styles.textColumn}>
                             <Typography style={styles.titleText}>

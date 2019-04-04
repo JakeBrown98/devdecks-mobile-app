@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
+import _ from 'lodash';
+import { ScrollView, View, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
 import { Feather } from '@expo/vector-icons';
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -15,6 +15,7 @@ const propTypes = {
     titleVariant: PropTypes.string,
     noPadding: PropTypes.bool,
     footerText: PropTypes.string,
+    loading: PropTypes.bool,
 };
 
 const defaultProps = {
@@ -22,6 +23,7 @@ const defaultProps = {
     titleVariant: 'title1',
     footerText: '',
     noPadding: false,
+    loading: false,
 };
 
 const styles = StyleSheet.create({
@@ -60,23 +62,21 @@ class Screen extends React.Component {
 
     render() {
         const {
-            noPadding, title, titleVariant,
-            children, footerText, screen
+            noPadding,
+            title,
+            titleVariant,
+            loading,
+            children,
+            footerText,
         } = this.props;
 
         return (
             <View style={styles.container}>
-                <ScrollView
-                    style={( noPadding ? null : styles.screenWrapper )}
-                    scrollEnabled={screen.scrollEnabled}
-                >
+                <ScrollView style={( noPadding ? null : styles.screenWrapper )}>
                     {
                         title &&
                         <View style={( noPadding ? styles.headerWrapperPadding : styles.headerWrapper )}>
-                            <TouchableOpacity
-                                onPress={this.onMenuPress}
-                                style={styles.menuIcon}
-                            >
+                            <TouchableOpacity onPress={this.onMenuPress} style={styles.menuIcon}>
                                 <Feather
                                     name="menu"
                                     size={theme.unit * 3}
@@ -88,9 +88,13 @@ class Screen extends React.Component {
                             </Typography>
                         </View>
                     }
-                    { children }
                     {
-                        footerText !== '' &&
+                        loading
+                        ? <ActivityIndicator size="large" color={theme.palette.primary} />
+                        : children
+                    }
+                    {
+                         !_.isEmpty(footerText) &&
                         <View style={styles.screenFooter}>
                             <Typography variant="tiny">
                                 { footerText }
@@ -106,8 +110,4 @@ class Screen extends React.Component {
 Screen.defaultProps = defaultProps;
 Screen.propTypes = propTypes;
 
-const mapStateToProps = ({ screen }) => {
-    return { screen };
-};
-
-export default connect(mapStateToProps)(Screen);
+export default Screen;

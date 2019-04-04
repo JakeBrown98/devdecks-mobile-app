@@ -39,7 +39,7 @@ const ListSection = ({ list, title, renderItem, horizontal, ...props }) => {
             </Typography>
             <FlatList
                 data={list}
-                keyExtractor={item => item.id.toString()}
+                keyExtractor={item => item.name}
                 renderItem={({ item }) => renderItem(item)}
                 horizontal={horizontal}
                 showsHorizontalScrollIndicator={( horizontal ? false : null )}

@@ -8,12 +8,14 @@ import theme from '../theme';
 const SQUARE_RATIO = (Dimensions.get('window').width / 2) - (theme.unit * 4);
 
 const propTypes = {
+    onItemPress: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number,
     style: PropTypes.object,
 };
 
 const defaultProps = {
+    onItemPress: () => {},
     label: '',
     cardAmount: 0,
 };
@@ -47,27 +49,17 @@ const styles = StyleSheet.create({
 });
 
 class FavouriteThumbnail extends React.Component {
-    onThumbnailPress = () => {
-        console.log(123);
-    };
-
     render() {
-        const { cardAmount, label } = this.props;
+        const { cardAmount, label, onItemPress } = this.props;
 
         return (
-            <TouchableNativeFeedback
-                onPress={this.onThumbnailPress}
-                styles={this.props.styles}
-            >
+            <TouchableNativeFeedback onPress={onItemPress} styles={this.props.styles}>
                 <View style={styles.container}>
                     <Typography style={styles.labelText}>
                         { label } 
                     </Typography>
                     <View style={styles.bottomRow}>
-                        <Typography 
-                            variant="tiny"
-                            style={styles.cardCountText}
-                        >
+                        <Typography variant="tiny" style={styles.cardCountText}>
                             { `${cardAmount} cards` }
                         </Typography>
                         <MaterialIcons
