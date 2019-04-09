@@ -5,6 +5,9 @@ import {
 } from 'react-native';
 import theme from '../theme';
 
+import Card from './Card';
+
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 200;
@@ -74,7 +77,7 @@ class Stack extends React.Component {
     };
 
     renderCards = () => {
-        const { listIndex, data, renderCard } = this.props;
+        const { listIndex, data } = this.props;
 
         return data.map((item, i) => {
             if (i !== listIndex) return null;
@@ -82,11 +85,11 @@ class Stack extends React.Component {
             if (i === listIndex) {
                 return (
                     <Animated.View
-                        key={item.id}
+                        key={item.question}
                         style={this.getCardStyle()}
                         {...this.panResponder.panHandlers}
                     >
-                        { renderCard(item) }
+                        <Card text={item.question} cardIndex={listIndex} />
                     </Animated.View>
                 );
             }

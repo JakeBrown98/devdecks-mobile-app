@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     drawerHeader: {
-        // backgroundColor: theme.palette.light,
         height: theme.unit * 17,
         width: '100%',
     },
@@ -24,7 +23,7 @@ const styles = StyleSheet.create({
     },
     labelStyle: {
         fontFamily: theme.font.regular,
-        fontSize: 17,
+        fontSize: (theme.unit * 2) + 1,
         fontWeight: 'normal',
     },
     activeLabelStyle: {
@@ -39,7 +38,7 @@ const styles = StyleSheet.create({
     },
 });
 
-class CustomDrawerComponent extends React.Component {
+class AppDrawer extends React.Component {
     onFeedbackPress = () => {
         console.log(123);
     };
@@ -77,4 +76,4 @@ class CustomDrawerComponent extends React.Component {
     }
 }
 
-export default CustomDrawerComponent;
+export default AppDrawer;

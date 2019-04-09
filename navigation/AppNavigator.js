@@ -1,17 +1,28 @@
-import { createDrawerNavigator, createAppContainer, } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createAppContainer, } from 'react-navigation';
 import AllDecks from '../screens/AllDecks';
 import Favourites from '../screens/Favourites';
 import DeckSingle from '../screens/DeckSingle';
 import SingleStack from '../screens/SingleStack';
-import StyleGuide from '../screens/StyleGuide';
-import Settings from '../screens/Settings';
-import CustomDrawer from './CustomDrawer';
-import Answer from '../screens/Answer';
+// import Settings from '../screens/Settings';
+import AppDrawer from './AppDrawer';
+import AnswerScreen from '../screens/AnswerScreen';
 
-const AppDrawerNavigator = createDrawerNavigator(
+const DeckRoutes = createStackNavigator(
+    {
+        Decks: AllDecks,
+        Deck: DeckSingle,
+        SingleStack: SingleStack,
+        Answer: AnswerScreen,
+    },
+    {
+        headerMode: 'none',
+    },
+);
+
+const DrawerNavigator = createDrawerNavigator(
     {
         Decks: {
-            screen: AllDecks,
+            screen: DeckRoutes,
             navigationOptions: {
                 drawerLabel: 'All Decks',
             }
@@ -22,28 +33,10 @@ const AppDrawerNavigator = createDrawerNavigator(
                 drawerLabel: 'Favourites'
             },
         },
-        Deck: {
-            screen: DeckSingle,
-            navigationOptions: {
-                drawerLabel: () => {},
-            },
-        },
-        SingleStack: {
-            screen: SingleStack,
-        },
-        Answer: {
-            screen: Answer,
-        },
-        Settings: {
-            screen: Settings,
-        },
-        StyleGuide: {
-            screen: StyleGuide,
-        },
     },
     {
-        contentComponent: CustomDrawer,
+        contentComponent: AppDrawer,
     },
 );
 
-export default createAppContainer(AppDrawerNavigator);
+export default createAppContainer(DrawerNavigator);

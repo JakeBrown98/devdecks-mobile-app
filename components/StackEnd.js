@@ -25,6 +25,7 @@ const styles = StyleSheet.create({
     helpRequiredText: {
         marginTop: theme.unit,
         marginBottom: theme.unit,
+        color: theme.palette.black,
     },
     button: {
         marginTop: theme.unit * 4,
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 
 class StackEnd extends React.Component {
     onReturnPress = () => {
-        console.log('return presssed')
+        console.log('return pressssed')
     };
 
     render() {

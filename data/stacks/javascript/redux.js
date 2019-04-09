@@ -1,6 +1,6 @@
 export default {
     name: "Redux",
-    stack: [
+    questions: [
         {
             question: "What is an action?",
             answer: "",

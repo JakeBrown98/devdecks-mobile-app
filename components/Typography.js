@@ -13,7 +13,6 @@ const defaultProps = {
     variant: 'regular',
 };
 
-
 const styles = StyleSheet.create({
     title1: {
         fontFamily: theme.font.bold,

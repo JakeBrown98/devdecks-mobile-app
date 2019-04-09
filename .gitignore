@@ -1,3 +1,5 @@
+data/stacks/*
+
 node_modules/**/*
 .idea/*
 .expo/*

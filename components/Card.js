@@ -7,7 +7,6 @@ import theme from '../theme';
 const propTypes = {
     text: PropTypes.string.isRequired,
     cardIndex: PropTypes.number.isRequired,
-    listLength: PropTypes.number.isRequired,
 };
 
 const styles = StyleSheet.create({

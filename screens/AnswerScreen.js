@@ -56,7 +56,7 @@ const exampleJSON = `
 
 const testString = JSON.parse(exampleJSON);
 
-class Answer extends React.Component {
+class AnswerScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Markdown Example'
     };
@@ -105,4 +105,4 @@ class Answer extends React.Component {
     }
 }
 
-export default Answer;
+export default AnswerScreen;
