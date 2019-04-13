@@ -8,10 +8,11 @@ import StackListItemOptions from './StackListItemOptions';
 import * as actions from '../actions';
 import theme from '../theme';
 
+
 const propTypes = {
     onItemPress: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    cardAmount: PropTypes.number,
+    cardAmount: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -45,22 +46,20 @@ const styles = StyleSheet.create({
 });
 
 class StackListItem extends React.Component {
-    state = {
-        showPopup: false,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            showOptions: false,
+        };
+    }
 
     onMorePress = () => {
-        this.setState({ showPopup: !this.state.showPopup });
-    };
+        this.setState({ showOptions: !this.state.showOptions });
+    }
 
     handleAddToFavourites = () => {
-        this.setState({ showPopup: false });
-    };
-
-    onCancelPress = () => {
-        this.setState({ showPopup: false });
-    };
-
+        this.setState({ showOptions: false });
+    }
 
     render() {
         const { label, cardAmount, onItemPress } = this.props;
@@ -90,11 +89,8 @@ class StackListItem extends React.Component {
                     </View>
                 </TouchableNativeFeedback>
                 {
-                    this.state.showPopup &&
-                    <StackListItemOptions
-                        handleAddToFavourites={this.handleAddToFavourites}
-                        onCancelPress={this.onCancelPress}
-                    />
+                    this.state.showOptions &&
+                    <StackListItemOptions handleAddToFavourites={this.handleAddToFavourites} />
                 }
             </View>
         );

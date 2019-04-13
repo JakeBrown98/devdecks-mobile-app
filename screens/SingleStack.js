@@ -15,32 +15,26 @@ const styles = StyleSheet.create({
     },
 });
 
-const INITIAL_STATE = {
-    listIndex: 0,
-    questions: [],
-    helpRequiredCount: 0,
-};
-
 class StackSingleScreen extends React.Component {
-    state = {...INITIAL_STATE};
-
-    componentDidMount() {
-        const { getParam } = this.props.navigation;
-
-        this.setState({ questions: getParam('questions') });
+    constructor(props) {
+        super(props);
+        this.state = {
+            listIndex: 0,
+            questions: [],
+            helpRequiredCount: 0,
+        };
     }
 
-    componentWillUnmount() {
-        console.log(123);
-        this.setState(INITIAL_STATE);
+    componentDidMount() {
+        this.setState({ questions: this.props.navigation.getParam('questions') });
     }
 
     onSwipeComplete = () => {
         this.setState({ listIndex: this.state.listIndex + 1 });
-    };
+    }
 
     render() {
-        const { questions, listIndex } = this.state;
+        const { questions, listIndex, helpRequiredCount } = this.state;
 
         return (
             <View style={styles.container}>
@@ -52,7 +46,7 @@ class StackSingleScreen extends React.Component {
                         onSwipeComplete={this.onSwipeComplete}
                     />
                     : <StackEnd 
-                        helpRequiredCount={this.state.helpRequiredCount}
+                        helpRequiredCount={helpRequiredCount}
                         data={questions}
                     />
                 }

@@ -5,10 +5,17 @@ import { StyleSheet, View, FlatList } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     list: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
     horizontal: PropTypes.bool,
+};
+
+const defaultProps = {
+    list: [],
+    title: '',
+    horizontal: false,
 };
 
 const styles = StyleSheet.create({
@@ -55,6 +62,7 @@ const ListSection = ({ list, title, renderItem, horizontal, ...props }) => {
     );
 };
 
+ListSection.defaultProps = defaultProps;
 ListSection.propTypes = propTypes;
 
 export default ListSection;

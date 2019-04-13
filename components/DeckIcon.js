@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import theme from '../theme';
 
+
 const propTypes = {
     icon: PropTypes.object.isRequired,
 };
 
-const DeckIcon = props => {
-    const { name, family } = props.icon;
-    const iconProps = { 
-        name,
+const DeckIcon = ({ icon }) => {
+    const iconProps = {
+        name: icon.name,
         size: theme.unit * 14,
         color: theme.palette.white,
     };
 
-    switch (family) {
+    switch (icon.family) {
         case 'MaterialCommunityIcons':
             return <MaterialCommunityIcons {...iconProps} />;
         case 'Entypo':

@@ -1,9 +1,9 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
 import { initializeApp } from '../actions';
 
 import { Screen, DeckThumbnail } from '../components';
+
 
 class AllDecks extends React.Component {
     componentDidMount() {
@@ -14,15 +14,17 @@ class AllDecks extends React.Component {
         this.props.navigation.navigate('Deck', {
             name, stacks
         });
-    };
+    }
 
     renderThumbnail = item => (
         <DeckThumbnail
             key={item.name}
-            onPress={this.onThumbnailPress(item)}
-            {...item}
+            icon={item.icon}
+            name={item.name}
+            stacks={item.stacks}
+            onThumbnailPress={this.onThumbnailPress(item)}
         />
-    );
+    )
 
     render() {
         const { navigation, app: { data } } = this.props;
@@ -31,10 +33,7 @@ class AllDecks extends React.Component {
 
         return (
             <Screen title="All Decks" navigation={navigation}>
-                {
-                    !_.isEmpty(data) &&
-                    data.map(item => this.renderThumbnail(item))
-                }
+                { data.map(item => this.renderThumbnail(item)) }
             </Screen>
         );
     }

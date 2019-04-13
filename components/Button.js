@@ -10,6 +10,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    label: '',
     onPress: () => {},
 };
 

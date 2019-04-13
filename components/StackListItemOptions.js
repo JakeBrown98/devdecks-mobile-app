@@ -1,13 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity, Animated, View, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import * as actions from '../actions';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     handleAddToFavourites: PropTypes.func.isRequired,
+};
+
+const defaultProps = {
+    handleAddToFavourites: () => {},
 };
 
 const styles = StyleSheet.create({
@@ -47,6 +50,7 @@ class StackListItemOptions extends React.Component {
     }
 }
 
+StackListItemOptions.defaultProps = defaultProps;
 StackListItemOptions.propTypes = propTypes;
 
-export default connect(null, actions)(StackListItemOptions);
+export default StackListItemOptions;

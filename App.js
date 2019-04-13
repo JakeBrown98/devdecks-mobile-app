@@ -27,7 +27,7 @@ class App extends React.Component {
     };
 
     handleLoadingError = error => {
-        console.warn(error);
+        console.log(error);
     };
 
     handleFinishLoading = () => {

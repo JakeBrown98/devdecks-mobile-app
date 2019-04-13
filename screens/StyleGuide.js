@@ -28,7 +28,7 @@ const Section = ({ children, title }) => (
 class StyleGuide extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Style Guide'
-    };
+    }
 
     render() {
         return (

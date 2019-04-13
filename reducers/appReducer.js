@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     data: [],
 };
 
-const appReducer = (state = INITIAL_STATE, action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case INIT_APP:
             return {...state, data: action.payload};
@@ -15,4 +15,3 @@ const appReducer = (state = INITIAL_STATE, action) => {
     }
 };
 
-export default appReducer;

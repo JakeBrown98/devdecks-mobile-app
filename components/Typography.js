@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text, StyleSheet } from 'react-native';
+import { TYPOGRAPHY_VARIANTS } from '../constants';
 import theme from '../theme';
+
 
 const propTypes = {
     children: PropTypes.any.isRequired,
@@ -10,6 +12,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    children: '',
     variant: 'regular',
 };
 
@@ -51,6 +54,10 @@ const styles = StyleSheet.create({
 });
 
 const Typography = ({ variant, children, style }) => {
+    if (!TYPOGRAPHY_VARIANTS.includes(variant)) {
+        variant = 'regular';
+    }
+
     return (
         <Text style={[styles[variant], style]}>
             { children }

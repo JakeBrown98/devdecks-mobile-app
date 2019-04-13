@@ -4,6 +4,7 @@ import { AntDesign, Feather } from '@expo/vector-icons';
 import { TouchableOpacity, StyleSheet } from 'react-native';
 import theme from '../theme';
 
+
 const propTypes = {
     name: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
@@ -35,7 +36,7 @@ class IconButton extends React.Component {
             default:
                 return <Feather {...iconProps} />;
         }
-    };
+    }
 
     render() {
         return (

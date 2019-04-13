@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
 import theme from '../theme';
 
+
 const propTypes = {
     children: PropTypes.array.isRequired,
+};
+
+const defaultProps = {
+    children: [],
 };
 
 const styles = StyleSheet.create({
@@ -23,6 +28,7 @@ const ThumbnailRow = ({ children }) => (
     </View>
 );
 
+ThumbnailRow.defaultProps = defaultProps;
 ThumbnailRow.propTypes = propTypes;
 
 export default ThumbnailRow;

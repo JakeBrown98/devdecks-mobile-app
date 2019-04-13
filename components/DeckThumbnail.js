@@ -5,19 +5,19 @@ import Typography from './Typography';
 import DeckIcon from './DeckIcon';
 import theme from '../theme';
 
+
 const propTypes = {
     name: PropTypes.string.isRequired,
     icon: PropTypes.object.isRequired,
     stacks: PropTypes.array.isRequired,
-    onPress: PropTypes.func.isRequired,
+    onThumbnailPress: PropTypes.func.isRequired,
     amountCompleted: PropTypes.number,
-    whiteText: PropTypes.bool,
 };
 
 const defaultProps = {
     icon: {},
     amountCompleted: 0,
-    onPress: () => {},
+    onThumbnailPress: () => {},
 };
 
 const styles = StyleSheet.create({
@@ -40,15 +40,11 @@ const styles = StyleSheet.create({
 });
 
 class DeckThumbnail extends React.Component {
-    onThumbnailPress = () => {
-        this.props.onPress();
-    };
-
     render() {
-        const { name, amountCompleted, stacks, icon } = this.props;
+        const { name, amountCompleted, stacks, icon, onThumbnailPress } = this.props;
 
         return (
-            <TouchableNativeFeedback onPress={this.onThumbnailPress}>
+            <TouchableNativeFeedback onPress={onThumbnailPress}>
                 <View style={styles.container}>
                     <View style={styles.thumbnailWrapper}>
                         <DeckIcon icon={icon} />

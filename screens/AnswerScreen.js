@@ -5,6 +5,7 @@ import { View, StyleSheet } from 'react-native';
 import { Screen, Typography } from '../components';
 import theme from '../theme';
 
+
 const styles = StyleSheet.create({
     pTag: {
         fontFamily: theme.font.regular,
@@ -59,7 +60,7 @@ const testString = JSON.parse(exampleJSON);
 class AnswerScreen extends React.Component {
     static navigationOptions = {
         drawerLabel: 'Markdown Example'
-    };
+    }
 
     render() {
         const { links, answer } = testString;

@@ -5,12 +5,13 @@ import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const SQUARE_RATIO = (Dimensions.get('window').width / 2) - (theme.unit * 4);
 
 const propTypes = {
     onItemPress: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
-    cardAmount: PropTypes.number,
+    cardAmount: PropTypes.number.isRequired,
     style: PropTypes.object,
 };
 

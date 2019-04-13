@@ -4,9 +4,15 @@ import { View, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     label: PropTypes.string.isRequired,
     result: PropTypes.string.isRequired,
+};
+
+const defaultProps = {
+    label: '',
+    result: '',
 };
 
 const styles = StyleSheet.create({
@@ -32,6 +38,7 @@ const Stat = ({ label, result }) => (
     </View>
 );
 
+Stat.defaultProps = defaultProps;
 Stat.propTypes = propTypes;
 
 export default Stat;

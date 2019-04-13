@@ -5,14 +5,15 @@ import Typography from './Typography';
 import Button from './Button';
 import theme from '../theme';
 
+
 const propTypes = {
-    helpRequiredCount: PropTypes.number.isRequired,
     data: PropTypes.array.isRequired,
+    helpRequiredCount: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-    helpRequiredCount: 0,
     data: [],
+    helpRequiredCount: 0,
 };
 
 const styles = StyleSheet.create({
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
 
 class StackEnd extends React.Component {
     onReturnPress = () => {
-        console.log('return pressssed')
+        console.log('Go back home')
     };
 
     render() {
@@ -54,10 +55,7 @@ class StackEnd extends React.Component {
                 <Typography>
                     of the questions
                 </Typography>
-                <Button
-                    onPress={this.onReturnPress}
-                    label="Return to deck"
-                />
+                <Button onPress={this.onReturnPress} label="Return to deck" />
             </View>
         );
     }

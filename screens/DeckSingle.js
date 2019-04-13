@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import {
     Screen,
@@ -8,41 +9,32 @@ import {
 } from '../components';
 
 
-const INITIAL_STATE = {
-    deckName: null,
-    stacks: [],
-    favourites: [],
-};
-
 class DeckSingle extends React.Component {
-    state = {...INITIAL_STATE};
+    constructor(props) {
+        super(props);
+        this.state = {
+            deckName: null,
+            stacks: [],
+            favourites: [],
+        };
+    }
 
     componentDidMount() {
-        this.setData();
-    }
+        const { getParam } = this.props.navigation;
+        const stacks = getParam('stacks');
 
-    componentWillUnmount() {
-        this.setState(INITIAL_STATE);
-    }
-
-    setData = () => {
-        this.setState(INITIAL_STATE, () => {
-            const { getParam } = this.props.navigation;
-            const stacks = getParam('stacks');
-
-            this.setState({
-                deckName: getParam('name'),
-                stacks,
-                // favourites: listData.filter(item => item.favourite),
-            });
+        this.setState({
+            deckName: getParam('name'),
+            stacks,
+            // favourites: listData.filter(item => item.favourite),
         });
-    };
+    }
 
     onItemPress = ({ questions }) => () => {
         this.props.navigation.navigate('SingleStack', {
-            questions,
+            questions: _.shuffle(questions),
         });
-    };
+    }
 
     render() {
         return (

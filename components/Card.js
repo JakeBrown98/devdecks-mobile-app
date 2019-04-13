@@ -4,9 +4,15 @@ import { Animated, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     text: PropTypes.string.isRequired,
     cardIndex: PropTypes.number.isRequired,
+};
+
+const defaultProps = {
+    text: '',
+    cardIndex: 0,
 };
 
 const styles = StyleSheet.create({
@@ -57,6 +63,7 @@ class Card extends React.Component {
     }
 }
 
+Card.defaultProps = defaultProps;
 Card.propTypes = propTypes;
 
 export default Card;

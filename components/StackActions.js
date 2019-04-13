@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import _ from 'lodash';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
@@ -32,13 +30,9 @@ const styles = StyleSheet.create({
 });
 
 class StackActions extends React.Component {
-    onButtonPress = e => {
-        console.log(e);
-    };
-
     onActionPress = () => {
         console.log('action press');
-    };
+    }
 
     render() {
         return (

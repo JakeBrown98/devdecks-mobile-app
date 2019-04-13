@@ -28,7 +28,7 @@ class Stack extends React.Component {
             onPanResponderMove: (evt, gesture) => this.handlePanResponderMove(evt, gesture),
             onPanResponderRelease: (evt, gesture) => this.handlePanResponderRelease(evt, gesture),
         });
-    };
+    }
 
     handlePanResponderMove = (evt, gesture) => {
         this.position.setValue({ 
@@ -47,7 +47,7 @@ class Stack extends React.Component {
                 toValue: { x: 0, y: 0 }
             }).start();
         }
-    };
+    }
 
     cardSwipeDirection = (direction) => {
         Animated.timing(this.position, {
@@ -57,12 +57,12 @@ class Stack extends React.Component {
             },
             duration: SWIPE_OUT_DURATION,
         }).start(() => this.onSwipeComplete());
-    };
+    }
 
     onSwipeComplete = () => {
         this.props.onSwipeComplete();
         this.position.setValue({ x: 0, y: 0 });
-    };
+    }
 
     getCardStyle = () => {
         const rotate = this.position.x.interpolate({
@@ -74,7 +74,7 @@ class Stack extends React.Component {
             ...this.position.getLayout(),
             transform: [{ rotate }],
         };
-    };
+    }
 
     renderCards = () => {
         const { listIndex, data } = this.props;
@@ -94,7 +94,7 @@ class Stack extends React.Component {
                 );
             }
         }).reverse();
-    };
+    }
 
     render() {
         return (

@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
 class Screen extends React.Component {
     onMenuPress = () => {
         this.props.navigation.dispatch(DrawerActions.openDrawer());
-    };
+    }
 
     render() {
         const {
