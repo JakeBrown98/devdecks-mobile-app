@@ -20,6 +20,8 @@ const styles = StyleSheet.create({
         width: '100%',
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
+        paddingRight: theme.unit * 2,
+        paddingLeft: theme.unit * 2,
         borderRadius: theme.unit * 5,
     },
     label: {

@@ -3,9 +3,11 @@ import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { AppLoading, Font } from 'expo';
+import { initializeApp } from './actions';
 import reducers from './reducers';
 
 import AppNavigator from './navigation/AppNavigator';
+
 
 const store = createStore(
     reducers,
@@ -13,11 +15,16 @@ const store = createStore(
 );
 
 class App extends React.Component {
-    state = {
-      isLoadingComplete: false,
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoadingComplete: false,
+        };
+    }
 
     loadResourcesAsync = async () => {
+        store.dispatch(initializeApp());
+
         return Promise.all([
             Font.loadAsync({
                 'acumin': require('./assets/fonts/acumin-regular.otf'),

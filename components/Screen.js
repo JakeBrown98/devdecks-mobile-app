@@ -8,6 +8,7 @@ import { STATUS_BAR_HEIGHT } from '../constants';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     children: PropTypes.any.isRequired,
     hideMenu: PropTypes.bool,

@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 import {
     Screen,
@@ -20,14 +21,21 @@ class DeckSingle extends React.Component {
     }
 
     componentDidMount() {
-        const { getParam } = this.props.navigation;
+        const { favourites, navigation: { getParam } } = this.props;
         const stacks = getParam('stacks');
+        const deckName = getParam('name');
 
         this.setState({
-            deckName: getParam('name'),
+            deckName,
             stacks,
-            // favourites: listData.filter(item => item.favourite),
+            favourites: this.getFavourites(stacks, favourites),
         });
+    }
+
+    getFavourites = (stacks, favourites) => {
+        const favouriteNames = favourites.map(favourite => favourite.name);
+
+        return stacks.filter(stack => favouriteNames.includes(stack.name));
     }
 
     onItemPress = ({ questions }) => () => {
@@ -49,7 +57,7 @@ class DeckSingle extends React.Component {
                     horizontal
                     renderItem={item =>
                         <FavouriteThumbnail
-                            label={item.label}
+                            label={item.name}
                             cardAmount={item.questions.length}
                             onItemPress={this.onItemPress(item)}
                         />
@@ -71,4 +79,8 @@ class DeckSingle extends React.Component {
     }
 }
 
-export default DeckSingle;
+const mapStateToProps = ({ app }) => ({
+    favourites: app.favourites,
+});
+
+export default connect(mapStateToProps)(DeckSingle);

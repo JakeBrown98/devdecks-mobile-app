@@ -1,15 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { initializeApp } from '../actions';
 
 import { Screen, DeckThumbnail } from '../components';
 
 
 class AllDecks extends React.Component {
-    componentDidMount() {
-        this.props.initializeApp();
-    }
-
     onThumbnailPress = ({ name, stacks }) => () => {
         this.props.navigation.navigate('Deck', {
             name, stacks
@@ -27,7 +22,7 @@ class AllDecks extends React.Component {
     )
 
     render() {
-        const { navigation, app: { data } } = this.props;
+        const { navigation, data } = this.props;
 
         if (!data) return null;
 
@@ -40,7 +35,7 @@ class AllDecks extends React.Component {
 }
 
 const mapStateToProps = ({ app }) => ({
-    app,
+    data: app.data,
 });
 
-export default connect(mapStateToProps, { initializeApp })(AllDecks);
+export default connect(mapStateToProps)(AllDecks);

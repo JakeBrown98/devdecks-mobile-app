@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
 import StackListItemOptions from './StackListItemOptions';
+import Toast from './Toast';
 import * as actions from '../actions';
 import theme from '../theme';
 
@@ -50,6 +51,7 @@ class StackListItem extends React.Component {
         super(props);
         this.state = {
             showOptions: false,
+            showToast: false,
         };
     }
 
@@ -58,10 +60,16 @@ class StackListItem extends React.Component {
     }
 
     handleAddToFavourites = () => {
-        this.setState({ showOptions: false });
+        this.setState({
+            showOptions: false,
+            showToast: true,
+        }, () => {
+            this.setState({ showToast: false });
+        });
     }
 
     render() {
+        const { showOptions, showToast } = this.state;
         const { label, cardAmount, onItemPress } = this.props;
 
         return (
@@ -89,9 +97,10 @@ class StackListItem extends React.Component {
                     </View>
                 </TouchableNativeFeedback>
                 {
-                    this.state.showOptions &&
+                    showOptions &&
                     <StackListItemOptions handleAddToFavourites={this.handleAddToFavourites} />
                 }
+                <Toast visible={showToast} message="Stack added to favourites" />
             </View>
         );
     }

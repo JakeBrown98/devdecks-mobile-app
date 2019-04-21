@@ -33,6 +33,10 @@ class StackSingleScreen extends React.Component {
         this.setState({ listIndex: this.state.listIndex + 1 });
     }
 
+    onStackEndButtonPress = () => {
+        this.props.navigation.goBack();
+    }
+
     render() {
         const { questions, listIndex, helpRequiredCount } = this.state;
 
@@ -45,9 +49,10 @@ class StackSingleScreen extends React.Component {
                         listIndex={listIndex}
                         onSwipeComplete={this.onSwipeComplete}
                     />
-                    : <StackEnd 
-                        helpRequiredCount={helpRequiredCount}
+                    : <StackEnd
                         data={questions}
+                        helpRequiredCount={helpRequiredCount}
+                        onButtonPress={this.onStackEndButtonPress}
                     />
                 }
                 <StackActions />

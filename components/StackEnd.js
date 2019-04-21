@@ -34,12 +34,8 @@ const styles = StyleSheet.create({
 });
 
 class StackEnd extends React.Component {
-    onReturnPress = () => {
-        console.log('Go back home')
-    };
-
     render() {
-        const { helpRequiredCount, data } = this.props;
+        const { helpRequiredCount, data, onButtonPress } = this.props;
         
         return (
             <View style={styles.container}>
@@ -55,7 +51,7 @@ class StackEnd extends React.Component {
                 <Typography>
                     of the questions
                 </Typography>
-                <Button onPress={this.onReturnPress} label="Return to deck" />
+                <Button onPress={onButtonPress} label="Return to deck" />
             </View>
         );
     }

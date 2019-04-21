@@ -1,1 +1,5 @@
 export const INIT_APP = 'INIT_APP';
+
+// export const GET_FAVOURITES = 'GET_FAVOURITES';
+export const SET_FAVOURITE = 'SET_FAVOURITE';
+export const REMOVE_FAVOURITE = 'REMOVE_FAVOURITE';

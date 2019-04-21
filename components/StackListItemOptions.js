@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity, Animated, View, StyleSheet } from 'react-native';
+import { TouchableOpacity, View, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
@@ -29,12 +29,6 @@ const styles = StyleSheet.create({
 });
 
 class StackListItemOptions extends React.Component {
-    constructor(props) {
-        super(props);
-        // @todo need to finish
-        this.position = new Animated.ValueXY();
-    }
-
     render() {
         return (
             <View style={styles.container}>
