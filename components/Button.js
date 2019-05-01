@@ -4,6 +4,7 @@ import { TouchableNativeFeedback, View, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
+
 const propTypes = {
     label: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,

@@ -1,6 +1,8 @@
+import _ from 'lodash';
 import data from '../data';
 import {
     INIT_APP,
+    SET_ACTIVE_STACK,
     SET_FAVOURITE,
     REMOVE_FAVOURITE,
 } from './types';
@@ -10,9 +12,7 @@ export const initializeApp = () => dispatch => {
     const asyncStorage = ['Redux', 'React', 'SQL Basics'];
 
     data.forEach(deck => {
-        const matches = deck.stacks.filter(stack => {
-            return asyncStorage.includes(stack.name);
-        });
+        const matches = deck.stacks.filter(stack => asyncStorage.includes(stack.name));
 
         if (matches.length) {
             favourites = [...matches];
@@ -27,3 +27,8 @@ export const initializeApp = () => dispatch => {
         },
     });
 };
+
+export const setActiveStack = (questions = []) => ({
+    type: SET_ACTIVE_STACK,
+    payload: _.shuffle(questions),
+});

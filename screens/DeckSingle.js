@@ -1,6 +1,6 @@
 import React from 'react';
-import _ from 'lodash';
 import { connect } from 'react-redux';
+import { setActiveStack } from '../actions';
 
 import {
     Screen,
@@ -39,9 +39,9 @@ class DeckSingle extends React.Component {
     }
 
     onItemPress = ({ questions }) => () => {
-        this.props.navigation.navigate('SingleStack', {
-            questions: _.shuffle(questions),
-        });
+        this.props.setActiveStack(questions);
+
+        this.props.navigation.navigate('SingleStack');
     }
 
     render() {
@@ -83,4 +83,4 @@ const mapStateToProps = ({ app }) => ({
     favourites: app.favourites,
 });
 
-export default connect(mapStateToProps)(DeckSingle);
+export default connect(mapStateToProps, { setActiveStack })(DeckSingle);

@@ -1,15 +1,16 @@
 import React from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import { setActiveStack } from '../actions';
 
 import { Screen, ThumbnailRow, FavouriteThumbnail } from '../components';
 
 
 class Favourites extends React.Component {
-    onThumbnailPress = ({ questions }) => {
-        this.props.navigation.navigate('SingleStack', {
-            questions: _.shuffle(questions),
-        });
+    onThumbnailPress = ({ questions }) => () => {
+        this.props.setActiveStack(questions);
+
+        this.props.navigation.navigate('Stack');
     }
 
     renderRows = favourites => (
@@ -23,20 +24,17 @@ class Favourites extends React.Component {
     renderThumbnail = item => (
         <FavouriteThumbnail
             key={item.name}
-            onItemPress={this.onThumbnailPress}
+            onItemPress={this.onThumbnailPress(item)}
             label={item.name}
             cardAmount={item.questions.length}
         />
     )
 
     render() {
-        const { favourites } = this.props;
+        const { favourites, navigation } = this.props;
 
         return (
-            <Screen
-                title="Favourites"
-                navigation={this.props.navigation}
-            >
+            <Screen title="Favourites" navigation={navigation}>
                 {
                     _.isEmpty(favourites)
                     ? null
@@ -51,4 +49,4 @@ const mapStateToProps = ({ app }) => ({
     favourites: app.favourites,
 });
 
-export default connect(mapStateToProps)(Favourites);
+export default connect(mapStateToProps, { setActiveStack })(Favourites);

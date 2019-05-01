@@ -7,16 +7,25 @@ import SingleStack from '../screens/SingleStack';
 import AppDrawer from './AppDrawer';
 import AnswerScreen from '../screens/AnswerScreen';
 
+
+const STACK_NAVIGATOR_OPTIONS = {
+    headerMode: 'none',
+};
+
 const DeckRoutes = createStackNavigator(
     {
         Decks: AllDecks,
         Deck: DeckSingle,
+    },
+    STACK_NAVIGATOR_OPTIONS,
+);
+
+const StackRoutes = createStackNavigator(
+    {
         SingleStack: SingleStack,
         Answer: AnswerScreen,
     },
-    {
-        headerMode: 'none',
-    },
+    STACK_NAVIGATOR_OPTIONS,
 );
 
 const DrawerNavigator = createDrawerNavigator(
@@ -33,6 +42,9 @@ const DrawerNavigator = createDrawerNavigator(
                 drawerLabel: 'Favourites'
             },
         },
+        Stack: {
+            screen: StackRoutes,
+        }
     },
     {
         contentComponent: AppDrawer,

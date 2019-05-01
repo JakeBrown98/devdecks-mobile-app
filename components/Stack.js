@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { 
     View, Animated, PanResponder,
     Dimensions, StyleSheet,
@@ -11,6 +12,11 @@ import Card from './Card';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
 const SWIPE_OUT_DURATION = 200;
+
+const propTypes = {
+    cardIndex: PropTypes.number.isRequired,
+    data: PropTypes.array.isRequired,
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -35,7 +41,7 @@ class Stack extends React.Component {
             x: gesture.dx,
             y: gesture.dy,
         });
-    };
+    }
 
     handlePanResponderRelease = (evt, gesture) => {
         if (gesture.dx > SWIPE_THRESHOLD) {
@@ -77,23 +83,23 @@ class Stack extends React.Component {
     }
 
     renderCards = () => {
-        const { listIndex, data } = this.props;
+        const { cardIndex, data } = this.props;
 
         return data.map((item, i) => {
-            if (i !== listIndex) return null;
+            if (i !== cardIndex) return null;
 
-            if (i === listIndex) {
+            if (i === cardIndex) {
                 return (
                     <Animated.View
                         key={item.question}
                         style={this.getCardStyle()}
                         {...this.panResponder.panHandlers}
                     >
-                        <Card text={item.question} cardIndex={listIndex} />
+                        <Card text={item.question} cardIndex={cardIndex} />
                     </Animated.View>
                 );
             }
-        }).reverse();
+        });
     }
 
     render() {
@@ -104,5 +110,7 @@ class Stack extends React.Component {
         );
     }
 }
+
+Stack.propTypes = propTypes;
 
 export default Stack;

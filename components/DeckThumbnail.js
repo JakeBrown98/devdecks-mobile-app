@@ -15,9 +15,11 @@ const propTypes = {
 };
 
 const defaultProps = {
+    name: '',
     icon: {},
-    amountCompleted: 0,
+    stacks: [],
     onThumbnailPress: () => {},
+    amountCompleted: 0,
 };
 
 const styles = StyleSheet.create({

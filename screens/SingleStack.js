@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import theme from '../theme';
 
 import { Stack, StackEnd, StackActions } from '../components';
@@ -19,18 +20,28 @@ class StackSingleScreen extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            listIndex: 0,
+            cardIndex: 0,
             questions: [],
             helpRequiredCount: 0,
         };
     }
 
     componentDidMount() {
-        this.setState({ questions: this.props.navigation.getParam('questions') });
+        this.setQuestions();
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.questions !== this.props.questions) {
+            this.setQuestions();
+        }
+    }
+
+    setQuestions = () => {
+        this.setState({ questions: this.props.questions });
     }
 
     onSwipeComplete = () => {
-        this.setState({ listIndex: this.state.listIndex + 1 });
+        this.setState({ cardIndex: this.state.cardIndex + 1 });
     }
 
     onStackEndButtonPress = () => {
@@ -38,15 +49,17 @@ class StackSingleScreen extends React.Component {
     }
 
     render() {
-        const { questions, listIndex, helpRequiredCount } = this.state;
+        const { questions, cardIndex, helpRequiredCount } = this.state;
+
+        if (!questions) return null;
 
         return (
             <View style={styles.container}>
                 {
-                    listIndex < questions.length
+                    cardIndex < questions.length
                     ? <Stack
                         data={questions}
-                        listIndex={listIndex}
+                        cardIndex={cardIndex}
                         onSwipeComplete={this.onSwipeComplete}
                     />
                     : <StackEnd
@@ -61,4 +74,8 @@ class StackSingleScreen extends React.Component {
     }
 }
 
-export default StackSingleScreen;
+const mapStateToProps = ({ app }) => ({
+    questions: app.activeStack,
+});
+
+export default connect(mapStateToProps)(StackSingleScreen);

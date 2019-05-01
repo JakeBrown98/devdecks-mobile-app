@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { View, FlatList, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
@@ -9,18 +9,26 @@ import theme from '../theme';
 const propTypes = {
     list: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
+    renderItem: PropTypes.element,
+    renderOption: PropTypes.element,
     horizontal: PropTypes.bool,
 };
 
 const defaultProps = {
     list: [],
     title: '',
+    renderOption: () => {},
     horizontal: false,
 };
 
 const styles = StyleSheet.create({
     sectionWrapper: {
         marginBottom: theme.unit * 5,
+    },
+    sectionTitleRow: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
     },
     sectionTitle: {
         marginLeft: theme.unit * 3,
@@ -36,14 +44,17 @@ const styles = StyleSheet.create({
     },
 });
 
-const ListSection = ({ list, title, renderItem, horizontal, ...props }) => {
+const ListSection = ({ list, title, renderOption, renderItem, horizontal, ...props }) => {
     if (_.isEmpty(list)) return null;
 
     return (
         <View style={styles.sectionWrapper}>
-            <Typography style={styles.sectionTitle} variant="large">
-                { title }
-            </Typography>
+            <View style={styles.sectionTitleRow}>
+                <Typography style={styles.sectionTitle} variant="large">
+                    { title }
+                </Typography>
+                { renderOption() }
+            </View>
             <FlatList
                 data={list}
                 keyExtractor={item => item.name}

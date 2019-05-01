@@ -15,6 +15,12 @@ const defaultProps = {
     cardIndex: 0,
 };
 
+const ANIMATED_CONFIG = {
+    toValue: 1,
+    duration: 250,
+    useNativeDriver: true,
+};
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: theme.palette.primary,
@@ -39,22 +45,30 @@ class Card extends React.Component {
     constructor(props) {
         super(props);
         this.cardOpacity = new Animated.Value(0);
+        this.translateY = new Animated.Value(40);
     }
 
     componentDidMount() {
-        Animated.timing(this.cardOpacity, {
-            toValue: 1,
-            duration: 200,
-            useNativeDriver: true,
-        }).start();
+        Animated.timing(this.cardOpacity, ANIMATED_CONFIG).start();
+
+        Animated.timing(this.translateY, {...ANIMATED_CONFIG, duration: 200 }).start();
+    }
+
+    getCardStyle = () => {
+        return [
+            styles.container,
+            {
+                opacity: this.cardOpacity,
+                translateY: this.translateY,
+            }
+        ];
     }
 
     render() {
         const { text } = this.props;
-        const cardContainerStyle = [styles.container, { opacity: this.cardOpacity }];
 
         return (
-            <Animated.View style={cardContainerStyle}>
+            <Animated.View style={this.getCardStyle()}>
                 <Typography style={styles.cardText}>
                     { text }
                 </Typography>
