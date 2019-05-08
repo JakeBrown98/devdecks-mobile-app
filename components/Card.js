@@ -1,18 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Animated, StyleSheet } from 'react-native';
-import Typography from './Typography';
 import theme from '../theme';
 
 
 const propTypes = {
-    text: PropTypes.string.isRequired,
-    cardIndex: PropTypes.number.isRequired,
+    children: PropTypes.any,
+    backgroundColor: PropTypes.string,
 };
 
 const defaultProps = {
-    text: '',
-    cardIndex: 0,
+    backgroundColor: theme.palette.primary,
 };
 
 const ANIMATED_CONFIG = {
@@ -23,21 +21,10 @@ const ANIMATED_CONFIG = {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: theme.palette.primary,
         alignItems: 'center',
         justifyContent: 'center',
         height: theme.unit * 52,
         borderRadius: theme.unit * 2,
-    },
-    cardIndex: {
-        position: 'absolute',
-        top: theme.unit * 3,
-        right: theme.unit * 3,
-    },
-    cardText: {
-        textAlign: 'center',
-        marginLeft: theme.unit * 3,
-        marginRight: theme.unit * 3,
     },
 });
 
@@ -55,23 +42,24 @@ class Card extends React.Component {
     }
 
     getCardStyle = () => {
+        const { backgroundColor } = this.props;
+
         return [
             styles.container,
             {
+                backgroundColor,
                 opacity: this.cardOpacity,
                 translateY: this.translateY,
-            }
+            },
         ];
     }
 
     render() {
-        const { text } = this.props;
+        const { children } = this.props;
 
         return (
             <Animated.View style={this.getCardStyle()}>
-                <Typography style={styles.cardText}>
-                    { text }
-                </Typography>
+                { children }
             </Animated.View>
         );
     }

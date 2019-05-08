@@ -7,6 +7,7 @@ import {
 import theme from '../theme';
 
 import Card from './Card';
+import Typography from './Typography';
 
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -23,6 +24,11 @@ const styles = StyleSheet.create({
         width: '89%',
         marginBottom: theme.unit * 7,
     },
+    cardText: {
+        textAlign: 'center',
+        marginLeft: theme.unit * 3,
+        marginRight: theme.unit * 3,
+    },
 });
 
 class Stack extends React.Component {
@@ -31,19 +37,19 @@ class Stack extends React.Component {
         this.position = new Animated.ValueXY();
         this.panResponder = PanResponder.create({
             onStartShouldSetPanResponder: () => true,
-            onPanResponderMove: (evt, gesture) => this.handlePanResponderMove(evt, gesture),
-            onPanResponderRelease: (evt, gesture) => this.handlePanResponderRelease(evt, gesture),
+            onPanResponderMove: (e, gesture) => this.handlePanResponderMove(e, gesture),
+            onPanResponderRelease: (e, gesture) => this.handlePanResponderRelease(e, gesture),
         });
     }
 
-    handlePanResponderMove = (evt, gesture) => {
+    handlePanResponderMove = (e, gesture) => {
         this.position.setValue({ 
             x: gesture.dx,
             y: gesture.dy,
         });
     }
 
-    handlePanResponderRelease = (evt, gesture) => {
+    handlePanResponderRelease = (e, gesture) => {
         if (gesture.dx > SWIPE_THRESHOLD) {
             this.cardSwipeDirection('right');
         } else if (gesture.dx < -SWIPE_THRESHOLD) {
@@ -55,14 +61,14 @@ class Stack extends React.Component {
         }
     }
 
-    cardSwipeDirection = (direction) => {
+    cardSwipeDirection = direction => {
         Animated.timing(this.position, {
             toValue: { 
                 x: direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH,
                 y: 0,
             },
             duration: SWIPE_OUT_DURATION,
-        }).start(() => this.onSwipeComplete());
+        }).start(this.onSwipeComplete);
     }
 
     onSwipeComplete = () => {
@@ -88,17 +94,19 @@ class Stack extends React.Component {
         return data.map((item, i) => {
             if (i !== cardIndex) return null;
 
-            if (i === cardIndex) {
-                return (
-                    <Animated.View
-                        key={item.question}
-                        style={this.getCardStyle()}
-                        {...this.panResponder.panHandlers}
-                    >
-                        <Card text={item.question} cardIndex={cardIndex} />
-                    </Animated.View>
-                );
-            }
+            return (
+                <Animated.View
+                    key={item.question}
+                    style={this.getCardStyle()}
+                    {...this.panResponder.panHandlers}
+                >
+                    <Card>
+                        <Typography style={styles.cardText}>
+                            { item.question }
+                        </Typography>
+                    </Card>
+                </Animated.View>
+            );
         });
     }
 

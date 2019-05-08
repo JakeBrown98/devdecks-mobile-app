@@ -9,15 +9,16 @@ import theme from '../theme';
 const propTypes = {
     list: PropTypes.array.isRequired,
     title: PropTypes.string.isRequired,
-    renderItem: PropTypes.element,
-    renderOption: PropTypes.element,
+    renderItem: PropTypes.any,
+    renderOption: PropTypes.any,
     horizontal: PropTypes.bool,
 };
 
 const defaultProps = {
     list: [],
     title: '',
-    renderOption: () => {},
+    renderItem: null,
+    renderOption: null,
     horizontal: false,
 };
 
@@ -27,12 +28,11 @@ const styles = StyleSheet.create({
     },
     sectionTitleRow: {
         display: 'flex',
+        alignItems: 'center',
         justifyContent: 'space-between',
         flexDirection: 'row',
-    },
-    sectionTitle: {
-        marginLeft: theme.unit * 3,
-        marginBottom: theme.unit * 3,
+        margin: theme.unit * 3,
+        marginTop: 0,
     },
     horizontalSeparator: {
         height: 1,
@@ -50,10 +50,10 @@ const ListSection = ({ list, title, renderOption, renderItem, horizontal, ...pro
     return (
         <View style={styles.sectionWrapper}>
             <View style={styles.sectionTitleRow}>
-                <Typography style={styles.sectionTitle} variant="large">
+                <Typography variant="large">
                     { title }
                 </Typography>
-                { renderOption() }
+                { renderOption && renderOption() }
             </View>
             <FlatList
                 data={list}

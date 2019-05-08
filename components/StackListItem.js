@@ -14,12 +14,14 @@ const propTypes = {
     onItemPress: PropTypes.func.isRequired,
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number.isRequired,
+    isFavourite: PropTypes.bool.isRequired,
 };
 
 const defaultProps = {
     onItemPress: () => {},
     label: '',
     cardAmount: 0,
+    isFavourite: false,
 };
 
 const styles = StyleSheet.create({
@@ -70,7 +72,7 @@ class StackListItem extends React.Component {
 
     render() {
         const { showOptions, showToast } = this.state;
-        const { label, cardAmount, onItemPress } = this.props;
+        const { label, cardAmount, onItemPress, isFavourite } = this.props;
 
         return (
             <View style={styles.container}>
@@ -84,10 +86,7 @@ class StackListItem extends React.Component {
                                 { `${cardAmount} cards` }
                             </Typography>
                         </View>
-                        <TouchableOpacity
-                            style={styles.moreButton}
-                            onPress={this.onMorePress}
-                        >
+                        <TouchableOpacity style={styles.moreButton} onPress={this.onMorePress}>
                             <MaterialIcons
                                 name="more-vert"
                                 size={theme.unit * 3}
@@ -98,9 +97,15 @@ class StackListItem extends React.Component {
                 </TouchableNativeFeedback>
                 {
                     showOptions &&
-                    <StackListItemOptions handleAddToFavourites={this.handleAddToFavourites} />
+                    <StackListItemOptions
+                        optionText={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
+                        handleAddToFavourites={this.handleAddToFavourites}
+                    />
                 }
-                <Toast visible={showToast} message="Stack added to favourites" />
+                <Toast
+                    visible={showToast}
+                    message={isFavourite ? 'Stack removed from favourites' : 'Stack added to favourites'}
+                />
             </View>
         );
     }

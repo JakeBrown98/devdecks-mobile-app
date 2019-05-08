@@ -20,6 +20,13 @@ const DeckRoutes = createStackNavigator(
     STACK_NAVIGATOR_OPTIONS,
 );
 
+const FavouriteRoutes= createStackNavigator(
+    {
+        Favourites: Favourites,
+    },
+    STACK_NAVIGATOR_OPTIONS,
+);
+
 const StackRoutes = createStackNavigator(
     {
         SingleStack: SingleStack,
@@ -34,12 +41,12 @@ const DrawerNavigator = createDrawerNavigator(
             screen: DeckRoutes,
             navigationOptions: {
                 drawerLabel: 'All Decks',
-            }
+            },
         },
         Favourites: {
-            screen: Favourites,
+            screen: FavouriteRoutes,
             navigationOptions: {
-                drawerLabel: 'Favourites'
+                drawerLabel: 'Favourites',
             },
         },
         Stack: {

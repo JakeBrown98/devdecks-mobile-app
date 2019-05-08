@@ -37,7 +37,11 @@ class StackSingleScreen extends React.Component {
     }
 
     setQuestions = () => {
-        this.setState({ questions: this.props.questions });
+        this.setState({
+            questions: this.props.questions,
+            cardIndex: 0,
+            helpRequiredCount: 0,
+        });
     }
 
     onSwipeComplete = () => {
@@ -57,18 +61,20 @@ class StackSingleScreen extends React.Component {
             <View style={styles.container}>
                 {
                     cardIndex < questions.length
-                    ? <Stack
-                        data={questions}
-                        cardIndex={cardIndex}
-                        onSwipeComplete={this.onSwipeComplete}
-                    />
+                    ? <React.Fragment>
+                        <Stack
+                            data={questions}
+                            cardIndex={cardIndex}
+                            onSwipeComplete={this.onSwipeComplete}
+                        />
+                        <StackActions />
+                    </React.Fragment>
                     : <StackEnd
                         data={questions}
                         helpRequiredCount={helpRequiredCount}
                         onButtonPress={this.onStackEndButtonPress}
                     />
                 }
-                <StackActions />
             </View>
         );
     }

@@ -7,10 +7,12 @@ import theme from '../theme';
 
 const propTypes = {
     handleAddToFavourites: PropTypes.func.isRequired,
+    optionText: PropTypes.string.isRequired,
 };
 
 const defaultProps = {
     handleAddToFavourites: () => {},
+    optionText: 'Add to favourites',
 };
 
 const styles = StyleSheet.create({
@@ -35,7 +37,7 @@ class StackListItemOptions extends React.Component {
                 <TouchableOpacity onPress={this.props.handleAddToFavourites}>
                     <View style={styles.optionsWrapper}>
                         <Typography variant="small">
-                            Add to favourites
+                            { this.props.optionText }
                         </Typography>
                     </View>
                 </TouchableOpacity>

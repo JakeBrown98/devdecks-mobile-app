@@ -53,11 +53,15 @@ const styles = StyleSheet.create({
         color: theme.palette.secondary,
         fontSize: 14,
     },
+    withPadding: {
+        padding: theme.unit * 2,
+        margin: -`${theme.unit * 2}`,
+    },
 });
 
 class Typography extends React.Component {
     renderText = () => {
-        let { variant } = this.props;
+        let { children, variant, style } = this.props;
 
         if (!TYPOGRAPHY_VARIANTS.includes(variant)) {
             variant = 'regular';
@@ -73,7 +77,7 @@ class Typography extends React.Component {
     render() {
         if (this.props.onPress) {
             return (
-                <TouchableOpacity onPress={this.props.onPress}>
+                <TouchableOpacity style={styles.withPadding} onPress={this.props.onPress}>
                     { this.renderText() }
                 </TouchableOpacity>
             );

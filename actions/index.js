@@ -9,7 +9,7 @@ import {
 
 export const initializeApp = () => dispatch => {
     let favourites = [];
-    const asyncStorage = ['Redux', 'React', 'SQL Basics'];
+    const asyncStorage = ['Redux', 'React', 'SQL Basics', 'Types & Operators'];
 
     data.forEach(deck => {
         const matches = deck.stacks.filter(stack => asyncStorage.includes(stack.name));

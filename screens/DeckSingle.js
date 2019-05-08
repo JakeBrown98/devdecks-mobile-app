@@ -1,14 +1,23 @@
 import React from 'react';
+import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveStack } from '../actions';
+import { setActiveStack, viewAllStacks } from '../actions';
+import theme from '../theme';
 
 import {
     Screen,
+    Typography,
     StackListItem,
     FavouriteThumbnail,
     ListSection,
 } from '../components';
 
+
+const styles = StyleSheet.create({
+    optionText: {
+        color: theme.palette.primary,
+    },
+});
 
 class DeckSingle extends React.Component {
     constructor(props) {
@@ -44,16 +53,38 @@ class DeckSingle extends React.Component {
         this.props.navigation.navigate('SingleStack');
     }
 
+    onAllStacksOptionPress = () => {
+        let allStacks = { questions: [] };
+
+        this.state.stacks.forEach(stack => {
+            allStacks.questions.push(...stack.questions);
+        });
+
+        this.onItemPress(allStacks)();
+    }
+
+    renderAllStacksOption = () => (
+        <Typography
+            variant="tiny"
+            onPress={this.onAllStacksOptionPress}
+            style={styles.optionText}
+        >
+            View All
+        </Typography>
+    )
+
     render() {
+        const { deckName, favourites, stacks } = this.state;
+
         return (
             <Screen
                 noPadding
-                title={this.state.deckName}
+                title={deckName}
                 navigation={this.props.navigation}
             >
                 <ListSection
                     title="Your Favourites"
-                    list={this.state.favourites}
+                    list={favourites}
                     horizontal
                     renderItem={item =>
                         <FavouriteThumbnail
@@ -65,9 +96,11 @@ class DeckSingle extends React.Component {
                 />
                 <ListSection
                     title="All Stacks"
-                    list={this.state.stacks}
+                    list={stacks}
+                    renderOption={this.renderAllStacksOption}
                     renderItem={item =>
                         <StackListItem
+                            isFavourite={favourites.includes(item)}
                             label={item.name}
                             cardAmount={item.questions.length}
                             onItemPress={this.onItemPress(item)}
@@ -83,4 +116,4 @@ const mapStateToProps = ({ app }) => ({
     favourites: app.favourites,
 });
 
-export default connect(mapStateToProps, { setActiveStack })(DeckSingle);
+export default connect(mapStateToProps, { setActiveStack, viewAllStacks })(DeckSingle);
