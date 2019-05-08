@@ -7,7 +7,7 @@ import theme from '../theme';
 
 const propTypes = {
     children: PropTypes.any.isRequired,
-    variant: PropTypes.string,
+    variant: PropTypes.oneOf(['title1', 'title2', 'large', 'regular', 'small', 'tiny']),
     style: PropTypes.object,
     onPress: PropTypes.func,
 };
@@ -75,9 +75,11 @@ class Typography extends React.Component {
     }
 
     render() {
-        if (this.props.onPress) {
+        const { onPress } = this.props;
+
+        if (onPress) {
             return (
-                <TouchableOpacity style={styles.withPadding} onPress={this.props.onPress}>
+                <TouchableOpacity style={styles.withPadding} onPress={onPress}>
                     { this.renderText() }
                 </TouchableOpacity>
             );

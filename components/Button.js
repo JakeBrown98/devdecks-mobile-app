@@ -8,16 +8,17 @@ import theme from '../theme';
 const propTypes = {
     label: PropTypes.string.isRequired,
     onPress: PropTypes.func.isRequired,
+    variant: PropTypes.oneOf(['primary', 'secondary']),
 };
 
 const defaultProps = {
     label: '',
     onPress: () => {},
+    variant: 'primary',
 };
 
 const styles = StyleSheet.create({
     button: {
-        backgroundColor: theme.palette.primary,
         width: '100%',
         paddingBottom: theme.unit,
         paddingTop: theme.unit,
@@ -27,21 +28,53 @@ const styles = StyleSheet.create({
     },
     label: {
         textAlign: 'center',
-        color: theme.palette.white,
     },
 });
 
-const Button = ({ label, onPress }) => {
-    return (
-        <TouchableNativeFeedback onPress={onPress}>
-            <View style={styles.button}>
-                <Typography style={styles.label}>
-                    { label.toUpperCase() }
-                </Typography>
-            </View>
-        </TouchableNativeFeedback>
-    );
-};
+class Button extends React.Component {
+    getButtonStyles = () => {
+        let buttonStyles = {
+            button: {
+                ...styles.button,
+                backgroundColor: theme.palette.primary,
+            },
+            label: {
+                ...styles.label,
+                color: theme.palette.white,
+            },
+        };
+
+        if (this.props.variant === 'secondary') {
+            buttonStyles = {
+                button: {
+                    ...styles.button,
+                    backgroundColor: theme.palette.white,
+                },
+                label: {
+                    ...styles.label,
+                    color: theme.palette.primary,
+                },
+            }
+        }
+
+        return buttonStyles;
+    }
+
+    render() {
+        const { label, onPress } = this.props;
+        const buttonStyles = this.getButtonStyles();
+
+        return (
+            <TouchableNativeFeedback onPress={onPress}>
+                <View style={buttonStyles.button}>
+                    <Typography style={buttonStyles.label}>
+                        { label.toUpperCase() }
+                    </Typography>
+                </View>
+            </TouchableNativeFeedback>
+        );
+    }
+}
 
 Button.defaultProps = defaultProps;
 Button.propTypes = propTypes;

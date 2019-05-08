@@ -42,10 +42,7 @@ class StackEnd extends React.Component {
                 <Typography>
                     You required help for
                 </Typography>
-                <Typography
-                    variant="title1"
-                    style={styles.helpRequiredText}
-                >
+                <Typography variant="title1" style={styles.helpRequiredText}>
                     { `${helpRequiredCount} / ${data.length}` }
                 </Typography>
                 <Typography>

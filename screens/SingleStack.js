@@ -63,7 +63,7 @@ class StackSingleScreen extends React.Component {
                     cardIndex < questions.length
                     ? <React.Fragment>
                         <Stack
-                            data={questions}
+                            questions={questions}
                             cardIndex={cardIndex}
                             onSwipeComplete={this.onSwipeComplete}
                         />

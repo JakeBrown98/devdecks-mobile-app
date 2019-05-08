@@ -16,7 +16,7 @@ const SWIPE_OUT_DURATION = 200;
 
 const propTypes = {
     cardIndex: PropTypes.number.isRequired,
-    data: PropTypes.array.isRequired,
+    questions: PropTypes.array.isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -89,9 +89,9 @@ class Stack extends React.Component {
     }
 
     renderCards = () => {
-        const { cardIndex, data } = this.props;
+        const { cardIndex, questions } = this.props;
 
-        return data.map((item, i) => {
+        return questions.map((item, i) => {
             if (i !== cardIndex) return null;
 
             return (
@@ -100,7 +100,7 @@ class Stack extends React.Component {
                     style={this.getCardStyle()}
                     {...this.panResponder.panHandlers}
                 >
-                    <Card>
+                    <Card bottomRightText={`${i + 1}`}>
                         <Typography style={styles.cardText}>
                             { item.question }
                         </Typography>
