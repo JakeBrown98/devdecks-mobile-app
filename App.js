@@ -31,15 +31,15 @@ class App extends React.Component {
                 'acumin-bold': require('./assets/fonts/acumin-bold.otf'),
             }),
         ]);
-    };
+    }
 
     handleLoadingError = error => {
         console.log(error);
-    };
+    }
 
     handleFinishLoading = () => {
         this.setState({ isLoadingComplete: true });
-    };
+    }
 
     render() {
         if (!this.state.isLoadingComplete && !this.props.skipLoadingScreen) {

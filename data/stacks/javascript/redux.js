@@ -2,6 +2,7 @@ export default {
     name: "Redux",
     questions: [
         {
+            id: 1,
             question: "What is an action?",
             answer: "",
             links: [
@@ -12,6 +13,7 @@ export default {
             ]
         },
         {
+            id: 2,
             question: "What is a reducer?",
             answer: "",
             links: [
@@ -22,6 +24,7 @@ export default {
             ]
         },
         {
+            id: 3,
             question: "What problems does Redux address?",
             answer: "",
             links: [
@@ -32,6 +35,7 @@ export default {
             ]
         },
         {
+            id: 4,
             question: "What are the core three principles?",
             answer: "",
             links: [
@@ -42,6 +46,7 @@ export default {
             ]
         },
         {
+            id: 5,
             question: "What are the benefits of immutability?",
             answer: "",
             links: [
@@ -52,6 +57,7 @@ export default {
             ]
         },
         {
+            id: 6,
             question: "What is the store?",
             answer: "",
             links: [
@@ -62,6 +68,7 @@ export default {
             ]
         },
         {
+            id: 7,
             question: "What is an action creator?",
             answer: "",
             links: [
@@ -72,16 +79,19 @@ export default {
             ]
         },
         {
+            id: 8,
             question: "What are the downsides of Redux?",
             answer: "",
             links: []
         },
         {
+            id: 9,
             question: "Should you create multiple stores? Why, why not?",
             answer: "",
             links: []
         },
         {
+            id: 10,
             question: "Why might you define action types as constants?",
             answer: "",
             links: []

@@ -2,7 +2,9 @@ import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import { DrawerItems, SafeAreaView } from 'react-navigation';
 import theme from '../theme';
+
 import { Typography } from '../components';
+
 
 const styles = StyleSheet.create({
     container: {

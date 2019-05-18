@@ -10,7 +10,8 @@ import {
 export const initializeApp = () => dispatch => {
     let favourites = [];
     const asyncStorage = {
-        favoriteStacks: ['Redux', 'React', 'SQL Basics', 'Types & Operators'],
+        // favoriteStacks: ['Redux', 'React', 'SQL Basics', 'Types & Operators'],
+        favoriteStacks: [],
     };
 
     data.forEach(deck => {

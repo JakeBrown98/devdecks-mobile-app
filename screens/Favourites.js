@@ -1,17 +1,19 @@
 import React from 'react';
 import _ from 'lodash';
-import { View, StyleSheet } from 'react-native';
+import { View, Dimensions, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveStack } from '../actions';
+import theme from '../theme';
 
 import { Screen, Typography, ThumbnailRow, FavouriteThumbnail } from '../components';
 
 
 const styles = StyleSheet.create({
     noFavouritesContainer: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+        textAlign: 'left',
+    },
+    noFavouritesText: {
+        color: theme.palette.black,
     },
 });
 
@@ -47,7 +49,7 @@ class Favourites extends React.Component {
                 {
                     _.isEmpty(favourites)
                     ? <View style={styles.noFavouritesContainer}>
-                        <Typography>
+                        <Typography style={styles.noFavouritesText}>
                             No favourites added yet
                         </Typography>
                     </View>

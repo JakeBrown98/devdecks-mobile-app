@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableNativeFeedback, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableNativeFeedback, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { MaterialIcons } from '@expo/vector-icons';
 import Typography from './Typography';
@@ -26,6 +26,7 @@ const defaultProps = {
 
 const styles = StyleSheet.create({
     container: {
+        overflow: 'hidden',
         marginBottom: theme.unit * 2,
     },
     itemWrapper: {
@@ -54,11 +55,36 @@ class StackListItem extends React.Component {
         this.state = {
             showOptions: false,
             showToast: false,
+            loading: true,
         };
+        this.height = new Animated.Value();
+        this.minHeight = null;
+        this.maxHeight = null;
+    }
+
+    setMinHeight = e => {
+        this.minHeight = e.nativeEvent.layout.height;
+
+        this.height.setValue(this.minHeight);
+
+        this.setState({ loading: false });
+    }
+
+    setMaxHeight = e => {
+        this.maxHeight = e.nativeEvent.layout.height;
     }
 
     onMorePress = () => {
-        this.setState({ showOptions: !this.state.showOptions });
+        const { showOptions } = this.state;
+        let initialValue = showOptions ? this.maxHeight + this.minHeight : this.minHeight;
+
+        this.setState({ showOptions: !showOptions });
+
+        this.height.setValue(initialValue);
+
+        Animated.spring(this.height, {
+            toValue: showOptions ? this.minHeight : this.maxHeight + this.minHeight,
+        }).start();
     }
 
     handleAddToFavourites = () => {
@@ -66,17 +92,31 @@ class StackListItem extends React.Component {
             showOptions: false,
             showToast: true,
         }, () => {
+            Animated.spring(this.height, {
+                toValue: this.minHeight,
+            }).start();
+
             this.setState({ showToast: false });
         });
     }
 
+    getContainerStyle = () => {
+        return [
+            styles.container,
+            {
+                height: this.height,
+                opacity: this.state.loading ? 0 : 1,
+            }
+        ];
+    }
+
     render() {
-        const { showOptions, showToast } = this.state;
+        const { showToast } = this.state;
         const { label, cardAmount, onItemPress, isFavourite } = this.props;
 
         return (
-            <View style={styles.container}>
-                <TouchableNativeFeedback onPress={onItemPress}>
+            <Animated.View style={this.getContainerStyle()}>
+                <TouchableNativeFeedback onPress={onItemPress} onLayout={this.setMinHeight}>
                     <View style={styles.itemWrapper}>
                         <View style={styles.textColumn}>
                             <Typography style={styles.titleText}>
@@ -95,18 +135,17 @@ class StackListItem extends React.Component {
                         </TouchableOpacity>
                     </View>
                 </TouchableNativeFeedback>
-                {
-                    showOptions &&
+                <View onLayout={this.setMaxHeight}>
                     <StackListItemOptions
                         optionText={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
                         handleAddToFavourites={this.handleAddToFavourites}
                     />
-                }
+                </View>
                 <Toast
                     visible={showToast}
                     message={isFavourite ? 'Stack removed from favourites' : 'Stack added to favourites'}
                 />
-            </View>
+            </Animated.View>
         );
     }
 }

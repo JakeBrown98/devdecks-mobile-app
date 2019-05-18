@@ -92,17 +92,18 @@ class Stack extends React.Component {
         const { cardIndex, questions } = this.props;
 
         return questions.map((item, i) => {
+            const { id, question } = item;
             if (i !== cardIndex) return null;
 
             return (
                 <Animated.View
-                    key={item.question}
+                    key={id}
                     style={this.getCardStyle()}
                     {...this.panResponder.panHandlers}
                 >
-                    <Card bottomRightText={`${i + 1}`}>
+                    <Card bottomRightText={id > 9 ? id : `0${id}`}>
                         <Typography style={styles.cardText}>
-                            { item.question }
+                            { question }
                         </Typography>
                     </Card>
                 </Animated.View>

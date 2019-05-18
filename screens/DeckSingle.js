@@ -100,6 +100,7 @@ class DeckSingle extends React.Component {
                     renderOption={this.renderAllStacksOption}
                     renderItem={item =>
                         <StackListItem
+                            disabled={item.disabled}
                             isFavourite={favourites.includes(item)}
                             label={item.name}
                             cardAmount={item.questions.length}
