@@ -2,27 +2,32 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, TouchableOpacity, Animated, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { MaterialIcons } from '@expo/vector-icons';
+import { addStackToFavourites, removeStackFromFavourites } from '../actions';
+import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Typography from './Typography';
 import StackListItemOptions from './StackListItemOptions';
 import Toast from './Toast';
-import * as actions from '../actions';
 import theme from '../theme';
 
 
 const propTypes = {
+    item: PropTypes.shape({
+        name: PropTypes.string.isRequired,
+        questions: PropTypes.array.isRequired,
+        disabled: PropTypes.bool,
+    }),
     onItemPress: PropTypes.func.isRequired,
-    label: PropTypes.string.isRequired,
-    cardAmount: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
     animateInSection: PropTypes.func.isRequired,
     itemIndex: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
+    item: {
+        name: '',
+        questions: [],
+    },
     onItemPress: () => {},
-    label: '',
-    cardAmount: 0,
     isFavourite: false,
     animateInSection: () => {},
     itemIndex: 0,
@@ -96,7 +101,7 @@ class StackListItem extends React.Component {
         this.animateShowOptions(showOptions ? this.minHeight : this.maxHeight + this.minHeight)
     }
 
-    handleAddToFavourites = () => {
+    handleAddToFavourites = (item, isFavourite) => e => {
         this.setState({
             showOptions: false,
             showToast: true,
@@ -104,6 +109,12 @@ class StackListItem extends React.Component {
             this.animateShowOptions(this.minHeight);
 
             this.setState({ showToast: false });
+
+            if (isFavourite) {
+                return this.props.removeStackFromFavourites(item.name);
+            }
+
+            return this.props.addStackToFavourites(item);
         });
     }
 
@@ -118,7 +129,7 @@ class StackListItem extends React.Component {
 
     render() {
         const { showToast } = this.state;
-        const { label, cardAmount, onItemPress, isFavourite } = this.props;
+        const { item, onItemPress, isFavourite } = this.props;
 
         return (
             <Animated.View style={this.getContainerStyle()}>
@@ -126,10 +137,10 @@ class StackListItem extends React.Component {
                     <View style={styles.itemWrapper}>
                         <View style={styles.textColumn}>
                             <Typography style={styles.titleText}>
-                                { label }
+                                { item.name }
                             </Typography>
                             <Typography variant="tiny">
-                                { `${cardAmount} cards` }
+                                { `${item.questions.length} cards` }
                             </Typography>
                         </View>
                         <TouchableOpacity style={styles.moreButton} onPress={this.onMorePress}>
@@ -144,7 +155,7 @@ class StackListItem extends React.Component {
                 <View onLayout={this.setMaxHeight}>
                     <StackListItemOptions
                         optionText={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
-                        handleAddToFavourites={this.handleAddToFavourites}
+                        handleAddToFavourites={this.handleAddToFavourites(item, isFavourite)}
                     />
                 </View>
                 <Toast
@@ -159,4 +170,4 @@ class StackListItem extends React.Component {
 StackListItem.defaultProps = defaultProps;
 StackListItem.propTypes = propTypes;
 
-export default connect(null, actions)(StackListItem);
+export default connect(null, { addStackToFavourites, removeStackFromFavourites })(StackListItem);

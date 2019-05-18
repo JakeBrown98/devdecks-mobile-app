@@ -1,7 +1,7 @@
 import {
     INIT_APP,
     SET_ACTIVE_STACK,
-    SET_FAVOURITE,
+    ADD_FAVOURITE,
     REMOVE_FAVOURITE,
 } from '../actions/types';
 
@@ -14,9 +14,15 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case INIT_APP:
-            return {...state, data: action.payload.data, favourites: action.payload.favourites};
+            const { data, favourites } = action.payload;
+
+            return {...state, data, favourites};
         case SET_ACTIVE_STACK:
             return {...state, activeStack: action.payload};
+        case ADD_FAVOURITE:
+            return {...state, favourites: [...state.favourites, action.payload] };
+        case REMOVE_FAVOURITE:
+            return {...state, favourites: state.favourites.filter(favourite => favourite.name !== action.payload)};
         default:
             return state;
     }

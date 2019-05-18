@@ -3,19 +3,19 @@ import data from '../data';
 import {
     INIT_APP,
     SET_ACTIVE_STACK,
-    SET_FAVOURITE,
+    ADD_FAVOURITE,
     REMOVE_FAVOURITE,
 } from './types';
 
 export const initializeApp = () => dispatch => {
     let favourites = [];
     const asyncStorage = {
-        // favoriteStacks: ['Redux', 'React', 'SQL Basics', 'Types & Operators'],
-        favoriteStacks: [],
+        // favourites: ['Redux', 'React', 'SQL Basics', 'Types & Operators'],
+        favourites: ['Redux'],
     };
 
     data.forEach(deck => {
-        const matches = deck.stacks.filter(stack => asyncStorage.favoriteStacks.includes(stack.name));
+        const matches = deck.stacks.filter(stack => asyncStorage.favourites.includes(stack.name));
 
         if (matches.length) {
             favourites = [...matches];
@@ -35,3 +35,17 @@ export const setActiveStack = (questions = []) => ({
     type: SET_ACTIVE_STACK,
     payload: _.shuffle(questions),
 });
+
+export const addStackToFavourites = stack => dispatch => {
+    dispatch({
+        type: ADD_FAVOURITE,
+        payload: stack,
+    });
+};
+
+export const removeStackFromFavourites = stackName => dispatch => {
+    dispatch({
+        type: REMOVE_FAVOURITE,
+        payload: stackName,
+    });
+};

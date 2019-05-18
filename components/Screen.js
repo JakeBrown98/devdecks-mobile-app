@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { ScrollView, View, TouchableOpacity, ActivityIndicator, StyleSheet } from 'react-native';
+import { ScrollView, View, TouchableOpacity, RefreshControl, StyleSheet } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
 import { Feather } from '@expo/vector-icons';
 import { STATUS_BAR_HEIGHT } from '../constants';
@@ -16,15 +16,15 @@ const propTypes = {
     titleVariant: PropTypes.string,
     noPadding: PropTypes.bool,
     footerText: PropTypes.string,
-    loading: PropTypes.bool,
 };
 
 const defaultProps = {
     hideMenu: false,
+    title: null,
     titleVariant: 'title1',
-    footerText: '',
     noPadding: false,
-    loading: false,
+    footerText: '',
+    refreshControl: null,
 };
 
 const styles = StyleSheet.create({
@@ -61,22 +61,34 @@ class Screen extends React.Component {
         this.props.navigation.dispatch(DrawerActions.openDrawer());
     }
 
+    getNoPaddingStyles = () => {
+        const { noPadding } = this.props;
+
+        return {
+            screenWrapper: noPadding ? null : styles.screenWrapper,
+            headerWrapper: noPadding ? styles.headerWrapperPadding : styles.headerWrapper,
+        }
+    }
+
     render() {
         const {
-            noPadding,
             title,
             titleVariant,
-            loading,
             children,
             footerText,
+            refreshControl,
         } = this.props;
+        const noPaddingStyles = this.getNoPaddingStyles ();
 
         return (
             <View style={styles.container}>
-                <ScrollView style={( noPadding ? null : styles.screenWrapper )}>
+                <ScrollView
+                    style={noPaddingStyles.screenWrapper}
+                    refreshControl={refreshControl}
+                >
                     {
                         title &&
-                        <View style={( noPadding ? styles.headerWrapperPadding : styles.headerWrapper )}>
+                        <View style={noPaddingStyles.headerWrapper}>
                             <TouchableOpacity onPress={this.onMenuPress} style={styles.menuIcon}>
                                 <Feather
                                     name="menu"
@@ -89,11 +101,7 @@ class Screen extends React.Component {
                             </Typography>
                         </View>
                     }
-                    {
-                        loading
-                        ? <ActivityIndicator size="large" color={theme.palette.primary} />
-                        : children
-                    }
+                    { children }
                     {
                          !_.isEmpty(footerText) &&
                         <View style={styles.screenFooter}>

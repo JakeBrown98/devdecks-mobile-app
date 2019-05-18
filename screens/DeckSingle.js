@@ -10,6 +10,7 @@ import {
     StackListItem,
     FavouriteThumbnail,
     ListSection,
+    RefreshSpinner,
 } from '../components';
 
 
@@ -26,26 +27,45 @@ class DeckSingle extends React.Component {
             deckName: null,
             stacks: [],
             favourites: [],
+            favouriteNames: [],
+            refreshing: false,
         };
         this.allStacksOpacity = new Animated.Value(0);
     }
 
     componentDidMount() {
-        const { favourites, navigation: { getParam } } = this.props;
+        const { navigation: { getParam } } = this.props;
         const stacks = getParam('stacks');
         const deckName = getParam('name');
 
         this.setState({
             deckName,
             stacks,
-            favourites: this.getFavourites(stacks, favourites),
-        });
+        }, this.getFavourites);
     }
 
-    getFavourites = (stacks, favourites) => {
-        const favouriteNames = favourites.map(favourite => favourite.name);
+    componentDidUpdate(prevProps) {
+        if (prevProps !== this.props) {
+            this.getFavouriteNames();
+        }
+    }
 
-        return stacks.filter(stack => favouriteNames.includes(stack.name));
+    getFavourites = () => {
+        this.getFavouriteNames(() => {
+            const { stacks, favouriteNames } = this.state;
+
+            this.setState({
+                favourites: stacks.filter(stack => favouriteNames.includes(stack.name)),
+            });
+        });
+
+        return true;
+    }
+
+    getFavouriteNames = callback => {
+        this.setState({
+            favouriteNames: this.props.favourites.map(favourite => favourite.name),
+        }, callback);
     }
 
     onItemPress = ({ questions }) => () => {
@@ -73,14 +93,28 @@ class DeckSingle extends React.Component {
         }).start();
     }
 
+    onRefresh = () => {
+        this.setState({ refreshing: true }, () => {
+            if (this.getFavourites()) {
+                this.setState({ refreshing: false });
+            }
+        });
+    }
+
     render() {
-        const { deckName, favourites, stacks } = this.state;
+        const { deckName, favourites, favouriteNames, stacks, refreshing } = this.state;
 
         return (
             <Screen
                 noPadding
                 title={deckName}
                 navigation={this.props.navigation}
+                refreshControl={
+                    <RefreshSpinner
+                        refreshing={refreshing}
+                        onRefresh={this.onRefresh}
+                    />
+                }
             >
                 <ListSection
                     title="Your Favourites"
@@ -105,10 +139,8 @@ class DeckSingle extends React.Component {
                     }
                     renderItem={(item, index) =>
                         <StackListItem
-                            disabled={item.disabled}
-                            isFavourite={favourites.includes(item)}
-                            label={item.name}
-                            cardAmount={item.questions.length}
+                            item={item}
+                            isFavourite={favouriteNames.includes(item.name)}
                             onItemPress={this.onItemPress(item)}
                             animateInSection={this.animateInAllStacks}
                             itemIndex={index}
