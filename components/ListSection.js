@@ -1,7 +1,7 @@
 import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
-import { View, FlatList, StyleSheet } from 'react-native';
+import { Animated, View, FlatList, StyleSheet } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
@@ -12,6 +12,7 @@ const propTypes = {
     renderItem: PropTypes.any,
     renderOption: PropTypes.any,
     horizontal: PropTypes.bool,
+    wrapperStyle: PropTypes.object,
 };
 
 const defaultProps = {
@@ -20,6 +21,7 @@ const defaultProps = {
     renderItem: null,
     renderOption: null,
     horizontal: false,
+    wrapperStyle: {},
 };
 
 const styles = StyleSheet.create({
@@ -44,11 +46,11 @@ const styles = StyleSheet.create({
     },
 });
 
-const ListSection = ({ list, title, renderOption, renderItem, horizontal, ...props }) => {
+const ListSection = ({ list, title, renderOption, renderItem, horizontal, wrapperStyle, ...props }) => {
     if (_.isEmpty(list)) return null;
 
     return (
-        <View style={styles.sectionWrapper}>
+        <Animated.View style={[styles.sectionWrapper, wrapperStyle]}>
             <View style={styles.sectionTitleRow}>
                 <Typography variant="large">
                     { title }
@@ -58,7 +60,7 @@ const ListSection = ({ list, title, renderOption, renderItem, horizontal, ...pro
             <FlatList
                 data={list}
                 keyExtractor={item => item.name}
-                renderItem={({ item }) => renderItem(item)}
+                renderItem={({ item, index }) => renderItem(item, index)}
                 horizontal={horizontal}
                 showsHorizontalScrollIndicator={( horizontal ? false : null )}
                 contentContainerStyle={styles.contentContainerStyle}
@@ -69,7 +71,7 @@ const ListSection = ({ list, title, renderOption, renderItem, horizontal, ...pro
                 )}
                 {...props}
             />
-        </View>
+        </Animated.View>
     );
 };
 

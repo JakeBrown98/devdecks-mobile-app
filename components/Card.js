@@ -21,7 +21,7 @@ const defaultProps = {
 
 const ANIMATED_CONFIG = {
     toValue: 1,
-    duration: 250,
+    duration: theme.animation.duration,
     useNativeDriver: true,
 };
 

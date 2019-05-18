@@ -12,4 +12,7 @@ export default {
         black: '#212121',
         white: '#FFFFFF',
     },
+    animation: {
+        duration: 250,
+    },
 };

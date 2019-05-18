@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { Animated, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveStack, viewAllStacks } from '../actions';
 import theme from '../theme';
@@ -27,6 +27,7 @@ class DeckSingle extends React.Component {
             stacks: [],
             favourites: [],
         };
+        this.allStacksOpacity = new Animated.Value(0);
     }
 
     componentDidMount() {
@@ -63,15 +64,14 @@ class DeckSingle extends React.Component {
         this.onItemPress(allStacks)();
     }
 
-    renderAllStacksOption = () => (
-        <Typography
-            variant="tiny"
-            onPress={this.onAllStacksOptionPress}
-            style={styles.optionText}
-        >
-            View All
-        </Typography>
-    )
+    animateInAllStacks = itemIndex => {
+        if (itemIndex !== 0) return;
+
+        Animated.timing(this.allStacksOpacity, {
+            duration: theme.animation.duration,
+            toValue: 1,
+        }).start();
+    }
 
     render() {
         const { deckName, favourites, stacks } = this.state;
@@ -97,14 +97,21 @@ class DeckSingle extends React.Component {
                 <ListSection
                     title="All Stacks"
                     list={stacks}
-                    renderOption={this.renderAllStacksOption}
-                    renderItem={item =>
+                    wrapperStyle={{ opacity: this.allStacksOpacity }}
+                    renderOption={() =>
+                        <Typography variant="tiny" onPress={this.onAllStacksOptionPress} style={styles.optionText}>
+                            View All
+                        </Typography>
+                    }
+                    renderItem={(item, index) =>
                         <StackListItem
                             disabled={item.disabled}
                             isFavourite={favourites.includes(item)}
                             label={item.name}
                             cardAmount={item.questions.length}
                             onItemPress={this.onItemPress(item)}
+                            animateInSection={this.animateInAllStacks}
+                            itemIndex={index}
                         />
                     }
                 />

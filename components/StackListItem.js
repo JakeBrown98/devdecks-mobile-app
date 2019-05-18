@@ -15,6 +15,8 @@ const propTypes = {
     label: PropTypes.string.isRequired,
     cardAmount: PropTypes.number.isRequired,
     isFavourite: PropTypes.bool.isRequired,
+    animateInSection: PropTypes.func.isRequired,
+    itemIndex: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
@@ -22,6 +24,8 @@ const defaultProps = {
     label: '',
     cardAmount: 0,
     isFavourite: false,
+    animateInSection: () => {},
+    itemIndex: 0,
 };
 
 const styles = StyleSheet.create({
@@ -55,7 +59,6 @@ class StackListItem extends React.Component {
         this.state = {
             showOptions: false,
             showToast: false,
-            loading: true,
         };
         this.height = new Animated.Value();
         this.minHeight = null;
@@ -63,15 +66,23 @@ class StackListItem extends React.Component {
     }
 
     setMinHeight = e => {
+        const { itemIndex, animateInSection } = this.props;
         this.minHeight = e.nativeEvent.layout.height;
 
         this.height.setValue(this.minHeight);
 
-        this.setState({ loading: false });
+        animateInSection(itemIndex);
     }
 
     setMaxHeight = e => {
         this.maxHeight = e.nativeEvent.layout.height;
+    }
+
+    animateShowOptions = toValue => {
+        Animated.timing(this.height, {
+            toValue,
+            duration: theme.animation.duration,
+        }).start();
     }
 
     onMorePress = () => {
@@ -82,9 +93,7 @@ class StackListItem extends React.Component {
 
         this.height.setValue(initialValue);
 
-        Animated.spring(this.height, {
-            toValue: showOptions ? this.minHeight : this.maxHeight + this.minHeight,
-        }).start();
+        this.animateShowOptions(showOptions ? this.minHeight : this.maxHeight + this.minHeight)
     }
 
     handleAddToFavourites = () => {
@@ -92,9 +101,7 @@ class StackListItem extends React.Component {
             showOptions: false,
             showToast: true,
         }, () => {
-            Animated.spring(this.height, {
-                toValue: this.minHeight,
-            }).start();
+            this.animateShowOptions(this.minHeight);
 
             this.setState({ showToast: false });
         });
@@ -105,7 +112,6 @@ class StackListItem extends React.Component {
             styles.container,
             {
                 height: this.height,
-                opacity: this.state.loading ? 0 : 1,
             }
         ];
     }

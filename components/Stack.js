@@ -12,7 +12,6 @@ import Typography from './Typography';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 const SWIPE_THRESHOLD = 0.15 * SCREEN_WIDTH;
-const SWIPE_OUT_DURATION = 200;
 
 const propTypes = {
     cardIndex: PropTypes.number.isRequired,
@@ -62,12 +61,14 @@ class Stack extends React.Component {
     }
 
     cardSwipeDirection = direction => {
+        const { duration } = theme.animation;
+
         Animated.timing(this.position, {
-            toValue: { 
+            duration,
+            toValue: {
                 x: direction === 'right' ? SCREEN_WIDTH : -SCREEN_WIDTH,
                 y: 0,
             },
-            duration: SWIPE_OUT_DURATION,
         }).start(this.onSwipeComplete);
     }
 
