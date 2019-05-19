@@ -1,0 +1,1 @@
+export const FAVOURITE_STACKS = 'FAVOURITE_STACKS';

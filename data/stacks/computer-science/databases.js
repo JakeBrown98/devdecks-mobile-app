@@ -1,6 +1,6 @@
 export default {
     name: "Creational Design Patters",
-    stack: [
+    questions: [
         {
             id: 1,
             question: "Abstract Factory",
