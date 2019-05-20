@@ -152,8 +152,8 @@ class DeckSingle extends React.Component {
     }
 }
 
-const mapStateToProps = ({ app }) => ({
-    favourites: app.favourites,
+const mapStateToProps = ({ favourites }) => ({
+    favourites: favourites.list,
 });
 
 export default connect(mapStateToProps, { setActiveStack, viewAllStacks })(DeckSingle);
