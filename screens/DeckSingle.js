@@ -133,7 +133,11 @@ class DeckSingle extends React.Component {
                     list={stacks}
                     wrapperStyle={{ opacity: this.allStacksOpacity }}
                     renderOption={() =>
-                        <Typography variant="tiny" onPress={this.onAllStacksOptionPress} style={styles.optionText}>
+                        <Typography
+                            variant="tiny"
+                            onPress={this.onAllStacksOptionPress}
+                            style={styles.optionText}
+                        >
                             View All
                         </Typography>
                     }

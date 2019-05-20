@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { View, TouchableNativeFeedback, TouchableOpacity, Animated, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import { addStackToFavourites, removeStackFromFavourites } from '../actions';
+import {
+    View,
+    TouchableNativeFeedback,
+    TouchableOpacity,
+    Animated,
+    StyleSheet,
+} from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
 import Typography from './Typography';
 import StackListItemOptions from './StackListItemOptions';
@@ -101,20 +105,14 @@ class StackListItem extends React.Component {
         this.animateShowOptions(showOptions ? this.minHeight : this.maxHeight + this.minHeight)
     }
 
-    handleAddToFavourites = (item, isFavourite) => e => {
+    onFavouriteChangeComplete = () => {
+        this.animateShowOptions(this.minHeight);
+
         this.setState({
             showOptions: false,
             showToast: true,
         }, () => {
-            this.animateShowOptions(this.minHeight);
-
             this.setState({ showToast: false });
-
-            if (isFavourite) {
-                return this.props.removeStackFromFavourites(item.name);
-            }
-
-            return this.props.addStackToFavourites(item);
         });
     }
 
@@ -154,8 +152,9 @@ class StackListItem extends React.Component {
                 </TouchableNativeFeedback>
                 <View onLayout={this.setMaxHeight}>
                     <StackListItemOptions
-                        optionText={isFavourite ? 'Remove from favourites' : 'Add to favourites'}
-                        handleAddToFavourites={this.handleAddToFavourites(item, isFavourite)}
+                        item={item}
+                        isFavourite={isFavourite}
+                        onFavouriteChangeComplete={this.onFavouriteChangeComplete}
                     />
                 </View>
                 <Toast
@@ -170,4 +169,4 @@ class StackListItem extends React.Component {
 StackListItem.defaultProps = defaultProps;
 StackListItem.propTypes = propTypes;
 
-export default connect(null, { addStackToFavourites, removeStackFromFavourites })(StackListItem);
+export default StackListItem;
