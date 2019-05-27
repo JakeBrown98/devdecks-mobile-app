@@ -4,16 +4,18 @@ import PropTypes from 'prop-types';
 
 
 const propTypes = {
-    message: PropTypes.string.isRequired,
-    visible: PropTypes.bool.isRequired,
+    message: PropTypes.oneOfType([
+        PropTypes.string,
+        null
+    ]),
 };
 
 const defaultProps = {
-    visible: false,
+    message: null,
 };
 
-const Toast = ({ message, visible }) => {
-    if (visible) {
+const Toast = ({ message }) => {
+    if (message) {
         ToastAndroid.show(message, ToastAndroid.SHORT);
 
         return null;

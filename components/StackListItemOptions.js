@@ -81,12 +81,12 @@ class StackListItemOptions extends React.Component {
                 await AsyncStorage.setItem(FAVOURITE_STACKS, JSON.stringify(newFavourites));
             }
         } catch (error) {
-            console.log(error);
+            this.errorUpdatingFavourite();
         }
 
         this.setState({ loading: false });
 
-        this.props.onFavouriteChangeComplete();
+        this.props.onFavouriteChangeComplete('Stack added to favourites');
         this.props.addStackToFavourites(stack);
     }
 
@@ -101,13 +101,17 @@ class StackListItemOptions extends React.Component {
                 await AsyncStorage.setItem(FAVOURITE_STACKS, JSON.stringify(data));
             }
         } catch (error) {
-            console.log(error);
+            this.errorUpdatingFavourite();
         }
 
         this.setState({ loading: false });
 
-        this.props.onFavouriteChangeComplete();
+        this.props.onFavouriteChangeComplete('Stack removed from favourites');
         this.props.removeStackFromFavourites(stackName);
+    }
+
+    errorUpdatingFavourite = () => {
+        this.props.onFavouriteChangeComplete('Error changing favourite status');
     }
 
     render() {

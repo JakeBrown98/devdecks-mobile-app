@@ -61,14 +61,14 @@ class StackSingleScreen extends React.Component {
             <View style={styles.container}>
                 {
                     cardIndex < questions.length
-                    ? <React.Fragment>
+                    ? <>
                         <Stack
                             questions={questions}
                             cardIndex={cardIndex}
                             onSwipeComplete={this.onSwipeComplete}
                         />
                         <StackActions />
-                    </React.Fragment>
+                    </>
                     : <StackEnd
                         data={questions}
                         helpRequiredCount={helpRequiredCount}

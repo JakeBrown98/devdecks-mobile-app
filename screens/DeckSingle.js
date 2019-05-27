@@ -1,7 +1,7 @@
 import React from 'react';
 import { Animated, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
-import { setActiveStack, viewAllStacks } from '../actions';
+import { setActiveStack } from '../actions';
 import theme from '../theme';
 
 import {
@@ -84,9 +84,7 @@ class DeckSingle extends React.Component {
         this.onItemPress(allStacks)();
     }
 
-    animateInAllStacks = itemIndex => {
-        if (itemIndex !== 0) return;
-
+    animateInAllStacks = () => {
         Animated.timing(this.allStacksOpacity, {
             duration: theme.animation.duration,
             toValue: 1,
@@ -160,4 +158,4 @@ const mapStateToProps = ({ favourites }) => ({
     favourites: favourites.list,
 });
 
-export default connect(mapStateToProps, { setActiveStack, viewAllStacks })(DeckSingle);
+export default connect(mapStateToProps, { setActiveStack })(DeckSingle);

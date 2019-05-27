@@ -1,6 +1,6 @@
 import React from 'react';
 import _ from 'lodash';
-import { View, Dimensions, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { setActiveStack } from '../actions';
 import theme from '../theme';

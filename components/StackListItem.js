@@ -67,7 +67,7 @@ class StackListItem extends React.Component {
         super(props);
         this.state = {
             showOptions: false,
-            showToast: false,
+            toastMessage: null,
         };
         this.height = new Animated.Value();
         this.minHeight = null;
@@ -80,7 +80,9 @@ class StackListItem extends React.Component {
 
         this.height.setValue(this.minHeight);
 
-        animateInSection(itemIndex);
+        if (itemIndex === 0) {
+            animateInSection();
+        }
     }
 
     setMaxHeight = e => {
@@ -105,14 +107,14 @@ class StackListItem extends React.Component {
         this.animateShowOptions(showOptions ? this.minHeight : this.maxHeight + this.minHeight)
     }
 
-    onFavouriteChangeComplete = () => {
+    onFavouriteChangeComplete = toastMessage => {
         this.animateShowOptions(this.minHeight);
 
         this.setState({
+            toastMessage,
             showOptions: false,
-            showToast: true,
         }, () => {
-            this.setState({ showToast: false });
+            this.setState({ toastMessage: null });
         });
     }
 
@@ -126,7 +128,7 @@ class StackListItem extends React.Component {
     }
 
     render() {
-        const { showToast } = this.state;
+        const { toastMessage } = this.state;
         const { item, onItemPress, isFavourite } = this.props;
 
         return (
@@ -157,10 +159,7 @@ class StackListItem extends React.Component {
                         onFavouriteChangeComplete={this.onFavouriteChangeComplete}
                     />
                 </View>
-                <Toast
-                    visible={showToast}
-                    message={isFavourite ? 'Stack removed from favourites' : 'Stack added to favourites'}
-                />
+                <Toast message={toastMessage} />
             </Animated.View>
         );
     }
