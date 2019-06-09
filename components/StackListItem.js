@@ -8,10 +8,11 @@ import {
     StyleSheet,
 } from 'react-native';
 import MaterialIcons from '@expo/vector-icons/MaterialIcons';
+import theme from '../theme';
+
 import Typography from './Typography';
 import StackListItemOptions from './StackListItemOptions';
 import Toast from './Toast';
-import theme from '../theme';
 
 
 const propTypes = {
@@ -165,7 +166,7 @@ class StackListItem extends React.Component {
     }
 }
 
-StackListItem.defaultProps = defaultProps;
 StackListItem.propTypes = propTypes;
+StackListItem.defaultProps = defaultProps;
 
 export default StackListItem;

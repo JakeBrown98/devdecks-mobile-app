@@ -24,7 +24,7 @@ const Toast = ({ message }) => {
     return null;
 };
 
-Toast.defaultProps = defaultProps;
 Toast.propTypes = propTypes;
+Toast.defaultProps = defaultProps;
 
 export default Toast;

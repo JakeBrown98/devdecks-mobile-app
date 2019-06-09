@@ -88,7 +88,7 @@ class Card extends React.Component {
     }
 }
 
-Card.defaultProps = defaultProps;
 Card.propTypes = propTypes;
+Card.defaultProps = defaultProps;
 
 export default Card;

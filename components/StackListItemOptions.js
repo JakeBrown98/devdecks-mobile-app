@@ -4,8 +4,9 @@ import { TouchableOpacity, View, ActivityIndicator, AsyncStorage, StyleSheet } f
 import { connect } from 'react-redux';
 import { addStackToFavourites, removeStackFromFavourites } from '../actions';
 import { FAVOURITE_STACKS } from '../constants';
-import Typography from './Typography';
 import theme from '../theme';
+
+import Typography from './Typography';
 
 
 const propTypes = {
@@ -136,7 +137,7 @@ class StackListItemOptions extends React.Component {
     }
 }
 
-StackListItemOptions.defaultProps = defaultProps;
 StackListItemOptions.propTypes = propTypes;
+StackListItemOptions.defaultProps = defaultProps;
 
 export default connect(null, { addStackToFavourites, removeStackFromFavourites })(StackListItemOptions);

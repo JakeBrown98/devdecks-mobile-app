@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
+import theme from '../theme';
+
 import Typography from './Typography';
 import Button from './Button';
-import theme from '../theme';
 
 
 const propTypes = {

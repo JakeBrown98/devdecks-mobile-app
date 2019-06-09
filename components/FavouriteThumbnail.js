@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, Dimensions, StyleSheet } from 'react-native';
 import { MaterialIcons } from '@expo/vector-icons';
-import Typography from './Typography';
 import theme from '../theme';
+
+import Typography from './Typography';
 
 
 const SQUARE_RATIO = (Dimensions.get('window').width / 2) - (theme.unit * 4);
@@ -75,7 +76,7 @@ class FavouriteThumbnail extends React.Component {
     }
 }
 
-FavouriteThumbnail.defaultProps = defaultProps;
 FavouriteThumbnail.propTypes = propTypes;
+FavouriteThumbnail.defaultProps = defaultProps;
 
 export default FavouriteThumbnail;

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, StyleSheet } from 'react-native';
-import Typography from './Typography';
 import theme from '../theme';
 
+
+import Typography from './Typography';
 
 const propTypes = {
     label: PropTypes.string.isRequired,
@@ -38,7 +39,7 @@ const Stat = ({ label, result }) => (
     </View>
 );
 
-Stat.defaultProps = defaultProps;
 Stat.propTypes = propTypes;
+Stat.defaultProps = defaultProps;
 
 export default Stat;

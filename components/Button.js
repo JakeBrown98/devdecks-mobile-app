@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TouchableNativeFeedback, View, StyleSheet } from 'react-native';
-import Typography from './Typography';
 import theme from '../theme';
 
+
+import Typography from './Typography';
 
 const propTypes = {
     label: PropTypes.string.isRequired,
@@ -76,7 +77,7 @@ class Button extends React.Component {
     }
 }
 
-Button.defaultProps = defaultProps;
 Button.propTypes = propTypes;
+Button.defaultProps = defaultProps;
 
 export default Button;

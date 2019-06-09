@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import { ScrollView, View, TouchableOpacity, RefreshControl, StyleSheet } from 'react-native';
+import { ScrollView, View, TouchableOpacity, StyleSheet } from 'react-native';
 import { DrawerActions } from 'react-navigation-drawer';
 import { Feather } from '@expo/vector-icons';
 import { STATUS_BAR_HEIGHT } from '../constants';
-import Typography from './Typography';
 import theme from '../theme';
+
+import Typography from './Typography';
 
 
 const propTypes = {
@@ -116,7 +117,7 @@ class Screen extends React.Component {
     }
 }
 
-Screen.defaultProps = defaultProps;
 Screen.propTypes = propTypes;
+Screen.defaultProps = defaultProps;
 
 export default Screen;

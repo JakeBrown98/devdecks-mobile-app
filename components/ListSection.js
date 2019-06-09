@@ -2,8 +2,9 @@ import React from 'react';
 import _ from 'lodash';
 import PropTypes from 'prop-types';
 import { Animated, View, FlatList, StyleSheet } from 'react-native';
-import Typography from './Typography';
 import theme from '../theme';
+
+import Typography from './Typography';
 
 
 const propTypes = {
@@ -75,7 +76,7 @@ const ListSection = ({ list, title, renderOption, renderItem, horizontal, wrappe
     );
 };
 
-ListSection.defaultProps = defaultProps;
 ListSection.propTypes = propTypes;
+ListSection.defaultProps = defaultProps;
 
 export default ListSection;

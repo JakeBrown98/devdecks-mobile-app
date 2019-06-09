@@ -28,7 +28,7 @@ const ThumbnailRow = ({ children }) => (
     </View>
 );
 
-ThumbnailRow.defaultProps = defaultProps;
 ThumbnailRow.propTypes = propTypes;
+ThumbnailRow.defaultProps = defaultProps;
 
 export default ThumbnailRow;

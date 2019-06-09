@@ -89,7 +89,7 @@ class Typography extends React.Component {
     }
 }
 
-Typography.defaultProps = defaultProps;
 Typography.propTypes = propTypes;
+Typography.defaultProps = defaultProps;
 
 export default Typography;

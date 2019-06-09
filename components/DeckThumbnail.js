@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { View, TouchableNativeFeedback, StyleSheet } from 'react-native';
-import Typography from './Typography';
-import DeckIcon from './DeckIcon';
 import theme from '../theme';
 
+
+import Typography from './Typography';
+import DeckIcon from './DeckIcon';
 
 const propTypes = {
     name: PropTypes.string.isRequired,
@@ -67,7 +68,7 @@ class DeckThumbnail extends React.Component {
     }
 }
 
-DeckThumbnail.defaultProps = defaultProps;
 DeckThumbnail.propTypes = propTypes;
+DeckThumbnail.defaultProps = defaultProps;
 
 export default DeckThumbnail;

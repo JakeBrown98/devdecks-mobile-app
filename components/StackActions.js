@@ -3,8 +3,13 @@ import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import Typography from './Typography';
 import theme from '../theme';
 
-const propTypes = {
 
+const propTypes = {
+    disabled: PropTypes.bool.isRequired,
+};
+
+const defaultProps = {
+    disabled: false,
 };
 
 const styles = StyleSheet.create({
@@ -38,6 +43,7 @@ class StackActions extends React.Component {
         return (
             <View style={styles.container}>
                 <TouchableOpacity
+                    disabled={this.props.disabled}
                     onPress={this.onActionPress}
                     style={styles.actionButton}
                 >
@@ -50,6 +56,7 @@ class StackActions extends React.Component {
     }
 }
 
+StackActions.defaultProps = defaultProps;
 StackActions.propTypes = propTypes;
 
 export default StackActions;

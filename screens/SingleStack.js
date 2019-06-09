@@ -54,27 +54,26 @@ class StackSingleScreen extends React.Component {
 
     render() {
         const { questions, cardIndex, helpRequiredCount } = this.state;
+        const hasCardsRemaining = cardIndex < questions.length;
 
         if (!questions) return null;
 
         return (
             <View style={styles.container}>
                 {
-                    cardIndex < questions.length
-                    ? <>
-                        <Stack
-                            questions={questions}
-                            cardIndex={cardIndex}
-                            onSwipeComplete={this.onSwipeComplete}
-                        />
-                        <StackActions />
-                    </>
+                    hasCardsRemaining
+                    ? <Stack
+                        questions={questions}
+                        cardIndex={cardIndex}
+                        onSwipeComplete={this.onSwipeComplete}
+                    />
                     : <StackEnd
                         data={questions}
                         helpRequiredCount={helpRequiredCount}
                         onButtonPress={this.onStackEndButtonPress}
                     />
                 }
+                <StackActions disabled={!hasCardsRemaining} />
             </View>
         );
     }
